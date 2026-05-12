@@ -1,0 +1,58 @@
+name: Scheduled raw data refresh
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+      timezone: "Asia/Shanghai"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate required secret
+        run: |
+          if [[ -z "${{ secrets.TAVILY_API_KEY }}" ]]; then
+            echo "TAVILY_API_KEY is not set. Configure it in Repository Settings -> Secrets and variables -> Actions." >&2
+            exit 1
+          fi
+
+      - name: Refresh raw-source snapshots
+        env:
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          SKIP_OPENCLI: "1"
+          RAW_HISTORY_KEEP: "180"
+        run: ./refresh-outbreak-raw-data.sh
+
+      - name: Validate published outbreak dataset
+        run: node validate-outbreak-data.js
+
+      - name: Commit and push changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes detected."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add raw-sources/manifest.json raw-sources/latest raw-sources/history
+          git commit -m "chore(data): refresh raw-source snapshots"
+          git push

@@ -1,0 +1,53 @@
+name: Deploy static tracker to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Validate outbreak data
+        run: node validate-outbreak-data.js
+
+      - name: Prepare site artifact
+        run: |
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp outbreak-data.js _site/outbreak-data.js
+          mkdir -p _site/raw-sources/latest
+          if [ -f raw-sources/manifest.json ]; then
+            cp raw-sources/manifest.json _site/raw-sources/manifest.json
+          fi
+          if [ -d raw-sources/latest ]; then
+            cp raw-sources/latest/*.json _site/raw-sources/latest/ || true
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

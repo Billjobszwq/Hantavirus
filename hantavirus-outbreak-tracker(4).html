@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026年汉坦病毒（安第斯病毒）全球疫情追踪 — MV Hondius 邮轮事件</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #0f172a; color: #e2e8f0; line-height: 1.6;
+  }
+  .header {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    padding: 24px 32px; border-bottom: 3px solid #ef4444;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.8rem; color: #f8fafc; margin-bottom: 6px; }
+  .header .subtitle { font-size: 0.95rem; color: #94a3b8; }
+  .header .alert-badge {
+    display: inline-block; background: #ef4444; color: #fff; padding: 4px 14px;
+    border-radius: 999px; font-size: 0.8rem; font-weight: 700; margin-top: 8px;
+  }
+  .header .update-hint { font-size: 0.75rem; color: #64748b; margin-top: 6px; }
+
+  /* ===== DATA CONFIG PANEL ===== */
+  .data-config {
+    background: #1e293b; border: 1px solid #334155; border-radius: 8px;
+    padding: 12px 20px; margin: 16px 32px 0; font-size: 0.8rem;
+  }
+  .data-config summary { cursor: pointer; color: #60a5fa; font-weight: 600; }
+  .data-config pre { 
+    background: #0f172a; border: 1px solid #334155; border-radius: 6px;
+    padding: 10px; margin-top: 8px; font-size: 0.72rem; max-height: 200px;
+    overflow-y: auto; color: #94a3b8;
+  }
+  .data-config code { font-family: 'SF Mono', 'Fira Code', monospace; }
+
+  /* ===== STATS ===== */
+  .stats-row {
+    display: flex; flex-wrap: wrap; gap: 16px; padding: 20px 32px;
+    justify-content: center;
+  }
+  .stat-card {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px;
+    padding: 16px 24px; min-width: 140px; text-align: center;
+  }
+  .stat-card .num { font-size: 2rem; font-weight: 800; }
+  .stat-card .label { font-size: 0.8rem; color: #94a3b8; margin-top: 2px; }
+  .stat-card.deaths .num { color: #ef4444; }
+  .stat-card.confirmed .num { color: #f97316; }
+  .stat-card.suspected .num { color: #eab308; }
+  .stat-card.countries .num { color: #3b82f6; }
+  .stat-card.cfr .num { color: #ef4444; }
+
+  /* ===== MAP + TABLE ROW ===== */
+  .main-container {
+    display: flex; flex-wrap: wrap; gap: 20px; padding: 0 32px 20px;
+  }
+  .map-container {
+    flex: 1 1 58%; min-width: 500px; height: 520px;
+    border-radius: 12px; overflow: hidden; border: 2px solid #334155;
+  }
+  #map { width: 100%; height: 100%; }
+  .table-container {
+    flex: 1 1 38%; min-width: 380px; max-height: 520px;
+    overflow-y: auto; background: #1e293b; border-radius: 12px;
+    border: 1px solid #334155; padding: 16px;
+  }
+  .table-container h3 {
+    font-size: 1.1rem; margin-bottom: 12px; color: #f8fafc;
+    border-bottom: 1px solid #334155; padding-bottom: 8px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th {
+    background: #334155; color: #f1f5f9; padding: 10px 8px;
+    text-align: left; position: sticky; top: 0; z-index: 1;
+  }
+  td { padding: 8px; border-bottom: 1px solid #1e293b; }
+  tr:hover td { background: #334155; }
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; white-space: nowrap;
+  }
+  .badge-confirmed { background: #f97316; color: #fff; }
+  .badge-death { background: #ef4444; color: #fff; }
+  .badge-suspected { background: #eab308; color: #1e293b; }
+  .badge-monitoring { background: #64748b; color: #fff; }
+  .badge-probable { background: #a855f7; color: #fff; }
+  .badge-negative { background: #22c55e; color: #1e293b; }
+  .badge-origin { background: #3b82f6; color: #fff; }
+
+  /* ===== TIMELINE SECTION ===== */
+  .timeline-section {
+    padding: 0 32px 20px;
+  }
+  .timeline-section h3 {
+    font-size: 1.1rem; color: #f8fafc; margin-bottom: 12px;
+    border-bottom: 1px solid #334155; padding-bottom: 8px;
+  }
+  .timeline-table-wrap {
+    max-height: 420px; overflow-y: auto;
+    background: #1e293b; border-radius: 12px; border: 1px solid #334155;
+  }
+  .timeline-table-wrap table { font-size: 0.8rem; }
+  .timeline-table-wrap th { position: sticky; top: 0; }
+
+  /* ===== CHART SECTION ===== */
+  .chart-section {
+    padding: 0 32px 20px;
+  }
+  .chart-section h3 {
+    font-size: 1.1rem; color: #f8fafc; margin-bottom: 12px;
+    border-bottom: 1px solid #334155; padding-bottom: 8px;
+  }
+  .chart-controls {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; align-items: center;
+  }
+  .chart-controls select, .chart-controls label {
+    background: #1e293b; color: #e2e8f0; border: 1px solid #334155;
+    border-radius: 6px; padding: 6px 12px; font-size: 0.82rem; cursor: pointer;
+  }
+  .chart-controls select:focus { outline: none; border-color: #60a5fa; }
+  .chart-wrap {
+    background: #1e293b; border-radius: 12px; border: 1px solid #334155;
+    padding: 20px; height: 400px; position: relative;
+  }
+  canvas#trendChart { width: 100% !important; height: 100% !important; }
+
+  /* ===== KEY INFO ===== */
+  .keyinfo-section {
+    padding: 0 32px 20px;
+  }
+  .keyinfo-section h3 { font-size: 1.1rem; color: #f8fafc; margin-bottom: 8px; }
+  .keyinfo-box {
+    background:#1e293b; border:1px solid #334155; border-radius:12px; padding:16px 20px;
+    display: flex; flex-wrap: wrap; gap: 16px; font-size: 0.85rem;
+  }
+  .keyinfo-box > div { flex: 1; min-width: 200px; }
+  .keyinfo-box strong { color: #f97316; }
+
+  /* ===== LEGEND ===== */
+  .legend {
+    background: #1e293b; border: 1px solid #334155; border-radius: 8px;
+    padding: 10px 14px; font-size: 0.8rem; line-height: 1.8;
+  }
+  .legend i { width: 14px; height: 14px; display: inline-block; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+
+  .footer {
+    text-align: center; padding: 16px 32px 24px; font-size: 0.8rem;
+    color: #64748b; border-top: 1px solid #1e293b;
+  }
+  .footer a { color: #60a5fa; }
+
+  @media (max-width: 900px) {
+    .main-container { flex-direction: column; }
+    .map-container { min-width: unset; height: 350px; }
+    .table-container { min-width: unset; max-height: 400px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🦠 2026年汉坦病毒（安第斯病毒）全球疫情追踪</h1>
+  <div class="subtitle">MV Hondius（洪迪厄斯号）邮轮聚集性疫情 · 数据截至 2026年5月12日</div>
+  <div class="alert-badge">⚠️ WHO 风险评估：公众风险较低 · 不建议旅行/贸易限制</div>
+  <div class="update-hint">📝 可更新版本：展开下方「数据配置」修改 JSON 数据即可刷新页面</div>
+</div>
+
+<!-- ===== DATA CONFIG (可更新) ===== -->
+<details class="data-config" id="dataConfigPanel">
+  <summary>⚙️ 数据配置（点击展开，修改 JSON 后刷新页面即可更新）</summary>
+  <pre><code id="rawDataConfig">{
+  "meta": {
+    "lastUpdated": "2026-05-12T20:00:00+08:00",
+    "dataSource": "WHO DON#599/#600 · ECDC · CDC HAN #00528 · 各国卫生部",
+    "virus": "Andes virus (ANDV) - 安第斯病毒",
+    "ship": "MV Hondius (洪迪厄斯号) - 荷兰籍探险邮轮",
+    "totalOnboard": 147,
+    "nationalities": 23
+  },
+  "summary": {
+    "totalCases": 12,
+    "labConfirmed": 10,
+    "probable": 2,
+    "deaths": 3,
+    "deathsConfirmed": 2,
+    "deathsProbable": 1,
+    "cfrPercent": 25,
+    "hospitalized": 4,
+    "dataNote": "确诊病例=PCR检测阳性; 可能病例=有流行病学关联但未做/未出实验室检测"
+  },
+  "countries": [
+    {"country": "🇳🇱 荷兰", "testing": 0, "confirmed": 2, "recovered": 0, "deaths": 2, "contacts": 80, "status": "confirmed", "note": "Case2(女,~69)5/4PCR确诊+船员(41岁)5/7确诊; Case1(男,~70)属可能病例; KLM乘务员阴性"},
+    {"country": "🇬🇧 英国", "testing": 1, "confirmed": 2, "recovered": 0, "deaths": 0, "contacts": 60, "status": "confirmed", "note": "英国籍男性南非ICU(5/2首例PCR确诊)+船医荷兰入院; 特里斯坦岛Case8属可能病例"},
+    {"country": "🇩🇪 德国", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 1, "contacts": 30, "status": "confirmed", "note": "德国籍Case3死亡(可能病例,未做PCR); 另1名65岁转送德国后PCR+血清均阴性→排除"},
+    {"country": "🇨🇭 瑞士", "testing": 0, "confirmed": 1, "recovered": 0, "deaths": 0, "contacts": 15, "status": "confirmed", "note": "男性乘客, 苏黎世大学医院隔离; 追踪妻子及接触者"},
+    {"country": "🇫🇷 法国", "testing": 0, "confirmed": 1, "recovered": 0, "deaths": 0, "contacts": 22, "status": "confirmed", "note": "女性乘客5/11确诊+病情恶化; 22名高风险法国密接确认; 8人同航班+14人后续航班"},
+    {"country": "🇺🇸 美国", "testing": 0, "confirmed": 2, "recovered": 0, "deaths": 0, "contacts": 35, "status": "confirmed", "note": "5/11确诊: 1无症状+1轻症; 17名美国乘客撤至奥马哈; 至少5州(GA/AZ/CA/TX/VA)追踪"},
+    {"country": "🇪🇸 西班牙", "testing": 0, "confirmed": 1, "recovered": 0, "deaths": 0, "contacts": 14, "status": "confirmed", "note": "1名乘客5/12确诊, 医院隔离; 14名西班牙公民马德里隔离观察"},
+    {"country": "🇿🇦 南非", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 62, "status": "treatment", "note": "治疗地: 英国籍男性ICU + 追踪同航班(圣赫勒拿→约堡)62密接"},
+    {"country": "🇦🇷 阿根廷", "testing": 1, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 50, "status": "origin", "note": "启航港; 巴里洛切1例本地汉坦(与邮轮关联未明); 乌斯怀亚灭鼠; 调查索引病例观鸟路线"},
+    {"country": "🇨🇻 佛得角", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 10, "status": "monitoring", "note": "邮轮5/3-9锚泊外海; 拒绝靠港; 协助转运3人(其中2人阳性→已计入荷兰)"},
+    {"country": "🇸🇬 新加坡", "testing": 2, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 10, "status": "monitoring", "note": "2名密接检测→阴性; 强制隔离30天"},
+    {"country": "🇨🇦 加拿大", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 5, "status": "monitoring", "note": "乘客追踪/接触者健康监测中"},
+    {"country": "🇦🇺 澳大利亚", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 6, "status": "monitoring", "note": "5/11起隔离6名撤离乘客"},
+    {"country": "🇯🇵 日本", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 5, "status": "monitoring", "note": "1名日本男子撤至曼彻斯特Arrowe Park医院"},
+    {"country": "🇩🇰 丹麦", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 35, "status": "monitoring", "note": "政府包机撤离船员(5/11); 追踪所有下船丹麦公民"},
+    {"country": "🇹🇷 土耳其", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 3, "status": "monitoring", "note": "WHO通报: 有公民在圣赫勒拿岛下船"},
+    {"country": "🇳🇿 新西兰", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 3, "status": "monitoring", "note": "WHO通报: 有公民在圣赫勒拿岛下船"},
+    {"country": "🇸🇪 瑞典", "testing": 0, "confirmed": 0, "recovered": 0, "deaths": 0, "contacts": 3, "status": "monitoring", "note": "WHO通报: 有公民在圣赫勒拿岛下船"}
+  ],
+  "timeline": [
+    {"date": "2026-05-12", "event": "西班牙1名乘客确诊，医院隔离；荷兰奈梅亨12名医护因违规被隔离", "location": "🇪🇸 西班牙/🇳🇱 荷兰", "status": "confirmed"},
+    {"date": "2026-05-11", "event": "法国1名女性乘客确诊(病情恶化) + 美国2人确诊(1无症状1轻症)；澳洲隔离6人", "location": "🇫🇷 法国/🇺🇸 美国/🇦🇺 澳洲", "status": "confirmed"},
+    {"date": "2026-05-10", "event": "邮轮靠岸特内里费岛; 94名乘客疏散至6个欧洲国家+加拿大+日本", "location": "🇪🇸 特内里费岛", "status": "action"},
+    {"date": "2026-05-08", "event": "WHO DON#600：8例(6确诊+2可能)，3死(CFR 38%)；英国2人确诊+1疑似；病例8在特里斯坦确认", "location": "🌐 WHO全球", "status": "confirmed"},
+    {"date": "2026-05-08", "event": "阿根廷巴里洛切确诊1例本地汉坦病毒(与邮轮关联待确认); 台湾1月有1例汉坦死亡(鼠源,非安第斯型)", "location": "🇦🇷 阿根廷 / 🇹🇼 台湾", "status": "suspected"},
+    {"date": "2026-05-07", "event": "WHO谭德塞通报: 8例中5例确诊; 佛得角转运3人中2人安第斯阳性; 空运荷兰", "location": "🌐 WHO / 🇨🇻 佛得角", "status": "confirmed"},
+    {"date": "2026-05-06", "event": "瑞士苏黎世1例确诊(男性乘客); 南非追踪62密接; 荷兰空运撤离3人; 美国3州监测", "location": "🇨🇭 瑞士/🇿🇦 南非/🇳🇱 荷兰", "status": "confirmed"},
+    {"date": "2026-05-05", "event": "船上医生和船员在荷兰入院治疗; 南非确认安第斯病毒人际传播能力", "location": "🇳🇱 荷兰/🇿🇦 南非", "status": "confirmed"},
+    {"date": "2026-05-04", "event": "WHO DON#99: 7例(2确诊+5疑似)，3死，1危重(南非ICU)", "location": "🌐 WHO", "status": "confirmed"},
+    {"date": "2026-05-03", "event": "佛得角拒绝邮轮靠港; 新增1例死亡(德国籍)", "location": "🇨🇻 佛得角", "status": "death"},
+    {"date": "2026-05-02", "event": "英国向WHO通报邮轮聚集性严重呼吸道疾病; 南非PCR确认汉坦病毒", "location": "🌐 WHO / 🇬🇧 英国", "status": "confirmed"},
+    {"date": "2026-04-30", "event": "Case3从阿森松岛空运至南非ICU(后PCR确认汉坦阳性)", "location": "🇿🇦 南非", "status": "confirmed"},
+    {"date": "2026-04-26", "event": "Case2(荷兰女性,~69岁)飞往约翰内斯堡途中恶化，抵达后死亡; 5/4 PCR确诊汉坦", "location": "🇿🇦 约翰内斯堡", "status": "death"},
+    {"date": "2026-04-24", "event": "邮轮停靠圣赫勒拿岛; Case2携丈夫遗体下船; 30+名乘客从至少12国离船", "location": "🇸🇭 圣赫勒拿岛", "status": "action"},
+    {"date": "2026-04-11", "event": "Case1(荷兰男性,~70岁)在船上死亡(可能病例,未做实验室检测)", "location": "🚢 MV Hondius", "status": "death"},
+    {"date": "2026-04-06", "event": "Case1出现症状: 发热→胃肠症状→肺炎→ARDS→休克", "location": "🚢 MV Hondius", "status": "onset"},
+    {"date": "2026-04-01", "event": "MV Hondius从阿根廷乌斯怀亚启航(88乘客+59船员, 23国)", "location": "🇦🇷 乌斯怀亚", "status": "origin"}
+  ],
+  "trends": {
+    "labels": ["4/1","4/6","4/11","4/24","4/26","4/28","4/30","5/2","5/3","5/4","5/5","5/6","5/7","5/8","5/9","5/10","5/11","5/12"],
+    "global": {
+      "cumulativeConfirmed": [0,0,0,0,0,0,0,1,1,2,2,3,5,6,6,6,9,10],
+      "cumulativeDeaths": [0,0,1,1,2,2,2,2,3,3,3,3,3,3,3,3,3,3],
+      "dataNote": "确诊=PCR实验室确认; 4/6-4/30虽有病例但均为临床诊断/疑似,首次PCR确认在5/2(南非)"
+    },
+    "byCountry": {
+      "🇳🇱 荷兰": {"cumulativeConfirmed": [0,0,0,0,0,0,0,0,0,1,1,1,2,2,2,2,2,2], "cumulativeDeaths": [0,0,1,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2]},
+      "🇬🇧 英国": {"cumulativeConfirmed": [0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,2,2,2], "cumulativeDeaths": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+      "🇩🇪 德国": {"cumulativeConfirmed": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "cumulativeDeaths": [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1], "note": "德国籍Case3死亡属可能病例(未做PCR); 另1例转送德国检测阴性→已排除"},
+      "🇨🇭 瑞士": {"cumulativeConfirmed": [0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1], "cumulativeDeaths": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+      "🇫🇷 法国": {"cumulativeConfirmed": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1], "cumulativeDeaths": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+      "🇺🇸 美国": {"cumulativeConfirmed": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2], "cumulativeDeaths": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},
+      "🇪🇸 西班牙": {"cumulativeConfirmed": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1], "cumulativeDeaths": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]}
+    }
+  }
+}</code></pre>
+</details>
+
+<!-- ===== STATS ===== -->
+<div class="stats-row" id="statsRow">
+  <div class="stat-card deaths"><div class="num" id="statDeaths">3</div><div class="label">死亡人数 (2确诊+1可能)</div></div>
+  <div class="stat-card confirmed"><div class="num" id="statConfirmed">12</div><div class="label">总病例数</div></div>
+  <div class="stat-card suspected"><div class="num" id="statLabConfirmed">10</div><div class="label">PCR实验室确诊</div></div>
+  <div class="stat-card countries"><div class="num" id="statCountries">19+</div><div class="label">涉疫国家/地区</div></div>
+  <div class="stat-card cfr"><div class="num" id="statCFR">25%</div><div class="label">病死率 (CFR, 3/12)</div></div>
+</div>
+
+<!-- ===== MAP + COUNTRY TABLE ===== -->
+<div class="main-container">
+  <div class="map-container"><div id="map"></div></div>
+  <div class="table-container" id="countryTableWrap">
+    <h3>📊 各国病例汇总</h3>
+    <table id="countryTable">
+      <thead>
+        <tr><th>国家</th><th>检测中</th><th>确诊</th><th>治愈</th><th>死亡</th><th>追踪密接</th><th>备注</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== TIMELINE ===== -->
+<div class="timeline-section">
+  <h3>📋 完整事件时间线（最新→最早）</h3>
+  <div class="timeline-table-wrap">
+    <table id="timelineTable">
+      <thead>
+        <tr><th>日期</th><th>地点</th><th>事件</th><th>状态</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===== CHART ===== -->
+<div class="chart-section">
+  <h3>📈 趋势折线图</h3>
+  <div class="chart-controls">
+    <label>筛选：</label>
+    <select id="chartFilter" onchange="updateChart()">
+      <option value="global">🌐 全球</option>
+    </select>
+
+  </div>
+  <div class="chart-wrap">
+    <canvas id="trendChart"></canvas>
+  </div>
+</div>
+
+<!-- ===== KEY INFO ===== -->
+<div class="keyinfo-section">
+  <h3>🔬 关键信息</h3>
+  <div class="keyinfo-box">
+    <div>
+      <strong>病原体：</strong>安第斯病毒（Andes virus, ANDV）<br>
+      <strong>病毒类型：</strong>汉坦病毒科 · 新大陆汉坦病毒<br>
+      <strong>主要宿主：</strong>长尾侏儒稻鼠（南美洲）<br>
+      <strong>传播途径：</strong>吸入鼠类排泄物气溶胶；安第斯病毒可有限人传人（密切接触）
+    </div>
+    <div>
+      <strong>临床症状：</strong>发热→胃肠症状→肺炎→ARDS→休克<br>
+      <strong>潜伏期：</strong>最长6周<br>
+      <strong>治疗：</strong>无特效药、无疫苗（西方）；支持性治疗（ICU/呼吸机/ECMO）<br>
+      <strong>涉疫船舶：</strong>MV Hondius（荷兰籍探险邮轮），147-149人在船
+    </div>
+    <div>
+      <strong>WHO评估：</strong>全球公众风险低<br>
+      <strong>中国情况：</strong>无本次安第斯病毒自然宿主分布，无人类感染病例报告<br>
+      <strong>中国台湾：</strong>2026年1月报告1例汉坦病毒死亡（鼠源，非安第斯型）<br>
+      <strong>数据来源：</strong>WHO DON#599/#600 · ECDC · CDC HAN #00528 · 各国卫生部
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：<a href="https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON600" target="_blank">WHO</a> ·
+  <a href="https://www.ecdc.europa.eu/en/publications-data/hantavirus-associated-cluster-illness-cruise-ship-ecdc-assessment-and" target="_blank">ECDC</a> ·
+  <a href="https://www.cdc.gov/han/php/notices/han00528.html" target="_blank">CDC (US)</a> ·
+  <a href="https://hantavirusmap.net/" target="_blank">HantavirusMap.net</a> · 维基百科 · 新华网 · 各国卫生部公报<br>
+  数据截至 2026-05-12 20:00 CST · 疫情仍在发展中，请以官方最新通报为准 · 本页可通过修改上方「数据配置」JSON 更新
+</div>
+
+<script>
+// ===== DATA ENGINE =====
+let DATA;
+try { DATA = JSON.parse(document.getElementById('rawDataConfig').textContent.trim()); } catch(e) { console.error('Parse error', e); }
+
+function renderCountryTable() {
+  const tbody = document.querySelector('#countryTable tbody');
+  tbody.innerHTML = '';
+  DATA.countries.forEach(c => {
+    const testingVal = c.testing > 0 ? `<span style="color:#eab308;font-weight:700;">${c.testing}</span>` : '-';
+    const confirmedVal = c.confirmed > 0 ? `<span style="color:#f97316;font-weight:700;">${c.confirmed}</span>` : '-';
+    const recoveredVal = c.recovered > 0 ? `<span style="color:#22c55e;font-weight:700;">${c.recovered}</span>` : '-';
+    const deathsVal = c.deaths > 0 ? `<span style="color:#ef4444;font-weight:700;">${c.deaths}</span>` : '-';
+    const contactsVal = c.contacts > 0 ? `<span style="color:#60a5fa;">${c.contacts}</span>` : '-';
+    const statusBadge = {
+      'confirmed': '<span class="badge badge-confirmed">确诊</span>',
+      'death': '<span class="badge badge-death">死亡</span>',
+      'treatment': '<span class="badge badge-monitoring">治疗中</span>',
+      'origin': '<span class="badge badge-origin">源头/调查</span>',
+      'monitoring': '<span class="badge badge-monitoring">监测中</span>',
+      'suspected': '<span class="badge badge-suspected">疑似</span>'
+    }[c.status] || '<span class="badge badge-monitoring">监测</span>';
+    tbody.innerHTML += `<tr>
+      <td>${c.country}</td>
+      <td>${testingVal}</td>
+      <td>${confirmedVal}</td>
+      <td>${recoveredVal}</td>
+      <td>${deathsVal}</td>
+      <td>${contactsVal}</td>
+      <td style="font-size:0.72rem;color:#94a3b8;">${c.note}</td>
+    </tr>`;
+  });
+}
+
+function renderTimeline() {
+  const tbody = document.querySelector('#timelineTable tbody');
+  tbody.innerHTML = '';
+  DATA.timeline.forEach(t => {
+    const badge = {
+      'confirmed': '<span class="badge badge-confirmed">确诊</span>',
+      'death': '<span class="badge badge-death">死亡</span>',
+      'action': '<span class="badge badge-monitoring">行动</span>',
+      'onset': '<span class="badge badge-suspected">发病</span>',
+      'origin': '<span class="badge badge-origin">启航</span>',
+      'suspected': '<span class="badge badge-suspected">疑似</span>'
+    }[t.status] || '<span class="badge badge-monitoring">-</span>';
+    tbody.innerHTML += `<tr>
+      <td>${t.date}</td>
+      <td>${t.location}</td>
+      <td>${t.event}</td>
+      <td>${badge}</td>
+    </tr>`;
+  });
+}
+
+function updateStats() {
+  document.getElementById('statDeaths').textContent = DATA.summary.deaths;
+  document.getElementById('statConfirmed').textContent = DATA.summary.totalCases;
+  document.getElementById('statLabConfirmed').textContent = DATA.summary.labConfirmed;
+  document.getElementById('statCFR').textContent = DATA.summary.cfrPercent + '%';
+}
+
+// ===== CHART ENGINE =====
+let chartInstance;
+function buildChartOptions() {
+  const filter = document.getElementById('chartFilter').value;
+  const labels = DATA.trends.labels;
+
+  if (filter === 'global') {
+    return {
+      labels,
+      datasets: [
+        {
+          label: '累计确诊',
+          data: DATA.trends.global.cumulativeConfirmed,
+          borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.1)',
+          fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 7, borderWidth: 2.5,
+          yAxisID: 'y'
+        },
+        {
+          label: '累计死亡',
+          data: DATA.trends.global.cumulativeDeaths,
+          borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.1)',
+          fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 7, borderWidth: 2.5,
+          borderDash: [6, 3],
+          yAxisID: 'y'
+        }
+      ]
+    };
+  }
+
+  const cd = DATA.trends.byCountry[filter];
+  if (!cd) return { labels, datasets: [] };
+  return {
+    labels,
+    datasets: [
+      {
+        label: `${filter} 累计确诊`,
+        data: cd.cumulativeConfirmed,
+        borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.1)',
+        fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 7, borderWidth: 2.5,
+        yAxisID: 'y'
+      },
+      {
+        label: `${filter} 累计死亡`,
+        data: cd.cumulativeDeaths,
+        borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.1)',
+        fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 7, borderWidth: 2.5,
+        borderDash: [6, 3],
+        yAxisID: 'y'
+      }
+    ]
+  };
+}
+
+function updateChart() {
+  const canvas = document.getElementById('trendChart');
+  const ctx = canvas.getContext('2d');
+  if (chartInstance) chartInstance.destroy();
+  chartInstance = new Chart(ctx, {
+    type: 'line',
+    data: buildChartOptions(),
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#e2e8f0', font: { size: 13 } } },
+        tooltip: {
+          backgroundColor: '#1e293b', titleColor: '#f8fafc', bodyColor: '#e2e8f0',
+          borderColor: '#334155', borderWidth: 1
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#94a3b8' }, grid: { color: '#1e293b' } },
+        y: { ticks: { color: '#94a3b8', stepSize: 1 }, grid: { color: '#1e293b' }, beginAtZero: true }
+      }
+    }
+  });
+}
+
+function populateFilter() {
+  const sel = document.getElementById('chartFilter');
+  Object.keys(DATA.trends.byCountry).forEach(k => {
+    sel.innerHTML += `<option value="${k}">${k}</option>`;
+  });
+}
+
+// ===== MAP =====
+function initMap() {
+  const map = L.map('map').setView([20, 0], 2);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://carto.com/">CARTO</a>', maxZoom: 10
+  }).addTo(map);
+
+  const confirmedIcon = L.divIcon({ className:'custom-icon', html:'<div style="background:#f97316;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 10px #f97316;"></div>', iconSize:[18,18], iconAnchor:[9,9] });
+  const deathIcon = L.divIcon({ className:'custom-icon', html:'<div style="background:#ef4444;width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 14px #ef4444;"></div>', iconSize:[22,22], iconAnchor:[11,11] });
+  const suspectedIcon = L.divIcon({ className:'custom-icon', html:'<div style="background:#eab308;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 8px #eab308;"></div>', iconSize:[14,14], iconAnchor:[7,7] });
+  const monitoringIcon = L.divIcon({ className:'custom-icon', html:'<div style="background:#64748b;width:12px;height:12px;border-radius:50%;border:2px solid #fff;"></div>', iconSize:[12,12], iconAnchor:[6,6] });
+  const originIcon = L.divIcon({ className:'custom-icon', html:'<div style="background:#3b82f6;width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 8px #3b82f6;"></div>', iconSize:[16,16], iconAnchor:[8,8] });
+
+  const markers = [
+    { lat:-26.2041,lng:28.0473,icon:deathIcon,label:"🇿🇦 约翰内斯堡",desc:"确诊+死亡：荷兰女性Case2在此死亡(4/26)；英国籍男性ICU治疗；62密接追踪" },
+    { lat:52.3676,lng:4.9041,icon:confirmedIcon,label:"🇳🇱 阿姆斯特丹",desc:"确诊4例：索引病例夫妇(荷兰籍,Case1&2)+船员+医生入院" },
+    { lat:47.3769,lng:8.5417,icon:confirmedIcon,label:"🇨🇭 苏黎世",desc:"确诊1例：瑞士男性乘客(5/6确诊)" },
+    { lat:51.5074,lng:-0.1278,icon:confirmedIcon,label:"🇬🇧 伦敦",desc:"确诊2例：2名英国人确认(5/8)；20人+1日本人+1德国人撤至Arrowe Park医院" },
+    { lat:52.5200,lng:13.4050,icon:confirmedIcon,label:"🇩🇪 柏林",desc:"确诊+死亡1例：德国籍第3例死亡；另1转送德国检测阴性" },
+    { lat:48.8566,lng:2.3522,icon:confirmedIcon,label:"🇫🇷 巴黎",desc:"确诊1例：法国女性乘客(5/11确诊,病情恶化)；22名法国密接确认" },
+    { lat:39.8283,lng:-98.5795,icon:confirmedIcon,label:"🇺🇸 美国",desc:"确诊2例：5/11 1无症状+1轻症；至少5州追踪密接" },
+    { lat:28.463,lng:-16.2518,icon:confirmedIcon,label:"🇪🇸 特内里费岛",desc:"确诊1例：西班牙乘客(5/12确诊)；邮轮5/10靠岸" },
+    { lat:-41.1335,lng:-71.3103,icon:suspectedIcon,label:"🇦🇷 巴里洛切",desc:"待确认：5/8确诊1例本地汉坦病毒（与邮轮关联未明）" },
+    { lat:-54.8019,lng:-68.3030,icon:originIcon,label:"🇦🇷 乌斯怀亚（启航港）",desc:"邮轮4/1出发；索引病例在此登船，曾观鸟接触鼠类栖息地" },
+    { lat:14.9203,lng:-23.5056,icon:monitoringIcon,label:"🇨🇻 佛得角",desc:"邮轮5/3-9锚泊；拒绝靠港；转运3人中2人阳性" },
+    { lat:-15.9650,lng:-5.7089,icon:monitoringIcon,label:"🇸🇭 圣赫勒拿岛",desc:"4/24停靠; 30+名乘客离船; Case2携遗体下船→南非" },
+    { lat:-37.1833,lng:-12.2333,icon:monitoringIcon,label:"🇸🇭 特里斯坦-达库尼亚",desc:"英国空降医疗队(5/10); 1例可能病例(Case8)" },
+    { lat:1.3521,lng:103.8198,icon:monitoringIcon,label:"🇸🇬 新加坡",desc:"2密接(后检测阴性)，强制隔离30天" },
+    { lat:56.1304,lng:-106.3468,icon:monitoringIcon,label:"🇨🇦 加拿大",desc:"乘客追踪/接触者监测" },
+    { lat:-25.2744,lng:133.7751,icon:monitoringIcon,label:"🇦🇺 澳大利亚",desc:"5/11隔离6名撤离乘客" },
+    { lat:35.6762,lng:139.6503,icon:monitoringIcon,label:"🇯🇵 日本",desc:"1名日本男子撤至曼彻斯特" },
+    { lat:55.6761,lng:12.5683,icon:monitoringIcon,label:"🇩🇰 丹麦",desc:"政府包机撤离船员(5/11)" },
+    { lat:38.9637,lng:35.2433,icon:monitoringIcon,label:"🇹🇷 土耳其",desc:"WHO通报：有公民在圣赫勒拿下船" },
+  ];
+
+  markers.forEach(m => {
+    L.marker([m.lat,m.lng],{icon:m.icon}).addTo(map).bindPopup(`<b>${m.label}</b><br><span style="font-size:0.85rem;">${m.desc}</span>`);
+  });
+
+  L.polyline([
+    [-54.8019,-68.3030],[-51.7,-57.8],[-37.1833,-12.2333],[-15.9650,-5.7089],[14.9203,-23.5056],[28.463,-16.2518]
+  ],{color:'#f97316',weight:2,opacity:0.6,dashArray:'8,8'}).addTo(map).bindPopup('🚢 MV Hondius 航线 (4/1→5/10)');
+
+  const legend = L.control({position:'bottomright'});
+  legend.onAdd = function(){
+    const div = L.DomUtil.create('div','legend');
+    div.innerHTML = `
+      <div><i style="background:#ef4444;box-shadow:0 0 6px #ef4444;"></i> 确诊+死亡地点</div>
+      <div><i style="background:#f97316;box-shadow:0 0 6px #f97316;"></i> 确诊病例所在国</div>
+      <div><i style="background:#eab308;box-shadow:0 0 4px #eab308;"></i> 疑似/待确认</div>
+      <div><i style="background:#3b82f6;box-shadow:0 0 4px #3b82f6;"></i> 关键节点</div>
+      <div><i style="background:#64748b;"></i> 接触追踪/监测</div>
+      <div style="margin-top:4px;border-top:1px dashed #f97316;padding-top:4px;color:#f97316;">━ ━ 邮轮航线</div>
+    `;
+    return div;
+  };
+  legend.addTo(map);
+}
+
+// ===== INIT =====
+renderCountryTable();
+renderTimeline();
+updateStats();
+populateFilter();
+updateChart();
+initMap();
+</script>
+
+</body>
+</html>
