@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: data-refresh
@@ -56,3 +58,25 @@ jobs:
           git add raw-sources/manifest.json raw-sources/latest raw-sources/history
           git commit -m "chore(data): refresh raw-source snapshots"
           git push
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Prepare site artifact
+        run: |
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp outbreak-data.js _site/outbreak-data.js
+          mkdir -p _site/raw-sources/latest
+          cp raw-sources/manifest.json _site/raw-sources/manifest.json
+          cp raw-sources/latest/*.json _site/raw-sources/latest/ || true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
