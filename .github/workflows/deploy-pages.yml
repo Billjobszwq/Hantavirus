@@ -37,6 +37,13 @@ jobs:
           mkdir -p _site
           cp index.html _site/index.html
           cp outbreak-data.js _site/outbreak-data.js
+          if [ -f hantavirus-outbreak-tracker-v2.html ]; then
+            cp hantavirus-outbreak-tracker-v2.html _site/hantavirus-outbreak-tracker-v2.html
+          fi
+          if [ -d geo ]; then
+            mkdir -p _site/geo
+            cp geo/* _site/geo/
+          fi
           mkdir -p _site/raw-sources/latest
           if [ -f raw-sources/manifest.json ]; then
             cp raw-sources/manifest.json _site/raw-sources/manifest.json
