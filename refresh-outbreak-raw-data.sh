@@ -20,6 +20,7 @@ LATEST_ROOT="$RAW_ROOT/latest"
 OPENCLI_PROFILE="${OPENCLI_PROFILE:-57a5zus5}"
 SKIP_OPENCLI="${SKIP_OPENCLI:-0}"
 RAW_HISTORY_KEEP="${RAW_HISTORY_KEEP:-120}"
+OPENCLI_PROFILE_CONNECTED="0"
 
 mkdir -p "$HISTORY_ROOT" "$LATEST_ROOT"
 TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/outbreak-raw.XXXXXX")"
@@ -59,16 +60,70 @@ run_opencli_or_stub() {
   local tmp_file
   tmp_file="$(mktemp "${TMPDIR:-/tmp}/opencli.XXXXXX")"
 
-  if opencli --profile "$OPENCLI_PROFILE" "$@" -f json > "$tmp_file" 2>/dev/null; then
+  local profile_args=()
+  local profile_cmd=""
+  if [[ "$OPENCLI_PROFILE_CONNECTED" == "1" ]]; then
+    profile_args=(--profile "$OPENCLI_PROFILE")
+    profile_cmd="--profile $OPENCLI_PROFILE"
+  fi
+
+  if [[ "${#profile_args[@]}" -gt 0 ]]; then
+    if opencli "${profile_args[@]}" "$@" -f json > "$tmp_file" 2>/dev/null; then
+      jq '.' "$tmp_file" > "$output_file"
+    else
+      jq -n \
+        --arg error "opencli command failed" \
+        --arg cmd "opencli ${profile_cmd} $* -f json" \
+        --arg profileConnected "$OPENCLI_PROFILE_CONNECTED" \
+        '{error: $error, cmd: $cmd, profileConnected: ($profileConnected == "1")}' > "$output_file"
+    fi
+  elif opencli "$@" -f json > "$tmp_file" 2>/dev/null; then
     jq '.' "$tmp_file" > "$output_file"
   else
     jq -n \
       --arg error "opencli command failed" \
-      --arg cmd "opencli --profile $OPENCLI_PROFILE $* -f json" \
-      '{error: $error, cmd: $cmd}' > "$output_file"
+      --arg cmd "opencli ${profile_cmd} $* -f json" \
+      --arg profileConnected "$OPENCLI_PROFILE_CONNECTED" \
+      '{error: $error, cmd: $cmd, profileConnected: ($profileConnected == "1")}' > "$output_file"
   fi
 
   rm -f "$tmp_file"
+}
+
+run_twitter_with_web_fallback() {
+  local output_file="$1"
+  local query="$2"
+
+  run_opencli_or_stub "$output_file" twitter search "$query" --product live --limit 20
+
+  if jq -e '.error?' "$output_file" >/dev/null 2>&1; then
+    if [[ "$SKIP_OPENCLI" == "1" ]] || ! command -v opencli >/dev/null 2>&1; then
+      return 0
+    fi
+
+    local markdown
+    markdown="$(opencli web read --url "https://x.com/search?q=${query// /%20}&src=typed_query&f=live" --stdout true --wait 3 -f md 2>/dev/null || true)"
+    local excerpt
+    excerpt="$(printf '%s' "$markdown" | head -c 4000)"
+    jq -n \
+      --arg error "twitter adapter search failed; captured web fallback snapshot" \
+      --arg query "$query" \
+      --arg excerpt "$excerpt" \
+      '{error:$error, query:$query, fallback:"opencli web read", excerpt:$excerpt}' > "$output_file"
+  fi
+}
+
+detect_opencli_profile() {
+  if ! command -v opencli >/dev/null 2>&1; then
+    OPENCLI_PROFILE_CONNECTED="0"
+    return 0
+  fi
+
+  if opencli profile list 2>/dev/null | rg -q "$OPENCLI_PROFILE"; then
+    OPENCLI_PROFILE_CONNECTED="1"
+  else
+    OPENCLI_PROFILE_CONNECTED="0"
+  fi
 }
 
 prune_history() {
@@ -77,7 +132,10 @@ prune_history() {
     keep=120
   fi
 
-  mapfile -t snapshots < <(find "$HISTORY_ROOT" -mindepth 1 -maxdepth 1 -type d | sort -r)
+  local snapshots=()
+  while IFS= read -r line; do
+    snapshots+=("$line")
+  done < <(find "$HISTORY_ROOT" -mindepth 1 -maxdepth 1 -type d | sort -r)
   local total="${#snapshots[@]}"
   if [[ "$total" -le "$keep" ]]; then
     return 0
@@ -166,25 +224,42 @@ process.stdout.write(hash.digest('hex'));
 NODE
 }
 
-echo "[1/5] Fetching WHO / outbreak overview from Tavily..."
+echo "[1/6] Fetching WHO / outbreak overview from Tavily..."
 fetch_tavily "WHO hantavirus MV Hondius latest confirmed cases deaths" 12 "$TMP_DIR/tavily-who-overview.json"
 
-echo "[2/5] Fetching country-level updates from Tavily..."
+detect_opencli_profile
+if [[ "$OPENCLI_PROFILE_CONNECTED" == "1" ]]; then
+  echo "[opencli] Connected profile detected: $OPENCLI_PROFILE"
+else
+  echo "[opencli] Profile $OPENCLI_PROFILE not connected. Falling back to profile-less opencli commands."
+fi
+
+echo "[2/6] Fetching country-level updates from Tavily..."
 fetch_tavily "hantavirus confirmed cases by nationality MV Hondius latest" 12 "$TMP_DIR/tavily-country-breakdown.json"
 
-echo "[3/5] Fetching AP latest event from Tavily..."
+echo "[3/6] Fetching AP latest event from Tavily..."
 fetch_tavily "AP hantavirus cruise ship latest May 2026 confirmed" 10 "$TMP_DIR/tavily-ap-latest.json"
 
-echo "[4/5] Fetching multi-language media snapshots..."
+echo "[4/6] Fetching multi-language media snapshots..."
 run_opencli_or_stub "$TMP_DIR/opencli-google-news-en.json" google news "hantavirus MV Hondius" --limit 30 --lang en --region US
 run_opencli_or_stub "$TMP_DIR/opencli-google-news-zh.json" google news "汉坦病毒 邮轮" --limit 30 --lang zh --region CN
-run_opencli_or_stub "$TMP_DIR/opencli-reuters.json" reuters search "hantavirus cruise ship" --limit 20
+if [[ "$OPENCLI_PROFILE_CONNECTED" == "1" ]]; then
+  run_opencli_or_stub "$TMP_DIR/opencli-reuters.json" reuters search "hantavirus cruise ship" --limit 20
+else
+  run_opencli_or_stub "$TMP_DIR/opencli-reuters.json" google news "site:reuters.com hantavirus cruise ship" --limit 20 --lang en --region US
+fi
+run_opencli_or_stub "$TMP_DIR/opencli-reddit-hondius.json" reddit search "MV Hondius hantavirus" --sort new --time month --limit 30
+run_twitter_with_web_fallback "$TMP_DIR/opencli-twitter-hondius.json" "MV Hondius hantavirus observation"
+
+echo "[5/6] Fetching external tracker benchmark snapshots..."
+node "$ROOT_DIR/scripts/fetch-external-benchmarks.js" "$TMP_DIR/external-benchmarks.json"
 
 jq -n \
   --arg generatedAt "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
   --arg opencliProfile "$OPENCLI_PROFILE" \
+  --arg opencliProfileConnected "$OPENCLI_PROFILE_CONNECTED" \
   --arg skipOpencli "$SKIP_OPENCLI" \
-  '{generatedAt:$generatedAt, opencliProfile:$opencliProfile, skipOpencli: ($skipOpencli == "1")}' \
+  '{generatedAt:$generatedAt, opencliProfile:$opencliProfile, opencliProfileConnected: ($opencliProfileConnected == "1"), skipOpencli: ($skipOpencli == "1")}' \
   > "$TMP_DIR/fetch-meta.json"
 
 new_hash="$(dir_hash "$TMP_DIR")"
@@ -196,7 +271,7 @@ else
 fi
 
 if [[ "$new_hash" == "$latest_hash" && -n "$latest_hash" ]]; then
-  echo "[5/5] No content change detected. Raw snapshot unchanged."
+  echo "[6/6] No content change detected. Raw snapshot unchanged."
   node "$ROOT_DIR/scripts/update-raw-manifest.js" "$RAW_ROOT"
   exit 0
 fi
@@ -213,5 +288,5 @@ prune_history
 
 node "$ROOT_DIR/scripts/update-raw-manifest.js" "$RAW_ROOT"
 
-echo "[5/5] Raw snapshot updated."
+echo "[6/6] Raw snapshot updated."
 echo "Latest: $snapshot_dir"

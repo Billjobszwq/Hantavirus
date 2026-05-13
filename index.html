@@ -302,7 +302,7 @@
 
   .stats {
     display: grid;
-    grid-template-columns: repeat(6, minmax(120px, 1fr));
+    grid-template-columns: repeat(7, minmax(120px, 1fr));
     gap: 10px;
     margin-bottom: 10px;
   }
@@ -471,11 +471,15 @@
   }
 
   .country-table {
-    min-width: 1320px;
+    min-width: 1520px;
   }
 
   .timeline-table {
-    min-width: 1440px;
+    min-width: 1640px;
+  }
+
+  .obs-region-table {
+    min-width: 1480px;
   }
 
   .country-table th:nth-child(1),
@@ -491,9 +495,11 @@
   .country-table th:nth-child(6),
   .country-table td:nth-child(6) { width: 74px; }
   .country-table th:nth-child(7),
-  .country-table td:nth-child(7) { width: 116px; }
+  .country-table td:nth-child(7) { width: 88px; }
   .country-table th:nth-child(8),
-  .country-table td:nth-child(8) { width: 620px; }
+  .country-table td:nth-child(8) { width: 116px; }
+  .country-table th:nth-child(9),
+  .country-table td:nth-child(9) { width: 680px; }
 
   .timeline-table th:nth-child(1),
   .timeline-table td:nth-child(1) { width: 108px; }
@@ -504,7 +510,20 @@
   .timeline-table th:nth-child(4),
   .timeline-table td:nth-child(4) { width: 74px; }
   .timeline-table th:nth-child(5),
-  .timeline-table td:nth-child(5) { width: 880px; }
+  .timeline-table td:nth-child(5) { width: 88px; }
+  .timeline-table th:nth-child(6),
+  .timeline-table td:nth-child(6) { width: 980px; }
+
+  .obs-region-table th:nth-child(1),
+  .obs-region-table td:nth-child(1) { width: 112px; }
+  .obs-region-table th:nth-child(2),
+  .obs-region-table td:nth-child(2) { width: 220px; }
+  .obs-region-table th:nth-child(3),
+  .obs-region-table td:nth-child(3) { width: 96px; }
+  .obs-region-table th:nth-child(4),
+  .obs-region-table td:nth-child(4) { width: 190px; }
+  .obs-region-table th:nth-child(5),
+  .obs-region-table td:nth-child(5) { width: 900px; }
 
   .badge {
     display: inline-block;
@@ -555,6 +574,34 @@
   .dot.blue { background: var(--primary); }
   .dot.orange { background: var(--warning); }
   .dot.red { background: var(--danger); }
+  .dot.teal { background: #0f766e; }
+  .dot.gold { background: #d97706; }
+  .dot.route { background: #ec4899; }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 2px 9px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .status-counted {
+    color: #0f766e;
+    background: rgba(15, 118, 110, 0.14);
+  }
+
+  .status-reported {
+    color: #b45309;
+    background: rgba(245, 158, 11, 0.14);
+  }
+
+  .status-none {
+    color: var(--muted);
+    background: color-mix(in srgb, var(--line) 45%, transparent);
+  }
 
   .control-row {
     display: flex;
@@ -727,6 +774,90 @@
     color: color-mix(in srgb, var(--text) 80%, var(--muted) 20%);
   }
 
+  .benchmark-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 10px 12px 12px;
+  }
+
+  .benchmark-item {
+    border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+    background: color-mix(in srgb, var(--surface) 92%, #fff 8%);
+    border-radius: 12px;
+    padding: 10px;
+  }
+
+  .benchmark-name {
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  .benchmark-link {
+    margin-top: 2px;
+    font-size: 0.78rem;
+  }
+
+  .benchmark-link a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .benchmark-link a:hover {
+    text-decoration: underline;
+  }
+
+  .benchmark-row-title {
+    margin: 9px 0 4px;
+    font-size: 0.76rem;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .benchmark-method {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--text) 78%, var(--muted) 22%);
+  }
+
+  .benchmark-metrics {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 4px;
+  }
+
+  .benchmark-metrics li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 0.82rem;
+  }
+
+  .benchmark-metrics strong {
+    color: color-mix(in srgb, var(--text) 88%, var(--primary) 12%);
+    font-size: 0.9rem;
+  }
+
+  .benchmark-sources {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+
+  .benchmark-sources a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .benchmark-sources a:hover {
+    text-decoration: underline;
+  }
+
   .leaflet-popup-content {
     margin: 10px 12px;
     font-size: 0.84rem;
@@ -740,6 +871,7 @@
     .main-grid,
     .charts-grid,
     .tables-grid,
+    .benchmark-grid,
     .map-daily-row {
       grid-template-columns: 1fr;
     }
@@ -849,6 +981,7 @@
                 <th id="cthProbable" class="num"></th>
                 <th id="cthTotal" class="num"></th>
                 <th id="cthDeaths" class="num"></th>
+                <th id="cthObserved" class="num"></th>
                 <th id="cthLastUpdate"></th>
                 <th id="cthNotes"></th>
               </tr>
@@ -873,6 +1006,7 @@
                 <th id="thCountry"></th>
                 <th id="thConfirmedDelta" class="num"></th>
                 <th id="thDeathsDelta" class="num"></th>
+                <th id="thObservedDelta" class="num"></th>
                 <th id="thEvent"></th>
               </tr>
             </thead>
@@ -912,6 +1046,7 @@
             <select id="continentMetric">
               <option value="confirmed">Confirmed</option>
               <option value="deaths">Deaths</option>
+              <option value="observed">Observed</option>
               <option value="total">Total</option>
             </select>
           </div>
@@ -921,6 +1056,35 @@
         </div>
       </section>
     </div>
+
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <h2 class="card-title" id="obsRegionTitle"></h2>
+          <p class="card-subtitle" id="obsRegionSubtitle"></p>
+        </div>
+        <div class="control-row">
+          <label for="obsCountry" id="obsCountryLabel"></label>
+          <select id="obsCountry"></select>
+          <label for="obsStatus" id="obsStatusLabel"></label>
+          <select id="obsStatus"></select>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table class="obs-region-table">
+          <thead>
+            <tr>
+              <th id="othCountry"></th>
+              <th id="othRegion"></th>
+              <th id="othObserved" class="num"></th>
+              <th id="othStatus"></th>
+              <th id="othSources"></th>
+            </tr>
+          </thead>
+          <tbody id="obsRegionBody"></tbody>
+        </table>
+      </div>
+    </section>
 
     <section class="card">
       <div class="card-header">
@@ -951,12 +1115,23 @@
 
     <section class="card">
       <div class="card-header">
+        <div>
+          <h2 class="card-title" id="benchmarkTitle"></h2>
+          <p class="card-subtitle" id="benchmarkSubtitle"></p>
+        </div>
+      </div>
+      <div class="benchmark-grid" id="benchmarkGrid"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
         <h2 class="card-title" id="sourceTitle"></h2>
       </div>
       <ul class="source-list" id="sourceList"></ul>
     </section>
   </div>
 
+<script src="./geo/admin1-cn-us-ru.js"></script>
 <script src="./outbreak-data.js"></script>
 <script>
   const data = window.OUTBREAK_DATA || null;
@@ -969,16 +1144,34 @@
     activeBaseKey: null,
     countryGeoLayer: null,
     countryGeoData: null,
+    admin1GeoLayer: null,
+    admin1GeoData: null,
+    voyageLayer: null,
     markers: [],
     trendChart: null,
     continentChart: null,
     layoutSyncRaf: 0,
     dailyPanelObserver: null,
     newsLimit: 16,
-    newsStep: 16
+    newsStep: 16,
+    obsCountry: "ALL",
+    obsStatus: "ALL"
   };
 
   const COUNTRY_GEOJSON_URL = "https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/main/countries.geojson";
+  const ADMIN1_GEOJSON_URL = "./geo/admin1-cn-us-ru.geojson";
+  const SUBNATIONAL_COUNTRIES = new Set(["CN", "US", "RU"]);
+  const VOYAGE_ROUTE_POINTS = [
+    { nameZh: "乌斯怀亚（阿根廷）", nameEn: "Ushuaia (Argentina)", lat: -54.8019, lng: -68.3030 },
+    { nameZh: "福克兰群岛海域", nameEn: "Falkland Islands waters", lat: -51.7963, lng: -59.5236 },
+    { nameZh: "南乔治亚岛", nameEn: "South Georgia", lat: -54.4296, lng: -36.5879 },
+    { nameZh: "夜莺岛", nameEn: "Nightingale Island", lat: -37.4233, lng: -12.4797 },
+    { nameZh: "特里斯坦-达库尼亚", nameEn: "Tristan da Cunha", lat: -37.1052, lng: -12.2777 },
+    { nameZh: "圣赫勒拿", nameEn: "Saint Helena", lat: -15.9650, lng: -5.7089 },
+    { nameZh: "阿森松岛", nameEn: "Ascension Island", lat: -7.9467, lng: -14.3559 },
+    { nameZh: "普拉亚（佛得角）", nameEn: "Praia (Cape Verde)", lat: 14.9331, lng: -23.5133 },
+    { nameZh: "特内里费（西班牙）", nameEn: "Tenerife (Spain)", lat: 28.4636, lng: -16.2518 }
+  ];
 
   const continentPalette = {
     EU: "#1f4ed8",
@@ -1005,6 +1198,7 @@
         date: "最新通报日期",
         confirmed: "当日新增确诊",
         deaths: "当日新增死亡",
+        observed: "当日新增被观测者",
         countries: "当日涉及国家"
       },
       dailyChip: "WHO 重点提醒",
@@ -1025,16 +1219,16 @@
         { label: "WHO DON599 (2026-05-04)", url: "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON599" }
       ],
 
-      mapTitle: "全球地图（按病例所属国家）",
-      mapSubtitle: "国家涂色显示病例口径，颜色表示严重程度",
+      mapTitle: "全球地图（国家+省州双层）",
+      mapSubtitle: "中/美/俄按省州着色，其余国家按国家着色；叠加MV Hondius航线",
       countryTitle: "国家汇总表",
       countrySubtitle: "国家前附旗帜，便于快速识别",
 
       timelineTitle: "时间维度明细（最新 -> 最早）",
-      timelineSubtitle: "按日期倒序，展示新增确诊与新增死亡",
+      timelineSubtitle: "按日期倒序，展示新增确诊、新增死亡与新增被观测者",
 
-      trendTitle: "确诊人数与死亡人数折线图",
-      trendSubtitle: "可切换全球/国家",
+      trendTitle: "确诊、死亡与被观测者折线图",
+      trendSubtitle: "可切换全球/国家；三条曲线同口径联动",
       trendScopeLabel: "筛选",
 
       continentTitle: "大洲进展对比图",
@@ -1044,7 +1238,20 @@
       continentMetricOptions: {
         confirmed: "确诊人数",
         deaths: "死亡人数",
+        observed: "被观测者",
         total: "总病例"
+      },
+
+      obsRegionTitle: "被观测者省/州级明细（中/美/俄）",
+      obsRegionSubtitle: "支持按国家与状态筛选；未披露人数单列标识",
+      obsCountryLabel: "国家",
+      obsStatusLabel: "状态",
+      obsCountryAll: "全部",
+      obsStatusAll: "全部状态",
+      obsStatusMap: {
+        counted: "已量化",
+        reported_no_count: "已通报未披露人数",
+        no_reported_monitoring: "无公开监测人数"
       },
 
       newsTitle: "新闻流水（最新 -> 最早）",
@@ -1055,6 +1262,29 @@
       watchTitle: "核验备注与待跟踪",
       watchSubtitle: "疑似异源信息单独展示，避免污染主统计",
 
+      benchmarkTitle: "外部站点口径对照",
+      benchmarkSubtitle: "用于解释与其他追踪器的数据差异（不并入本看板主统计）",
+      benchmarkCheckedPrefix: "核对时间：",
+      benchmarkMethodLabel: "口径说明",
+      benchmarkMetricsLabel: "关键数字",
+      benchmarkSourcesLabel: "参考来源",
+      benchmarkMetricMap: {
+        totalPoints: "点位总数",
+        uniqueLocations: "点位位置数",
+        confirmed: "CONFIRMED点",
+        deceased: "DECEASED点",
+        suspected: "SUSPECTED点",
+        monitoring: "MONITORING点",
+        unknown: "UNKNOWN点",
+        signalsTotal: "信号总数",
+        countriesActive: "活跃国家数",
+        countriesIndexed: "覆盖国家数",
+        countriesWithSignals30d: "30天有信号国家",
+        signals30dCountrySum: "国家30天信号合计",
+        argentinaSignals30d: "阿根廷30天信号",
+        southAfricaSignals30d: "南非30天信号"
+      },
+
       sourceTitle: "数据来源",
       sourceLabel: "来源",
       noSource: "未找到对应来源",
@@ -1064,6 +1294,7 @@
         { key: "confirmed", label: "确诊病例", style: "ok" },
         { key: "probable", label: "可能病例", style: "warning" },
         { key: "deaths", label: "死亡总数", style: "danger" },
+        { key: "observed", label: "被观测者", style: "primary" },
         { key: "confirmedDeaths", label: "确诊死亡", style: "danger" },
         { key: "probableDeaths", label: "可能死亡", style: "warning" }
       ],
@@ -1073,6 +1304,7 @@
         country: "国家",
         confirmedDelta: "确诊+",
         deathsDelta: "死亡+",
+        observedDelta: "观测+",
         event: "事件",
         cCountry: "国家",
         cContinent: "大洲",
@@ -1080,19 +1312,29 @@
         cProbable: "可能",
         cTotal: "总病例",
         cDeaths: "死亡",
+        cObserved: "被观测者",
         cLastUpdate: "最后更新",
-        cNotes: "说明"
+        cNotes: "说明",
+        oCountry: "国家",
+        oRegion: "省/州",
+        oObserved: "被观测者",
+        oStatus: "状态",
+        oSources: "来源"
       },
 
       mapLegend: {
         confirmed: "确诊国家",
         probable: "含可能病例",
-        death: "含死亡病例"
+        death: "含死亡病例",
+        observed: "省州已量化被观测",
+        reportedNoCount: "省州已通报未披露人数",
+        route: "邮轮航线"
       },
 
       trendSeries: {
         confirmed: "累计确诊",
-        deaths: "累计死亡（确诊）"
+        deaths: "累计死亡（确诊）",
+        observed: "累计被观测者（可量化）"
       },
 
       global: "全球"
@@ -1111,6 +1353,7 @@
         date: "Latest report date",
         confirmed: "New confirmed",
         deaths: "New deaths",
+        observed: "New observed persons",
         countries: "Countries involved"
       },
       dailyChip: "WHO Priority Alert",
@@ -1131,16 +1374,16 @@
         { label: "WHO DON599 (4 May 2026)", url: "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON599" }
       ],
 
-      mapTitle: "Global Map (by affected person's country)",
-      mapSubtitle: "Country fill colors indicate severity by case classification",
+      mapTitle: "Global Map (Country + Province/State Layer)",
+      mapSubtitle: "CN/US/RU are colored by province/state; other countries remain country-level; MV Hondius route is overlaid",
       countryTitle: "Country Summary Table",
       countrySubtitle: "Country flags added for faster visual scanning",
 
       timelineTitle: "Time-Dimension Detail (Newest -> Oldest)",
-      timelineSubtitle: "Sorted by date with newly confirmed cases and deaths",
+      timelineSubtitle: "Sorted by date with newly confirmed cases, deaths, and observed persons",
 
-      trendTitle: "Confirmed vs Deaths Time-Series",
-      trendSubtitle: "Switch between global and country views",
+      trendTitle: "Confirmed, Deaths, and Observed Time-Series",
+      trendSubtitle: "Switch between global and country views with synchronized metrics",
       trendScopeLabel: "Scope",
 
       continentTitle: "Continent Progress Comparison",
@@ -1150,7 +1393,20 @@
       continentMetricOptions: {
         confirmed: "Confirmed",
         deaths: "Deaths",
+        observed: "Observed",
         total: "Total cases"
+      },
+
+      obsRegionTitle: "Observed Persons by Province/State (CN/US/RU)",
+      obsRegionSubtitle: "Filter by country and status; non-disclosed counts are tracked separately",
+      obsCountryLabel: "Country",
+      obsStatusLabel: "Status",
+      obsCountryAll: "All",
+      obsStatusAll: "All statuses",
+      obsStatusMap: {
+        counted: "Quantified",
+        reported_no_count: "Reported without count",
+        no_reported_monitoring: "No public monitoring count"
       },
 
       newsTitle: "News Feed (Newest -> Oldest)",
@@ -1161,6 +1417,29 @@
       watchTitle: "Verification Notes & Watchlist",
       watchSubtitle: "Potential off-scope items are separated from primary totals",
 
+      benchmarkTitle: "External Tracker Scope Reconciliation",
+      benchmarkSubtitle: "Explains why totals differ across trackers (not merged into primary case totals)",
+      benchmarkCheckedPrefix: "Checked at: ",
+      benchmarkMethodLabel: "Method",
+      benchmarkMetricsLabel: "Key metrics",
+      benchmarkSourcesLabel: "References",
+      benchmarkMetricMap: {
+        totalPoints: "Total points",
+        uniqueLocations: "Unique locations",
+        confirmed: "CONFIRMED points",
+        deceased: "DECEASED points",
+        suspected: "SUSPECTED points",
+        monitoring: "MONITORING points",
+        unknown: "UNKNOWN points",
+        signalsTotal: "Signals total",
+        countriesActive: "Active countries",
+        countriesIndexed: "Indexed countries",
+        countriesWithSignals30d: "Countries with 30d signals",
+        signals30dCountrySum: "Sum of 30d country signals",
+        argentinaSignals30d: "Argentina 30d signals",
+        southAfricaSignals30d: "South Africa 30d signals"
+      },
+
       sourceTitle: "Sources",
       sourceLabel: "Source",
       noSource: "No linked source",
@@ -1170,6 +1449,7 @@
         { key: "confirmed", label: "Confirmed", style: "ok" },
         { key: "probable", label: "Probable", style: "warning" },
         { key: "deaths", label: "Total deaths", style: "danger" },
+        { key: "observed", label: "Observed persons", style: "primary" },
         { key: "confirmedDeaths", label: "Confirmed deaths", style: "danger" },
         { key: "probableDeaths", label: "Probable deaths", style: "warning" }
       ],
@@ -1179,6 +1459,7 @@
         country: "Country",
         confirmedDelta: "Conf.+",
         deathsDelta: "Death+",
+        observedDelta: "Obs.+",
         event: "Event",
         cCountry: "Country",
         cContinent: "Continent",
@@ -1186,19 +1467,29 @@
         cProbable: "Probable",
         cTotal: "Total",
         cDeaths: "Deaths",
+        cObserved: "Observed",
         cLastUpdate: "Last update",
-        cNotes: "Notes"
+        cNotes: "Notes",
+        oCountry: "Country",
+        oRegion: "Province/State",
+        oObserved: "Observed",
+        oStatus: "Status",
+        oSources: "Sources"
       },
 
       mapLegend: {
         confirmed: "Confirmed countries",
         probable: "With probable cases",
-        death: "With deaths"
+        death: "With deaths",
+        observed: "Subnational quantified observed",
+        reportedNoCount: "Subnational reported w/o count",
+        route: "Cruise route"
       },
 
       trendSeries: {
         confirmed: "Cumulative confirmed",
-        deaths: "Cumulative deaths (confirmed only)"
+        deaths: "Cumulative deaths (confirmed only)",
+        observed: "Cumulative observed (quantified)"
       },
 
       global: "Global"
@@ -1244,6 +1535,10 @@
     return { safeConfirmed, safeDeaths };
   }
 
+  function buildPlainSeries(raw, labels) {
+    return labels.map((_, i) => fmtNumber(raw?.[i]));
+  }
+
   function renderTopText() {
     const lang = t();
 
@@ -1274,6 +1569,7 @@
 
     document.getElementById("watchTitle").textContent = lang.watchTitle;
     document.getElementById("watchSubtitle").textContent = lang.watchSubtitle;
+    document.getElementById("benchmarkTitle").textContent = lang.benchmarkTitle;
 
     document.getElementById("sourceTitle").textContent = lang.sourceTitle;
 
@@ -1281,6 +1577,7 @@
     document.getElementById("thCountry").textContent = lang.headers.country;
     document.getElementById("thConfirmedDelta").textContent = lang.headers.confirmedDelta;
     document.getElementById("thDeathsDelta").textContent = lang.headers.deathsDelta;
+    document.getElementById("thObservedDelta").textContent = lang.headers.observedDelta;
     document.getElementById("thEvent").textContent = lang.headers.event;
 
     document.getElementById("cthCountry").textContent = lang.headers.cCountry;
@@ -1289,20 +1586,35 @@
     document.getElementById("cthProbable").textContent = lang.headers.cProbable;
     document.getElementById("cthTotal").textContent = lang.headers.cTotal;
     document.getElementById("cthDeaths").textContent = lang.headers.cDeaths;
+    document.getElementById("cthObserved").textContent = lang.headers.cObserved;
     document.getElementById("cthLastUpdate").textContent = lang.headers.cLastUpdate;
     document.getElementById("cthNotes").textContent = lang.headers.cNotes;
+
+    document.getElementById("obsRegionTitle").textContent = lang.obsRegionTitle;
+    document.getElementById("obsRegionSubtitle").textContent = lang.obsRegionSubtitle;
+    document.getElementById("obsCountryLabel").textContent = lang.obsCountryLabel;
+    document.getElementById("obsStatusLabel").textContent = lang.obsStatusLabel;
+    document.getElementById("othCountry").textContent = lang.headers.oCountry;
+    document.getElementById("othRegion").textContent = lang.headers.oRegion;
+    document.getElementById("othObserved").textContent = lang.headers.oObserved;
+    document.getElementById("othStatus").textContent = lang.headers.oStatus;
+    document.getElementById("othSources").textContent = lang.headers.oSources;
 
     const themeBtn = document.getElementById("themeToggle");
     themeBtn.textContent = state.theme === "day" ? lang.modeNight : lang.modeDay;
 
     document.getElementById("continentMetric").options[0].text = lang.continentMetricOptions.confirmed;
     document.getElementById("continentMetric").options[1].text = lang.continentMetricOptions.deaths;
-    document.getElementById("continentMetric").options[2].text = lang.continentMetricOptions.total;
+    document.getElementById("continentMetric").options[2].text = lang.continentMetricOptions.observed;
+    document.getElementById("continentMetric").options[3].text = lang.continentMetricOptions.total;
 
     document.getElementById("mapLegend").innerHTML = `
       <span class="dot-item"><span class="dot blue"></span>${lang.mapLegend.confirmed}</span>
       <span class="dot-item"><span class="dot orange"></span>${lang.mapLegend.probable}</span>
       <span class="dot-item"><span class="dot red"></span>${lang.mapLegend.death}</span>
+      <span class="dot-item"><span class="dot teal"></span>${lang.mapLegend.observed}</span>
+      <span class="dot-item"><span class="dot gold"></span>${lang.mapLegend.reportedNoCount}</span>
+      <span class="dot-item"><span class="dot route"></span>${lang.mapLegend.route}</span>
     `;
   }
 
@@ -1314,6 +1626,7 @@
 
     const confirmedAdd = sameDay.reduce((sum, item) => sum + (item.confirmedDelta || 0), 0);
     const deathsAdd = sameDay.reduce((sum, item) => sum + (item.deathsDelta || 0), 0);
+    const observedAdd = sameDay.reduce((sum, item) => sum + (item.observedDelta || 0), 0);
 
     const countriesSet = new Set(
       sameDay
@@ -1328,6 +1641,7 @@
       { k: lang.dailyFields.date, v: latestDate },
       { k: lang.dailyFields.confirmed, v: confirmedAdd },
       { k: lang.dailyFields.deaths, v: deathsAdd },
+      { k: lang.dailyFields.observed, v: observedAdd },
       { k: lang.dailyFields.countries, v: countriesSet.size }
     ];
 
@@ -1390,6 +1704,7 @@
           <td class="num">${fmtNumber(country.probable)}</td>
           <td class="num">${fmtNumber(total)}</td>
           <td class="num">${fmtNumber(country.deaths)}</td>
+          <td class="num">${fmtNumber(country.observed)}</td>
           <td>${country.lastUpdate}</td>
           <td class="country-notes">${country.notes[state.lang]}</td>
         </tr>
@@ -1403,7 +1718,8 @@
 
     const sorted = [...data.timeline].sort((a, b) => {
       if (a.date === b.date) {
-        return (b.confirmedDelta + b.deathsDelta) - (a.confirmedDelta + a.deathsDelta);
+        return (b.confirmedDelta + b.deathsDelta + (b.observedDelta || 0))
+          - (a.confirmedDelta + a.deathsDelta + (a.observedDelta || 0));
       }
       return new Date(b.date) - new Date(a.date);
     });
@@ -1416,7 +1732,119 @@
           <td>${country}</td>
           <td class="num">${item.confirmedDelta > 0 ? `<span class="badge badge-confirmed">+${item.confirmedDelta}</span>` : "0"}</td>
           <td class="num">${item.deathsDelta > 0 ? `<span class="badge badge-death">+${item.deathsDelta}</span>` : "0"}</td>
+          <td class="num">${item.observedDelta > 0 ? `<span class="badge badge-confirmed">+${item.observedDelta}</span>` : "0"}</td>
           <td class="timeline-event">${item.description[state.lang]}</td>
+        </tr>
+      `;
+    });
+  }
+
+  function observationCountryRows() {
+    return Array.isArray(data.observation?.countries) ? data.observation.countries : [];
+  }
+
+  function observationRegionRows(countryCode) {
+    const rows = data.observation?.regionBreakdown?.[countryCode];
+    return Array.isArray(rows) ? rows : [];
+  }
+
+  function observationStatusLabel(status) {
+    const lang = t();
+    return lang.obsStatusMap?.[status] || status;
+  }
+
+  function observationStatusClass(status) {
+    if (status === "counted") return "status-counted";
+    if (status === "reported_no_count") return "status-reported";
+    return "status-none";
+  }
+
+  function buildObservationControls() {
+    const lang = t();
+    const countrySelect = document.getElementById("obsCountry");
+    const statusSelect = document.getElementById("obsStatus");
+
+    const countries = observationCountryRows()
+      .map((item) => {
+        const c = countryLookup[item.code];
+        const name = c ? countryName(c) : (state.lang === "zh" ? item.countryZh : item.countryEn);
+        return {
+          value: item.code,
+          label: `${c?.flag || "🌐"} ${name}`
+        };
+      })
+      .sort((a, b) => a.label.localeCompare(b.label));
+
+    const countryOptions = [{ value: "ALL", label: lang.obsCountryAll }].concat(countries);
+    countrySelect.innerHTML = countryOptions.map((opt) => `<option value="${opt.value}">${opt.label}</option>`).join("");
+    countrySelect.value = countryOptions.some((opt) => opt.value === state.obsCountry) ? state.obsCountry : "ALL";
+    state.obsCountry = countrySelect.value;
+
+    const statusKeys = Object.keys(lang.obsStatusMap || {});
+    const statusOptions = [{ value: "ALL", label: lang.obsStatusAll }].concat(
+      statusKeys.map((key) => ({ value: key, label: observationStatusLabel(key) }))
+    );
+    statusSelect.innerHTML = statusOptions.map((opt) => `<option value="${opt.value}">${opt.label}</option>`).join("");
+    statusSelect.value = statusOptions.some((opt) => opt.value === state.obsStatus) ? state.obsStatus : "ALL";
+    state.obsStatus = statusSelect.value;
+  }
+
+  function renderObservationRegions() {
+    buildObservationControls();
+    const body = document.getElementById("obsRegionBody");
+    const lang = t();
+    body.innerHTML = "";
+
+    const countries = observationCountryRows();
+    const selectedCountries = state.obsCountry === "ALL"
+      ? countries.map((item) => item.code)
+      : [state.obsCountry];
+
+    const rows = [];
+    selectedCountries.forEach((code) => {
+      const c = countryLookup[code] || null;
+      const cName = c ? `${c.flag || "🌐"} ${countryName(c)}` : code;
+      observationRegionRows(code).forEach((row) => {
+        if (state.obsStatus !== "ALL" && row.status !== state.obsStatus) return;
+        rows.push({
+          code,
+          countryName: cName,
+          region: state.lang === "zh" ? row.regionZh : row.regionEn,
+          observed: fmtNumber(row.observed),
+          status: row.status,
+          sourceIds: row.sourceIds || []
+        });
+      });
+    });
+
+    rows.sort((a, b) => {
+      if (a.observed !== b.observed) return b.observed - a.observed;
+      if (a.countryName !== b.countryName) return a.countryName.localeCompare(b.countryName);
+      return a.region.localeCompare(b.region);
+    });
+
+    if (!rows.length) {
+      body.innerHTML = `<tr><td colspan="5">${state.lang === "zh" ? "无匹配记录" : "No matching records"}</td></tr>`;
+      return;
+    }
+
+    rows.forEach((row) => {
+      const sourceLinks = row.sourceIds
+        .map((id) => {
+          const source = findSourceById(id);
+          if (!source) return null;
+          return `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.publisher}</a>`;
+        })
+        .filter(Boolean)
+        .join(" / ");
+
+      body.innerHTML += `
+        <tr>
+          <td>${row.countryName}</td>
+          <td>${row.region}</td>
+          <td class="num">${row.observed}</td>
+          <td><span class="status-pill ${observationStatusClass(row.status)}">${observationStatusLabel(row.status)}</span></td>
+          <td>${sourceLinks || lang.noSource}</td>
         </tr>
       `;
     });
@@ -1478,6 +1906,52 @@
     });
   }
 
+  function renderExternalBenchmarks() {
+    const lang = t();
+    const grid = document.getElementById("benchmarkGrid");
+    const subtitle = document.getElementById("benchmarkSubtitle");
+    if (!grid || !subtitle) return;
+
+    const benchmark = data.meta?.externalBenchmarks || {};
+    const checkedAt = benchmark.checkedAt || data.meta.lastUpdatedAt || "";
+    subtitle.textContent = `${lang.benchmarkSubtitle} ${lang.benchmarkCheckedPrefix}${checkedAt}`;
+
+    const items = Array.isArray(benchmark.items) ? benchmark.items : [];
+    if (!items.length) {
+      grid.innerHTML = `<div class="benchmark-item">${lang.noSource}</div>`;
+      return;
+    }
+
+    grid.innerHTML = items.map((item) => {
+      const name = item.name?.[state.lang] || item.id || "-";
+      const method = item.method?.[state.lang] || "-";
+      const metricRows = Object.entries(item.metrics || {}).map(([key, value]) => {
+        const k = lang.benchmarkMetricMap?.[key] || key;
+        const v = typeof value === "number" ? value.toLocaleString() : String(value);
+        return `<li><span>${k}</span><strong>${v}</strong></li>`;
+      }).join("");
+
+      const sourceLinks = (item.sourceIds || []).map((id) => {
+        const source = findSourceById(id);
+        if (!source) return null;
+        return `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.publisher}</a>`;
+      }).filter(Boolean);
+
+      return `
+        <article class="benchmark-item">
+          <p class="benchmark-name">${name}</p>
+          <div class="benchmark-link"><a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.url}</a></div>
+          <div class="benchmark-row-title">${lang.benchmarkMethodLabel}</div>
+          <p class="benchmark-method">${method}</p>
+          <div class="benchmark-row-title">${lang.benchmarkMetricsLabel}</div>
+          <ul class="benchmark-metrics">${metricRows}</ul>
+          <div class="benchmark-row-title">${lang.benchmarkSourcesLabel}</div>
+          <div class="benchmark-sources">${sourceLinks.length ? sourceLinks.join(" / ") : lang.noSource}</div>
+        </article>
+      `;
+    }).join("");
+  }
+
   function renderSources() {
     const list = document.getElementById("sourceList");
     list.innerHTML = "";
@@ -1489,11 +1963,61 @@
       });
   }
 
+  function normalizeRegionToken(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9\u4e00-\u9fa5]+/g, "");
+  }
+
+  const observationRegionMaps = {};
+
+  function getObservationRegionMaps(countryCode) {
+    const key = String(countryCode || "").toUpperCase();
+    if (observationRegionMaps[key]) return observationRegionMaps[key];
+
+    const rows = observationRegionRows(key);
+    const byCode = new Map();
+    const byEn = new Map();
+    const byZh = new Map();
+
+    rows.forEach((row) => {
+      if (row.regionCode) byCode.set(String(row.regionCode).toUpperCase(), row);
+      if (row.regionEn) byEn.set(normalizeRegionToken(row.regionEn), row);
+      if (row.regionZh) byZh.set(normalizeRegionToken(row.regionZh), row);
+    });
+
+    observationRegionMaps[key] = { byCode, byEn, byZh };
+    return observationRegionMaps[key];
+  }
+
+  function findObservationRegion(countryCode, regionCode, nameEn, nameZh) {
+    const maps = getObservationRegionMaps(countryCode);
+    const codeKey = String(regionCode || "").toUpperCase();
+    if (codeKey && maps.byCode.has(codeKey)) return maps.byCode.get(codeKey);
+
+    const enKey = normalizeRegionToken(nameEn);
+    if (enKey && maps.byEn.has(enKey)) return maps.byEn.get(enKey);
+
+    const zhKey = normalizeRegionToken(nameZh);
+    if (zhKey && maps.byZh.has(zhKey)) return maps.byZh.get(zhKey);
+
+    return null;
+  }
+
+  function admin1Status(region) {
+    if (!region) return "none";
+    if ((region.observed || 0) > 0) return "counted";
+    if (region.status === "reported_no_count") return "reported_no_count";
+    if (region.status === "no_reported_monitoring") return "no_reported_monitoring";
+    return "none";
+  }
+
   function countryStatus(country) {
     if (!country) return "none";
     if ((country.deaths || 0) > 0) return "death";
     if ((country.probable || 0) > 0) return "probable";
     if ((country.confirmed || 0) > 0) return "confirmed";
+    if ((country.observed || 0) > 0) return "observed";
     return "none";
   }
 
@@ -1503,6 +2027,7 @@
         none: { fillColor: "#1e2a42", borderColor: "#2f4165", fillOpacity: 0.18, weight: 0.6 },
         confirmed: { fillColor: "#4f7dff", borderColor: "#c7d8ff", fillOpacity: 0.6, weight: 0.95 },
         probable: { fillColor: "#ff9b52", borderColor: "#ffd8bb", fillOpacity: 0.66, weight: 1.05 },
+        observed: { fillColor: "#23b5aa", borderColor: "#b8f1ec", fillOpacity: 0.64, weight: 1.0 },
         death: { fillColor: "#ff6b6b", borderColor: "#ffd0d0", fillOpacity: 0.72, weight: 1.12 }
       };
     }
@@ -1511,13 +2036,65 @@
       none: { fillColor: "#dbe5f5", borderColor: "#c7d3e8", fillOpacity: 0.28, weight: 0.65 },
       confirmed: { fillColor: "#1f4ed8", borderColor: "#ffffff", fillOpacity: 0.58, weight: 0.95 },
       probable: { fillColor: "#f97316", borderColor: "#ffffff", fillOpacity: 0.62, weight: 1.05 },
+      observed: { fillColor: "#0f766e", borderColor: "#ffffff", fillOpacity: 0.62, weight: 1.0 },
       death: { fillColor: "#d92d20", borderColor: "#ffffff", fillOpacity: 0.7, weight: 1.12 }
+    };
+  }
+
+  function admin1Palette() {
+    if (state.theme === "night") {
+      return {
+        none: { fillColor: "#273752", borderColor: "#4a6188", fillOpacity: 0.22, weight: 0.5 },
+        counted: { fillColor: "#23b5aa", borderColor: "#c7fff7", fillOpacity: 0.72, weight: 0.8 },
+        reported_no_count: { fillColor: "#f59e0b", borderColor: "#ffe4b5", fillOpacity: 0.7, weight: 0.8 },
+        no_reported_monitoring: { fillColor: "#334155", borderColor: "#64748b", fillOpacity: 0.32, weight: 0.45 }
+      };
+    }
+
+    return {
+      none: { fillColor: "#eef2ff", borderColor: "#c9d4eb", fillOpacity: 0.22, weight: 0.5 },
+      counted: { fillColor: "#0f766e", borderColor: "#ffffff", fillOpacity: 0.72, weight: 0.8 },
+      reported_no_count: { fillColor: "#d97706", borderColor: "#ffffff", fillOpacity: 0.68, weight: 0.8 },
+      no_reported_monitoring: { fillColor: "#d8e2f2", borderColor: "#c1cee4", fillOpacity: 0.38, weight: 0.45 }
     };
   }
 
   function featureCountryCode(feature) {
     const rawCode = feature?.properties?.iso_a2 || feature?.properties?.["ISO3166-1-Alpha-2"] || "";
     return typeof rawCode === "string" ? rawCode.toUpperCase() : "";
+  }
+
+  function countryObservedDetails(countryCode) {
+    const rows = data.observation?.regionBreakdown?.[countryCode];
+    if (!Array.isArray(rows) || !rows.length) return "";
+
+    const quantified = rows.filter((row) => (row.observed || 0) > 0);
+    const reportedNoCount = rows.filter((row) => row.status === "reported_no_count");
+    if (!quantified.length && !reportedNoCount.length) return "";
+
+    const quantifiedText = quantified
+      .sort((a, b) => (b.observed || 0) - (a.observed || 0))
+      .slice(0, 8)
+      .map((row) => `${state.lang === "zh" ? row.regionZh : row.regionEn}: ${row.observed}`)
+      .join("；");
+
+    const pendingText = reportedNoCount
+      .slice(0, 8)
+      .map((row) => state.lang === "zh" ? row.regionZh : row.regionEn)
+      .join("、");
+
+    const chunks = [];
+    if (quantifiedText) {
+      chunks.push(state.lang === "zh"
+        ? `省/州量化：${quantifiedText}`
+        : `Quantified states/provinces: ${quantifiedText}`);
+    }
+    if (pendingText) {
+      chunks.push(state.lang === "zh"
+        ? `已通报未披露人数：${pendingText}`
+        : `Reported without numeric count: ${pendingText}`);
+    }
+    return `<div style="margin-top:6px;color:#5f6d8f;">${chunks.join("<br>")}</div>`;
   }
 
   function countryGeoPopup(country, fallbackName) {
@@ -1533,8 +2110,10 @@
       ${state.lang === "zh" ? "确诊" : "Confirmed"}: ${country.confirmed}<br>
       ${state.lang === "zh" ? "可能" : "Probable"}: ${country.probable}<br>
       ${state.lang === "zh" ? "死亡" : "Deaths"}: ${country.deaths}<br>
+      ${state.lang === "zh" ? "被观测者" : "Observed"}: ${country.observed || 0}<br>
       ${state.lang === "zh" ? "最后更新" : "Last update"}: ${country.lastUpdate}<br>
       <div style="margin-top:6px;color:#5f6d8f;">${country.notes[state.lang]}</div>
+      ${countryObservedDetails(country.code)}
     `;
   }
 
@@ -1542,6 +2121,14 @@
     const code = featureCountryCode(feature);
     const country = countryLookup[code] || null;
     const palette = mapPalette();
+    if (SUBNATIONAL_COUNTRIES.has(code) && state.admin1GeoLayer) {
+      return {
+        color: state.theme === "night" ? "#617ba7" : "#9db0ce",
+        weight: 0.65,
+        fillColor: state.theme === "night" ? "#1e2a42" : "#e6edf9",
+        fillOpacity: 0.08
+      };
+    }
     const swatch = palette[countryStatus(country)] || palette.none;
     return {
       color: swatch.borderColor,
@@ -1577,9 +2164,153 @@
     });
   }
 
+  function admin1CountryCode(feature) {
+    return String(feature?.properties?.iso_a2 || "").toUpperCase();
+  }
+
+  function admin1RegionCode(feature) {
+    return String(feature?.properties?.iso_3166_2 || "").toUpperCase();
+  }
+
+  function admin1RegionName(feature) {
+    const p = feature?.properties || {};
+    if (state.lang === "zh") return p.name_zh || p.name_en || p.name || admin1RegionCode(feature);
+    return p.name_en || p.name || p.name_zh || admin1RegionCode(feature);
+  }
+
+  function admin1RegionRecord(feature) {
+    const countryCode = admin1CountryCode(feature);
+    const p = feature?.properties || {};
+    return findObservationRegion(countryCode, admin1RegionCode(feature), p.name_en || p.name, p.name_zh || p.name);
+  }
+
+  function admin1Style(feature) {
+    const palette = admin1Palette();
+    const status = admin1Status(admin1RegionRecord(feature));
+    const swatch = palette[status] || palette.none;
+    return {
+      color: swatch.borderColor,
+      weight: swatch.weight,
+      fillColor: swatch.fillColor,
+      fillOpacity: swatch.fillOpacity
+    };
+  }
+
+  function admin1Popup(feature) {
+    const countryCode = admin1CountryCode(feature);
+    const country = countryLookup[countryCode] || null;
+    const region = admin1RegionRecord(feature);
+    const regionName = admin1RegionName(feature);
+    const title = `${country?.flag || "🌐"} ${country ? countryName(country) : countryCode} · ${regionName}`;
+
+    if (!region) {
+      return `
+        <strong>${title}</strong><br>
+        ${state.lang === "zh" ? "暂无可匹配的省州观测记录。" : "No matched province/state observation record."}
+      `;
+    }
+
+    const links = (region.sourceIds || []).map((id) => {
+      const source = findSourceById(id);
+      if (!source) return null;
+      return `<a href="${source.url}" target="_blank" rel="noopener noreferrer">${source.publisher}</a>`;
+    }).filter(Boolean).join(" / ");
+
+    return `
+      <strong>${title}</strong><br>
+      ${state.lang === "zh" ? "被观测者" : "Observed"}: ${region.observed || 0}<br>
+      ${state.lang === "zh" ? "状态" : "Status"}: ${observationStatusLabel(region.status)}<br>
+      ${state.lang === "zh" ? "来源" : "Sources"}: ${links || t().noSource}
+    `;
+  }
+
+  function bindAdmin1Events(feature, layer) {
+    layer.on({
+      mouseover: (e) => {
+        const base = admin1Style(e.target.feature);
+        e.target.setStyle({
+          ...base,
+          weight: (base.weight || 0.6) + 0.65,
+          fillOpacity: Math.min((base.fillOpacity || 0.4) + 0.14, 0.86)
+        });
+      },
+      mouseout: (e) => {
+        if (state.admin1GeoLayer) state.admin1GeoLayer.resetStyle(e.target);
+      },
+      click: (e) => {
+        e.target.bindPopup(admin1Popup(e.target.feature)).openPopup();
+      }
+    });
+  }
+
+  function routeStyle() {
+    if (state.theme === "night") {
+      return {
+        lineColor: "#f472b6",
+        lineGlow: "rgba(244, 114, 182, 0.2)",
+        markerColor: "#f9a8d4",
+        markerFill: "#be185d",
+        textColor: "#fce7f3"
+      };
+    }
+    return {
+      lineColor: "#db2777",
+      lineGlow: "rgba(219, 39, 119, 0.18)",
+      markerColor: "#ffffff",
+      markerFill: "#db2777",
+      textColor: "#831843"
+    };
+  }
+
+  function renderVoyageRoute() {
+    if (!state.map) return;
+    if (state.voyageLayer) {
+      state.map.removeLayer(state.voyageLayer);
+      state.voyageLayer = null;
+    }
+
+    const style = routeStyle();
+    const group = L.layerGroup();
+    const latlngs = VOYAGE_ROUTE_POINTS.map((p) => [p.lat, p.lng]);
+    const line = L.polyline(latlngs, {
+      color: style.lineColor,
+      weight: 2.5,
+      opacity: 0.95
+    });
+    const glow = L.polyline(latlngs, {
+      color: style.lineGlow,
+      weight: 8,
+      opacity: 0.85
+    });
+    glow.addTo(group);
+    line.addTo(group);
+
+    VOYAGE_ROUTE_POINTS.forEach((point, idx) => {
+      const marker = L.circleMarker([point.lat, point.lng], {
+        radius: 4.2,
+        color: style.markerColor,
+        weight: 1.2,
+        fillColor: style.markerFill,
+        fillOpacity: 0.92
+      });
+      const label = `${idx + 1}. ${state.lang === "zh" ? point.nameZh : point.nameEn}`;
+      marker.bindTooltip(label, {
+        direction: "top",
+        offset: [0, -5],
+        opacity: 0.95
+      });
+      marker.bindPopup(`<strong>${label}</strong>`);
+      marker.addTo(group);
+    });
+
+    group.addTo(state.map);
+    state.voyageLayer = group;
+  }
+
   function markerColor(country) {
     if (country.deaths > 0) return "#d92d20";
     if (country.probable > 0) return "#f97316";
+    if (country.confirmed === 0 && (country.observed || 0) > 0) return "#0f766e";
     return "#1f4ed8";
   }
 
@@ -1612,8 +2343,44 @@
   }
 
   function applyChoroplethTheme() {
-    if (!state.countryGeoLayer) return;
-    state.countryGeoLayer.setStyle((feature) => countryGeoStyle(feature));
+    if (state.countryGeoLayer) {
+      state.countryGeoLayer.setStyle((feature) => countryGeoStyle(feature));
+    }
+    if (state.admin1GeoLayer) {
+      state.admin1GeoLayer.setStyle((feature) => admin1Style(feature));
+    }
+    renderVoyageRoute();
+  }
+
+  async function ensureAdmin1Choropleth() {
+    if (!state.map) return;
+
+    try {
+      if (!state.admin1GeoData) {
+        if (window.ADMIN1_CN_US_RU_GEOJSON) {
+          state.admin1GeoData = window.ADMIN1_CN_US_RU_GEOJSON;
+        } else {
+          const res = await fetch(ADMIN1_GEOJSON_URL, { cache: "force-cache" });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          state.admin1GeoData = await res.json();
+        }
+      }
+
+      if (!state.admin1GeoLayer) {
+        state.admin1GeoLayer = L.geoJSON(state.admin1GeoData, {
+          style: (feature) => admin1Style(feature),
+          onEachFeature: bindAdmin1Events
+        }).addTo(state.map);
+      } else {
+        state.admin1GeoLayer.setStyle((feature) => admin1Style(feature));
+      }
+    } catch (err) {
+      console.warn("Admin1 choropleth loading failed.", err);
+      if (state.admin1GeoLayer && state.map.hasLayer(state.admin1GeoLayer)) {
+        state.map.removeLayer(state.admin1GeoLayer);
+      }
+      state.admin1GeoLayer = null;
+    }
   }
 
   async function ensureCountryChoropleth() {
@@ -1634,15 +2401,23 @@
           onEachFeature: bindCountryGeoEvents
         }).addTo(state.map);
       } else {
-        applyChoroplethTheme();
+        state.countryGeoLayer.setStyle((feature) => countryGeoStyle(feature));
       }
+
+      await ensureAdmin1Choropleth();
+      applyChoroplethTheme();
     } catch (err) {
       console.warn("Country choropleth loading failed, fallback to markers.", err);
       if (state.countryGeoLayer && state.map.hasLayer(state.countryGeoLayer)) {
         state.map.removeLayer(state.countryGeoLayer);
       }
       state.countryGeoLayer = null;
+      if (state.admin1GeoLayer && state.map.hasLayer(state.admin1GeoLayer)) {
+        state.map.removeLayer(state.admin1GeoLayer);
+      }
+      state.admin1GeoLayer = null;
       drawMarkersFallback();
+      renderVoyageRoute();
     }
   }
 
@@ -1714,7 +2489,8 @@
       return {
         labels,
         confirmed: normalized.safeConfirmed,
-        deathsConfirmed: normalized.safeDeaths
+        deathsConfirmed: normalized.safeDeaths,
+        observed: buildPlainSeries(data.series.global.observed, labels)
       };
     }
 
@@ -1723,7 +2499,8 @@
       return {
         labels,
         confirmed: labels.map(() => 0),
-        deathsConfirmed: labels.map(() => 0)
+        deathsConfirmed: labels.map(() => 0),
+        observed: labels.map(() => 0)
       };
     }
 
@@ -1731,7 +2508,8 @@
     return {
       labels,
       confirmed: normalized.safeConfirmed,
-      deathsConfirmed: normalized.safeDeaths
+      deathsConfirmed: normalized.safeDeaths,
+      observed: buildPlainSeries(series.observed, labels)
     };
   }
 
@@ -1769,6 +2547,18 @@
             pointHoverRadius: 6,
             borderWidth: 2.4,
             borderDash: [6, 4]
+          },
+          {
+            label: lang.trendSeries.observed,
+            data: series.observed,
+            borderColor: "#0f766e",
+            backgroundColor: "rgba(15, 118, 110, 0.1)",
+            fill: true,
+            tension: 0.25,
+            pointRadius: 3,
+            pointHoverRadius: 6,
+            borderWidth: 2.2,
+            pointStyle: "triangle"
           }
         ]
       },
@@ -1790,6 +2580,7 @@
   function metricAt(series, metric, idx) {
     if (metric === "confirmed") return series.confirmed[idx] || 0;
     if (metric === "deaths") return series.deaths[idx] || 0;
+    if (metric === "observed") return series.observed?.[idx] || 0;
     return (series.confirmed[idx] || 0) + (series.probable[idx] || 0);
   }
 
@@ -1926,8 +2717,10 @@
     renderStats();
     renderCountryTable();
     renderTimeline();
+    renderObservationRegions();
     renderNews();
     renderWatchlist();
+    renderExternalBenchmarks();
     renderSources();
     buildTrendScopeOptions();
     buildContinentScopeOptions();
@@ -1961,6 +2754,14 @@
     document.getElementById("trendScope").addEventListener("change", renderTrendChart);
     document.getElementById("continentScope").addEventListener("change", renderContinentChart);
     document.getElementById("continentMetric").addEventListener("change", renderContinentChart);
+    document.getElementById("obsCountry").addEventListener("change", (e) => {
+      state.obsCountry = e.target.value || "ALL";
+      renderObservationRegions();
+    });
+    document.getElementById("obsStatus").addEventListener("change", (e) => {
+      state.obsStatus = e.target.value || "ALL";
+      renderObservationRegions();
+    });
     document.getElementById("newsMoreBtn").addEventListener("click", () => {
       const total = (data.news || []).length;
       if (state.newsLimit < total) {

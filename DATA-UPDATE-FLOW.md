@@ -25,7 +25,8 @@ opencli profile use 57a5zus5
 
 说明：
 - 本项目已验证 `opencli v1.7.18` 可用。
-- 浏览器类命令必须显式指定 profile：`--profile 57a5zus5`。
+- 若 profile 未连接，脚本会自动降级为无 profile 模式执行 opencli 可用命令（如 `google news`）。
+- `opencli-reuters` 可能仍依赖 profile，失败会在原始快照里记录错误字段，不会中断全流程。
 
 ## 2) 抓取原始数据（建议双通道）
 ### A. 官方页面抓取（opencli）
@@ -45,6 +46,11 @@ TAVILY_API_KEY=你的key ./refresh-outbreak-raw-data.sh
   - `raw-sources/latest/`（最新快照）
   - `raw-sources/history/<时间>-<哈希>/`（历史快照）
   - `raw-sources/manifest.json`（快照索引，作为“原始数据数据库”）
+- 社交平台补充抓取：
+  - `opencli-reddit-hondius.json`
+  - `opencli-twitter-hondius.json`（若执行失败会保留错误对象，便于追踪适配器状态）
+- 外部站点口径快照：
+  - `external-benchmarks.json`（Elisey ArcGIS点位与 Hantaflow signals 对照）
 - 在 CI 中可设置 `SKIP_OPENCLI=1`，仅用 Tavily 更新原始快照。
 - 可通过 `RAW_HISTORY_KEEP` 控制历史保留数量（默认 120 份）：
   ```bash
@@ -54,20 +60,27 @@ TAVILY_API_KEY=你的key ./refresh-outbreak-raw-data.sh
 ## 3) 人工校对清单（必须做）
 每次更新前，逐条核对：
 1. 最新总量：`总病例、确诊、可能、死亡`。
-2. 国家维度：是否出现新增国家、死亡变化、病例状态变更（可能 -> 确诊）。
-3. 时间线：新增事件日期是否晚于现有最大日期。
-4. 事件范围：新增病例是否属于 `MV Hondius` 事件链。
+2. 新增指标：`被观测者` 国家总量是否与省/州级可量化明细一致。
+3. 国家维度：是否出现新增国家、死亡变化、病例状态变更（可能 -> 确诊）。
+4. 时间线：新增事件日期是否晚于现有最大日期。
+5. 事件范围：新增病例是否属于 `MV Hondius` 事件链。
+6. 外部对照：`external-benchmarks.json` 是否能解释与外部追踪器的统计差异（点位/信号 vs 病例）。
 
 ## 4) 更新文件
-只改两个核心文件：
+通常改两个核心文件：
 - `outbreak-data.js`（数据）
 - `index.html`（展示逻辑，通常不需每次改）
+
+地图省州边界版本升级时，同时更新：
+- `geo/admin1-cn-us-ru.geojson`
+- `geo/admin1-cn-us-ru.js`
 
 `outbreak-data.js` 需要同步更新：
 - `summary`
 - `countries`
 - `timeline`
 - `series.global / series.byCountry`
+- `observation.countries / observation.regionBreakdown`（中/美/俄省州明细）
 - `news`
 - `sources`
 - 若是异源信息：`watchlist`
@@ -84,8 +97,10 @@ node validate-outbreak-data.js
 
 通过标准：
 - 汇总与国家加总一致
+- `summary.observed` 与国家加总一致
 - 时间序列单调不下降
 - `confirmedDeaths <= confirmed`
+- `series.observed` 与省/州量化明细一致
 - 各国最终值与时间序列末值一致
 - `timeline/news/watchlist` 的来源引用都能在 `sources` 中找到
 - `countries.notes` 与 `watchlist` 中英文字段完整

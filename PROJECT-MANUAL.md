@@ -3,18 +3,24 @@
 ## 1. 项目目标
 - 展示 2026 汉坦病毒（安第斯病毒）事件链（MV Hondius）全球确诊追踪。
 - 提供地图、国家汇总、时间维度、趋势图、大洲对比、新闻流水、核验待跟踪。
+- 新增“被观测者”口径，支持中/美/俄省州级明细与筛选。
+- 地图采用双层渲染：中/美/俄省州级涂色，其他国家保持国家级涂色，并叠加 MV Hondius 航线。
 - 支持中英文切换、白天/黑夜模式、自动化数据抓取与发布。
 
 ## 2. 关键文件
 - 页面：`index.html`
 - 页面副本：`hantavirus-outbreak-tracker-v2.html`
+- 省州边界：`geo/admin1-cn-us-ru.geojson` 与 `geo/admin1-cn-us-ru.js`
 - 主数据：`outbreak-data.js`
 - 数据校验：`validate-outbreak-data.js`
 - 原始抓取脚本：`refresh-outbreak-raw-data.sh`
+- 外部口径快照脚本：`scripts/fetch-external-benchmarks.js`
 - 原始数据索引脚本：`scripts/update-raw-manifest.js`
 - 发布工作流：`.github/workflows/deploy-pages.yml`
 - 定时更新工作流：`.github/workflows/scheduled-data-refresh.yml`
 - 原始数据“数据库索引”：`raw-sources/manifest.json`
+- 社交信号快照：`raw-sources/latest/opencli-reddit-hondius.json`、`raw-sources/latest/opencli-twitter-hondius.json`
+- 外部对照快照：`raw-sources/latest/external-benchmarks.json`
 
 ## 3. 本地使用
 ### 3.1 本地预览
@@ -41,6 +47,7 @@ TAVILY_API_KEY=你的key ./refresh-outbreak-raw-data.sh
   - `countries`
   - `timeline`
   - `series.global / series.byCountry`
+  - `observation.countries / observation.regionBreakdown`
   - `news`
   - `sources`
   - `watchlist`（如有异源事件）
@@ -72,6 +79,8 @@ opencli daemon restart
 opencli profile use 57a5zus5
 opencli --profile 57a5zus5 google news "hantavirus MV Hondius" --limit 3 --lang en --region US -f json
 ```
+
+若 profile 未连接，脚本会自动降级为无 profile 模式执行可用 opencli 命令。
 
 ### 8.2 校验失败
 先执行：

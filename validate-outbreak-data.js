@@ -54,22 +54,26 @@ const sumProbable = countries.reduce((s, c) => s + (c.probable || 0), 0);
 const sumDeaths = countries.reduce((s, c) => s + (c.deaths || 0), 0);
 const sumConfirmedDeaths = countries.reduce((s, c) => s + (c.confirmedDeaths || 0), 0);
 const sumProbableDeaths = countries.reduce((s, c) => s + (c.probableDeaths || 0), 0);
+const sumObserved = countries.reduce((s, c) => s + (c.observed || 0), 0);
 
 assert(sumConfirmed === d.summary.confirmed, `Summary.confirmed mismatch: countries=${sumConfirmed}, summary=${d.summary.confirmed}`);
 assert(sumProbable === d.summary.probable, `Summary.probable mismatch: countries=${sumProbable}, summary=${d.summary.probable}`);
 assert(sumDeaths === d.summary.deaths, `Summary.deaths mismatch: countries=${sumDeaths}, summary=${d.summary.deaths}`);
 assert(sumConfirmedDeaths === d.summary.confirmedDeaths, `Summary.confirmedDeaths mismatch: countries=${sumConfirmedDeaths}, summary=${d.summary.confirmedDeaths}`);
 assert(sumProbableDeaths === d.summary.probableDeaths, `Summary.probableDeaths mismatch: countries=${sumProbableDeaths}, summary=${d.summary.probableDeaths}`);
+assert(sumObserved === (d.summary.observed || 0), `Summary.observed mismatch: countries=${sumObserved}, summary=${d.summary.observed || 0}`);
 assert(d.summary.totalReported === d.summary.confirmed + d.summary.probable, 'Summary.totalReported should equal confirmed + probable.');
 assert(d.summary.deaths === d.summary.confirmedDeaths + d.summary.probableDeaths, 'Summary.deaths should equal confirmedDeaths + probableDeaths.');
 
 assert(Array.isArray(g.confirmed) && g.confirmed.length === dates.length, 'Global confirmed series length mismatch.');
 assert(Array.isArray(g.deaths) && g.deaths.length === dates.length, 'Global deaths series length mismatch.');
 assert(Array.isArray(g.confirmedDeaths) && g.confirmedDeaths.length === dates.length, 'Global confirmedDeaths series length mismatch.');
+assert(Array.isArray(g.observed) && g.observed.length === dates.length, 'Global observed series length mismatch.');
 
 assert(isNonDecreasing(g.confirmed), 'Global confirmed series must be non-decreasing.');
 assert(isNonDecreasing(g.deaths), 'Global deaths series must be non-decreasing.');
 assert(isNonDecreasing(g.confirmedDeaths), 'Global confirmedDeaths series must be non-decreasing.');
+assert(isNonDecreasing(g.observed), 'Global observed series must be non-decreasing.');
 
 if (g.confirmed.length && g.confirmedDeaths.length) {
   for (let i = 0; i < g.confirmed.length; i += 1) {
@@ -91,7 +95,7 @@ countries.forEach((c) => {
   assert(cs, `Missing byCountry series for ${c.code}`);
   if (!cs) return;
 
-  ['confirmed', 'probable', 'deaths', 'confirmedDeaths'].forEach((k) => {
+  ['confirmed', 'probable', 'deaths', 'confirmedDeaths', 'observed'].forEach((k) => {
     assert(Array.isArray(cs[k]) && cs[k].length === dates.length, `Country ${c.code}: series.${k} length mismatch`);
     if (Array.isArray(cs[k])) {
       assert(isNonDecreasing(cs[k]), `Country ${c.code}: series.${k} not non-decreasing`);
@@ -104,6 +108,7 @@ countries.forEach((c) => {
     assert((cs.probable[last] || 0) === (c.probable || 0), `Country ${c.code}: final probable != country.probable`);
     assert((cs.deaths[last] || 0) === (c.deaths || 0), `Country ${c.code}: final deaths != country.deaths`);
     assert((cs.confirmedDeaths[last] || 0) === (c.confirmedDeaths || 0), `Country ${c.code}: final confirmedDeaths != country.confirmedDeaths`);
+    assert((cs.observed[last] || 0) === (c.observed || 0), `Country ${c.code}: final observed != country.observed`);
   }
 });
 
@@ -113,6 +118,7 @@ timeline.forEach((item, idx) => {
   assert(isNonEmptyString(item.countryEn), `Timeline[${idx}] missing countryEn.`);
   assert(isNonEmptyString(item.description?.zh), `Timeline[${idx}] missing description.zh.`);
   assert(isNonEmptyString(item.description?.en), `Timeline[${idx}] missing description.en.`);
+  assert(Number.isFinite(item.observedDelta ?? 0), `Timeline[${idx}] observedDelta should be numeric.`);
 
   const ids = Array.isArray(item.sourceIds) ? item.sourceIds : [];
   assert(ids.length > 0, `Timeline[${idx}] missing sourceIds.`);
@@ -120,6 +126,43 @@ timeline.forEach((item, idx) => {
     assert(sourceIdSet.has(id), `Timeline[${idx}] references missing source id: ${id}`);
   });
 });
+
+const allowedObsStatus = new Set(['counted', 'reported_no_count', 'no_reported_monitoring']);
+const observation = d.observation || null;
+if (observation) {
+  const obsCountries = Array.isArray(observation.countries) ? observation.countries : [];
+  const regionBreakdown = observation.regionBreakdown || {};
+
+  obsCountries.forEach((item, idx) => {
+    assert(isNonEmptyString(item.code), `Observation.countries[${idx}] missing code.`);
+    const country = countries.find((c) => c.code === item.code);
+    assert(!!country, `Observation country ${item.code} is not present in countries[].`);
+    if (country) {
+      assert((item.observed || 0) === (country.observed || 0), `Observation country ${item.code} observed != countries[].observed`);
+    }
+
+    (item.sourceIds || []).forEach((id) => {
+      assert(sourceIdSet.has(id), `Observation country ${item.code} references missing source id: ${id}`);
+    });
+
+    const regions = Array.isArray(regionBreakdown[item.code]) ? regionBreakdown[item.code] : [];
+    const countedSum = regions
+      .filter((r) => r.status === 'counted')
+      .reduce((sum, r) => sum + (r.observed || 0), 0);
+    assert(countedSum === (item.observed || 0), `Observation country ${item.code} counted region sum != observed total`);
+
+    regions.forEach((region, ridx) => {
+      assert(isNonEmptyString(region.regionCode), `Observation region ${item.code}[${ridx}] missing regionCode.`);
+      assert(isNonEmptyString(region.regionZh), `Observation region ${item.code}[${ridx}] missing regionZh.`);
+      assert(isNonEmptyString(region.regionEn), `Observation region ${item.code}[${ridx}] missing regionEn.`);
+      assert(Number.isFinite(region.observed || 0), `Observation region ${item.code}[${ridx}] observed should be numeric.`);
+      assert(allowedObsStatus.has(region.status), `Observation region ${item.code}[${ridx}] has invalid status: ${region.status}`);
+      (region.sourceIds || []).forEach((id) => {
+        assert(sourceIdSet.has(id), `Observation region ${item.code}[${ridx}] references missing source id: ${id}`);
+      });
+    });
+  });
+}
 
 (d.news || []).forEach((item, idx) => {
   assert(isNonEmptyString(item.date), `News[${idx}] missing date.`);
