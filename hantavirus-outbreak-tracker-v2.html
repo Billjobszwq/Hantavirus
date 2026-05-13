@@ -1161,6 +1161,9 @@
   const COUNTRY_GEOJSON_URL = "https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/main/countries.geojson";
   const ADMIN1_GEOJSON_URL = "./geo/admin1-cn-us-ru.geojson";
   const SUBNATIONAL_COUNTRIES = new Set(["CN", "US", "RU"]);
+  const COUNTRY_PANE = "countryPane";
+  const ADMIN1_PANE = "admin1Pane";
+  const ROUTE_PANE = "routePane";
   const VOYAGE_ROUTE_POINTS = [
     { nameZh: "乌斯怀亚（阿根廷）", nameEn: "Ushuaia (Argentina)", lat: -54.8019, lng: -68.3030 },
     { nameZh: "福克兰群岛海域", nameEn: "Falkland Islands waters", lat: -51.7963, lng: -59.5236 },
@@ -1220,7 +1223,7 @@
       ],
 
       mapTitle: "全球地图（国家+省州双层）",
-      mapSubtitle: "中/美/俄按省州着色，其余国家按国家着色；叠加MV Hondius航线",
+      mapSubtitle: "国家底色 + 中/美/俄省州高亮叠加；其余国家保持国家着色，并叠加MV Hondius航线",
       countryTitle: "国家汇总表",
       countrySubtitle: "国家前附旗帜，便于快速识别",
 
@@ -1375,7 +1378,7 @@
       ],
 
       mapTitle: "Global Map (Country + Province/State Layer)",
-      mapSubtitle: "CN/US/RU are colored by province/state; other countries remain country-level; MV Hondius route is overlaid",
+      mapSubtitle: "Country base color + CN/US/RU province-state highlights on top; other countries remain country-level; MV Hondius route is overlaid",
       countryTitle: "Country Summary Table",
       countrySubtitle: "Country flags added for faster visual scanning",
 
@@ -2044,18 +2047,18 @@
   function admin1Palette() {
     if (state.theme === "night") {
       return {
-        none: { fillColor: "#273752", borderColor: "#4a6188", fillOpacity: 0.22, weight: 0.5 },
-        counted: { fillColor: "#23b5aa", borderColor: "#c7fff7", fillOpacity: 0.72, weight: 0.8 },
-        reported_no_count: { fillColor: "#f59e0b", borderColor: "#ffe4b5", fillOpacity: 0.7, weight: 0.8 },
-        no_reported_monitoring: { fillColor: "#334155", borderColor: "#64748b", fillOpacity: 0.32, weight: 0.45 }
+        none: { fillColor: "#000000", borderColor: "#4a6188", fillOpacity: 0, weight: 0.42 },
+        counted: { fillColor: "#23b5aa", borderColor: "#d8fff8", fillOpacity: 0.8, weight: 0.9 },
+        reported_no_count: { fillColor: "#f59e0b", borderColor: "#ffe8c2", fillOpacity: 0.76, weight: 0.86 },
+        no_reported_monitoring: { fillColor: "#334155", borderColor: "#5f7ca8", fillOpacity: 0.1, weight: 0.38 }
       };
     }
 
     return {
-      none: { fillColor: "#eef2ff", borderColor: "#c9d4eb", fillOpacity: 0.22, weight: 0.5 },
-      counted: { fillColor: "#0f766e", borderColor: "#ffffff", fillOpacity: 0.72, weight: 0.8 },
-      reported_no_count: { fillColor: "#d97706", borderColor: "#ffffff", fillOpacity: 0.68, weight: 0.8 },
-      no_reported_monitoring: { fillColor: "#d8e2f2", borderColor: "#c1cee4", fillOpacity: 0.38, weight: 0.45 }
+      none: { fillColor: "#ffffff", borderColor: "#b8c9e4", fillOpacity: 0, weight: 0.4 },
+      counted: { fillColor: "#0f766e", borderColor: "#ffffff", fillOpacity: 0.82, weight: 0.92 },
+      reported_no_count: { fillColor: "#d97706", borderColor: "#ffffff", fillOpacity: 0.78, weight: 0.88 },
+      no_reported_monitoring: { fillColor: "#cfd9ea", borderColor: "#b7c8e2", fillOpacity: 0.12, weight: 0.36 }
     };
   }
 
@@ -2121,14 +2124,6 @@
     const code = featureCountryCode(feature);
     const country = countryLookup[code] || null;
     const palette = mapPalette();
-    if (SUBNATIONAL_COUNTRIES.has(code) && state.admin1GeoLayer) {
-      return {
-        color: state.theme === "night" ? "#617ba7" : "#9db0ce",
-        weight: 0.65,
-        fillColor: state.theme === "night" ? "#1e2a42" : "#e6edf9",
-        fillOpacity: 0.08
-      };
-    }
     const swatch = palette[countryStatus(country)] || palette.none;
     return {
       color: swatch.borderColor,
@@ -2273,11 +2268,13 @@
     const group = L.layerGroup();
     const latlngs = VOYAGE_ROUTE_POINTS.map((p) => [p.lat, p.lng]);
     const line = L.polyline(latlngs, {
+      pane: ROUTE_PANE,
       color: style.lineColor,
       weight: 2.5,
       opacity: 0.95
     });
     const glow = L.polyline(latlngs, {
+      pane: ROUTE_PANE,
       color: style.lineGlow,
       weight: 8,
       opacity: 0.85
@@ -2287,6 +2284,7 @@
 
     VOYAGE_ROUTE_POINTS.forEach((point, idx) => {
       const marker = L.circleMarker([point.lat, point.lng], {
+        pane: ROUTE_PANE,
         radius: 4.2,
         color: style.markerColor,
         weight: 1.2,
@@ -2368,6 +2366,7 @@
 
       if (!state.admin1GeoLayer) {
         state.admin1GeoLayer = L.geoJSON(state.admin1GeoData, {
+          pane: ADMIN1_PANE,
           style: (feature) => admin1Style(feature),
           onEachFeature: bindAdmin1Events
         }).addTo(state.map);
@@ -2397,6 +2396,7 @@
 
       if (!state.countryGeoLayer) {
         state.countryGeoLayer = L.geoJSON(state.countryGeoData, {
+          pane: COUNTRY_PANE,
           style: (feature) => countryGeoStyle(feature),
           onEachFeature: bindCountryGeoEvents
         }).addTo(state.map);
@@ -2427,6 +2427,13 @@
       minZoom: 2,
       maxZoom: 6
     }).setView([23, 10], 2);
+
+    state.map.createPane(COUNTRY_PANE);
+    state.map.getPane(COUNTRY_PANE).style.zIndex = "420";
+    state.map.createPane(ADMIN1_PANE);
+    state.map.getPane(ADMIN1_PANE).style.zIndex = "430";
+    state.map.createPane(ROUTE_PANE);
+    state.map.getPane(ROUTE_PANE).style.zIndex = "440";
 
     state.mapBaseLayers = {
       light: L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {

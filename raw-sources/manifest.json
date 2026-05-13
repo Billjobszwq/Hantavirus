@@ -1,13 +1,72 @@
 {
-  "generatedAt": "2026-05-13T03:39:59.025Z",
+  "generatedAt": "2026-05-13T07:15:03.873Z",
   "latest": {
-    "id": "history/20260513-113958-32b73da3c0ee",
-    "path": "history/20260513-113958-32b73da3c0ee",
+    "id": "history/20260513-151503-c766a3f8743a",
+    "path": "history/20260513-151503-c766a3f8743a",
     "fileCount": 10,
-    "hash": "dd1254ef7180ec314994cd5f63ed380af744431cc1b20934a278ef46fcaca8f0",
-    "mtime": "2026-05-13T03:39:58.983Z"
+    "hash": "e4cfbf02af3023be0eca3eb90832d9e3dca645252458068d0aa0ff2bf849995f",
+    "mtime": "2026-05-13T07:15:03.814Z"
   },
   "snapshots": [
+    {
+      "id": "history/20260513-151503-c766a3f8743a",
+      "path": "history/20260513-151503-c766a3f8743a",
+      "fileCount": 10,
+      "hash": "e4cfbf02af3023be0eca3eb90832d9e3dca645252458068d0aa0ff2bf849995f",
+      "mtime": "2026-05-13T07:15:03.814Z",
+      "files": [
+        {
+          "name": "external-benchmarks.json",
+          "size": 1137,
+          "sha256": "bc828af80d1f4ea4eb947f03fb76417bcd83772e72171e3361c649ede7861bc4"
+        },
+        {
+          "name": "fetch-meta.json",
+          "size": 135,
+          "sha256": "b46906c4d5298b0d2353e3ee7d90923452c25d6b2ff8f8dae7dea20252fc0a30"
+        },
+        {
+          "name": "opencli-google-news-en.json",
+          "size": 15471,
+          "sha256": "d456d6f42513e650a0b8e964bfcbe9378f533fbcc76a9316f1567839be43f6db"
+        },
+        {
+          "name": "opencli-google-news-zh.json",
+          "size": 13731,
+          "sha256": "e1d251094059879c2f89137b95a7c638c5632ff6ceff6b4ddbe1eb31679845a7"
+        },
+        {
+          "name": "opencli-reddit-hondius.json",
+          "size": 10098,
+          "sha256": "bdf2d4099ef9086eca9c5776477d7277160f4c1b65f076ca54233307cb274359"
+        },
+        {
+          "name": "opencli-reuters.json",
+          "size": 164,
+          "sha256": "e1ba4d37b1dac52725a7b58ee926a7cd679133a0d592e57e3735bd2bc760baeb"
+        },
+        {
+          "name": "opencli-twitter-hondius.json",
+          "size": 1630,
+          "sha256": "381194cb3dba0166a45acaa741b5468871ebfcc1b0397f117a587132c21e9c44"
+        },
+        {
+          "name": "tavily-ap-latest.json",
+          "size": 22208,
+          "sha256": "682d88442c38e0e825e1618b376ad259d19f775e7d8f381d6a87994ff7b29996"
+        },
+        {
+          "name": "tavily-country-breakdown.json",
+          "size": 25607,
+          "sha256": "b3ba6a2f9bcf317d556d2b725951cff340f2c3a9449670cb64395ccce3ad6a37"
+        },
+        {
+          "name": "tavily-who-overview.json",
+          "size": 26746,
+          "sha256": "333ab92eee63f9b07daa6f4af9c6f81d41509c54a668e75f6e5a5b495ba5caf8"
+        }
+      ]
+    },
     {
       "id": "history/20260513-113958-32b73da3c0ee",
       "path": "history/20260513-113958-32b73da3c0ee",
