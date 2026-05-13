@@ -103,10 +103,28 @@ node validate-outbreak-data.js
 - 检查 `raw-sources/manifest.json` 的 `generatedAt` 是否更新。
 - 强制刷新浏览器缓存后重试。
 
-## 9. 维护清单（每次更新照做）
-1. 抓取原始数据（脚本）。
-2. 按口径更新 `outbreak-data.js`。
-3. 运行 `node validate-outbreak-data.js`。
-4. 本地看图表与表格逻辑。
-5. 提交并推送 `main`。
-6. 确认 Pages 链接可访问。
+## 9. 维护清单（分模式）
+### 9.1 默认模式（自动更新）
+1. 不需要本地定时操作，云端每 6 小时自动执行抓取、重算、校验、发布。
+2. 每天只需检查 Actions 最近一次 `Scheduled raw data refresh` 是否为 `success`。
+3. 若失败，手动触发一次同名工作流（`workflow_dispatch`）并查看日志。
+
+### 9.2 大改模式（本地介入）
+1. 本地改代码或改口径（结构性更新）。
+2. 运行 `node validate-outbreak-data.js`。
+3. 本地预览页面（地图、省州叠层、图表、表格）。
+4. 确认无误后提交并推送 `main`。
+5. 观察 Pages 部署成功后再对外说明已更新。
+
+## 10. 本地与云端分轨策略（已生效）
+1. 云端先行版本：`main` 分支，持续自动更新并对外发布。
+2. 本地改造版本：可在本地分支持续迭代，不推送到 `main` 就不会影响线上自动更新。
+3. 合并原则：只有“结构性大改”或你明确要求发布时，才把本地改造合并进 `main`。
+4. 这保证了线上稳定运行与本地实验并行，不互相阻塞。
+
+## 11. 当前状态快照（2026-05-13 16:00 CST）
+1. 代码同步状态：本地 `main` 与 `origin/main` 一致（HEAD=`41ed789`）。
+2. 自动重算状态：`Scheduled raw data refresh` 最新手动触发运行成功（Run ID `25786305311`）。
+3. 页面部署状态：`Deploy static tracker to GitHub Pages` 成功。
+4. 省州图层状态：线上 `geo/admin1-cn-us-ru.js` 返回 `HTTP 200`（已排除早前 404 问题）。
+5. 最新数据时间：线上 `outbreak-data.js` 显示 `lastUpdatedAt=2026-05-13T16:00:43+08:00`，`checkedAt=2026-05-13T16:00:41+08:00`。
