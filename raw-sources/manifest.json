@@ -1,29 +1,29 @@
 {
-  "generatedAt": "2026-05-13T07:25:06.078Z",
+  "generatedAt": "2026-05-13T08:00:43.148Z",
   "latest": {
-    "id": "history/20260513-072506-8968d8827a78",
-    "path": "history/20260513-072506-8968d8827a78",
+    "id": "history/20260513-080043-d5d57f661516",
+    "path": "history/20260513-080043-d5d57f661516",
     "fileCount": 10,
-    "hash": "05dc90517b035b7a8136af441358f8599d94a26326d473c4bc9f516a7e200d1c",
-    "mtime": "2026-05-13T07:25:06.035Z"
+    "hash": "3371b0ab9ecee3f8be77d19b40a4a2aeb9b93d5f29eca272044c543d873624ce",
+    "mtime": "2026-05-13T08:00:43.109Z"
   },
   "snapshots": [
     {
-      "id": "history/20260513-072506-8968d8827a78",
-      "path": "history/20260513-072506-8968d8827a78",
+      "id": "history/20260513-080043-d5d57f661516",
+      "path": "history/20260513-080043-d5d57f661516",
       "fileCount": 10,
-      "hash": "05dc90517b035b7a8136af441358f8599d94a26326d473c4bc9f516a7e200d1c",
-      "mtime": "2026-05-13T07:25:06.035Z",
+      "hash": "3371b0ab9ecee3f8be77d19b40a4a2aeb9b93d5f29eca272044c543d873624ce",
+      "mtime": "2026-05-13T08:00:43.109Z",
       "files": [
         {
           "name": "external-benchmarks.json",
-          "size": 1118,
-          "sha256": "6683215f5a629ed1c9c7b9a7278ab950473558128ef23af1600f3f1aeb1c9c59"
+          "size": 1137,
+          "sha256": "d65a2410f739abff8924362fb64110bd995e3c209f7c661d274fb82cdaf02138"
         },
         {
           "name": "fetch-meta.json",
           "size": 135,
-          "sha256": "baf8117961c504dbb02bda22a5be64a0393a4fd72fa18746c44760b8bcd63349"
+          "sha256": "762ad21f23a29aff71740b7777d561fbf3465b2feeb860ab3359deeb575c5116"
         },
         {
           "name": "opencli-google-news-en.json",
@@ -52,18 +52,18 @@
         },
         {
           "name": "tavily-ap-latest.json",
-          "size": 22312,
-          "sha256": "c4b45c9478ce802c3af71f180f29f2d94e91186865f37ab1b245f32daa74535a"
+          "size": 20933,
+          "sha256": "680c5cca3e9707ecbc0d88e75ffc3b586f5f47d8c19c6d2321a74cb6f85b0d5e"
         },
         {
           "name": "tavily-country-breakdown.json",
-          "size": 23051,
-          "sha256": "7a88b9328aa6a24cae23175b7c00be90e56e210464329e61f68033e55aca3979"
+          "size": 28292,
+          "sha256": "3fca118e6bda8547f4643963f5cb288531f18e8f7020914e7e38a5b113a398f4"
         },
         {
           "name": "tavily-who-overview.json",
-          "size": 21645,
-          "sha256": "61b2195405a1df2b633e89fef4ad316a15cffe34f794984bd0c767d85932f4be"
+          "size": 28193,
+          "sha256": "ea154848f3a7ff54a2e0720116f3a0a26cfab57300a907c3816e8924dda4476f"
         }
       ]
     },
@@ -72,7 +72,7 @@
       "path": "history/20260513-151503-c766a3f8743a",
       "fileCount": 10,
       "hash": "e4cfbf02af3023be0eca3eb90832d9e3dca645252458068d0aa0ff2bf849995f",
-      "mtime": "2026-05-13T07:24:51.992Z",
+      "mtime": "2026-05-13T08:00:27.007Z",
       "files": [
         {
           "name": "external-benchmarks.json",
@@ -131,7 +131,7 @@
       "path": "history/20260513-113124-6585d3738d7e",
       "fileCount": 10,
       "hash": "93e82b08dfb5ca209c7efa5bad16d25f91f195b3fc37d43b34a7d51368b2cd32",
-      "mtime": "2026-05-13T07:24:51.991Z",
+      "mtime": "2026-05-13T08:00:27.006Z",
       "files": [
         {
           "name": "external-benchmarks.json",
@@ -190,7 +190,7 @@
       "path": "history/20260513-113958-32b73da3c0ee",
       "fileCount": 10,
       "hash": "dd1254ef7180ec314994cd5f63ed380af744431cc1b20934a278ef46fcaca8f0",
-      "mtime": "2026-05-13T07:24:51.991Z",
+      "mtime": "2026-05-13T08:00:27.006Z",
       "files": [
         {
           "name": "external-benchmarks.json",
@@ -249,7 +249,7 @@
       "path": "history/20260513-111245-77fc3c8249cd",
       "fileCount": 9,
       "hash": "1d38cc18284e793fe77c2b0c01aad2f911a5d0a19359325293d81834e711cd42",
-      "mtime": "2026-05-13T07:24:51.990Z",
+      "mtime": "2026-05-13T08:00:27.005Z",
       "files": [
         {
           "name": "fetch-meta.json",
@@ -299,55 +299,11 @@
       ]
     },
     {
-      "id": "history/20260513-024554-34919e9285c6",
-      "path": "history/20260513-024554-34919e9285c6",
-      "fileCount": 7,
-      "hash": "8ab239501e6b16d43515e46a7000812061054b615a5945315504c7952c3a25b7",
-      "mtime": "2026-05-13T07:24:51.989Z",
-      "files": [
-        {
-          "name": "fetch-meta.json",
-          "size": 99,
-          "sha256": "bbd6feab909cd54445312cca6c9ba0cb2f1a942ebc2595c7fb116cc9c9d70cc6"
-        },
-        {
-          "name": "opencli-google-news-en.json",
-          "size": 154,
-          "sha256": "5486e73cdca9e5ccb5ee30bcbd2d7f7255c8d55bb31a13ab3746b9df29667646"
-        },
-        {
-          "name": "opencli-google-news-zh.json",
-          "size": 152,
-          "sha256": "10204d0112ed679279706aa04afea85a55654e3a1fb181632ae9a4ef5ea72a37"
-        },
-        {
-          "name": "opencli-reuters.json",
-          "size": 136,
-          "sha256": "0d66217b809d7eab3a250f4d971c48eceaf5975a04b94b978bed240c40257534"
-        },
-        {
-          "name": "tavily-ap-latest.json",
-          "size": 20454,
-          "sha256": "89b247482b01ad7ff5bf627f2455698696a7da4fc5cbfd8663490755c8b4bf14"
-        },
-        {
-          "name": "tavily-country-breakdown.json",
-          "size": 29983,
-          "sha256": "0d438a70d3766b4b54d98554eeb72e75f17230e9c996707a66e147b1cc8164e0"
-        },
-        {
-          "name": "tavily-who-overview.json",
-          "size": 27839,
-          "sha256": "6fd7ace0a62d7e2bf16876f9826f99542808524926e1aac6f41179d20fab74a4"
-        }
-      ]
-    },
-    {
       "id": "history/20260513-024638-9924b39d943d",
       "path": "history/20260513-024638-9924b39d943d",
       "fileCount": 7,
       "hash": "c47b8591d878fc2ca756edda95b8a6521e6469eb1e2fe69f4dfa4d91c8165fba",
-      "mtime": "2026-05-13T07:24:51.989Z",
+      "mtime": "2026-05-13T08:00:27.004Z",
       "files": [
         {
           "name": "fetch-meta.json",
@@ -391,7 +347,7 @@
       "path": "history/20260513-024700-8153b0f2fdf3",
       "fileCount": 7,
       "hash": "cba69000cce65e53dea1a5554e444017830633a1c41c9acc548dc4512a33fe06",
-      "mtime": "2026-05-13T07:24:51.989Z",
+      "mtime": "2026-05-13T08:00:27.004Z",
       "files": [
         {
           "name": "fetch-meta.json",
@@ -431,16 +387,21 @@
       ]
     },
     {
-      "id": "history/20260513-024430-bb38bbe9e0ee",
-      "path": "history/20260513-024430-bb38bbe9e0ee",
-      "fileCount": 7,
-      "hash": "5db88f1eb9c99a98f90445fc934309a3d499a73e287223e90b9268a443000742",
-      "mtime": "2026-05-13T07:24:51.988Z",
+      "id": "history/20260513-072506-8968d8827a78",
+      "path": "history/20260513-072506-8968d8827a78",
+      "fileCount": 10,
+      "hash": "05dc90517b035b7a8136af441358f8599d94a26326d473c4bc9f516a7e200d1c",
+      "mtime": "2026-05-13T08:00:27.004Z",
       "files": [
         {
+          "name": "external-benchmarks.json",
+          "size": 1118,
+          "sha256": "6683215f5a629ed1c9c7b9a7278ab950473558128ef23af1600f3f1aeb1c9c59"
+        },
+        {
           "name": "fetch-meta.json",
-          "size": 99,
-          "sha256": "09f6ac92f83fc7f64cb78dcf0a4fb348d2ffb6501eeed1a006be3319685d8f45"
+          "size": 135,
+          "sha256": "baf8117961c504dbb02bda22a5be64a0393a4fd72fa18746c44760b8bcd63349"
         },
         {
           "name": "opencli-google-news-en.json",
@@ -453,24 +414,34 @@
           "sha256": "10204d0112ed679279706aa04afea85a55654e3a1fb181632ae9a4ef5ea72a37"
         },
         {
+          "name": "opencli-reddit-hondius.json",
+          "size": 158,
+          "sha256": "d69153c0ed6220687a77efe8051ad72250a079e093d4ae4cb55be8fa0843d337"
+        },
+        {
           "name": "opencli-reuters.json",
-          "size": 136,
-          "sha256": "0d66217b809d7eab3a250f4d971c48eceaf5975a04b94b978bed240c40257534"
+          "size": 172,
+          "sha256": "bfb62b3a2ad950b3dfa7b84d24205c53b49269d678540a1fbaa201efe3a7297d"
+        },
+        {
+          "name": "opencli-twitter-hondius.json",
+          "size": 162,
+          "sha256": "c60de54cba8c4fb51bdace3ca67639c9d234cd360b0ac365a42c9a4b27459a13"
         },
         {
           "name": "tavily-ap-latest.json",
-          "size": 21559,
-          "sha256": "8384666fbb338438ab8f5265ee3e13e2340766b4bc53b8113076d12e575f5b50"
+          "size": 22312,
+          "sha256": "c4b45c9478ce802c3af71f180f29f2d94e91186865f37ab1b245f32daa74535a"
         },
         {
           "name": "tavily-country-breakdown.json",
-          "size": 27833,
-          "sha256": "788f7c564da315c582f24b94f259131a94f5c6648a144bf324867578ec78b7d6"
+          "size": 23051,
+          "sha256": "7a88b9328aa6a24cae23175b7c00be90e56e210464329e61f68033e55aca3979"
         },
         {
           "name": "tavily-who-overview.json",
-          "size": 26071,
-          "sha256": "448aa574024afe6418c4bfcb42f651f025b77e25d662950aac79fef05ce00059"
+          "size": 21645,
+          "sha256": "61b2195405a1df2b633e89fef4ad316a15cffe34f794984bd0c767d85932f4be"
         }
       ]
     },
@@ -479,7 +450,7 @@
       "path": "history/20260513-024530-2f4203aad45f",
       "fileCount": 7,
       "hash": "d997b79f35f1b04fe90fead47d9feb7b73980b0b363d9705dd6b5331c6674265",
-      "mtime": "2026-05-13T07:24:51.988Z",
+      "mtime": "2026-05-13T08:00:27.003Z",
       "files": [
         {
           "name": "fetch-meta.json",
@@ -519,11 +490,55 @@
       ]
     },
     {
+      "id": "history/20260513-024554-34919e9285c6",
+      "path": "history/20260513-024554-34919e9285c6",
+      "fileCount": 7,
+      "hash": "8ab239501e6b16d43515e46a7000812061054b615a5945315504c7952c3a25b7",
+      "mtime": "2026-05-13T08:00:27.003Z",
+      "files": [
+        {
+          "name": "fetch-meta.json",
+          "size": 99,
+          "sha256": "bbd6feab909cd54445312cca6c9ba0cb2f1a942ebc2595c7fb116cc9c9d70cc6"
+        },
+        {
+          "name": "opencli-google-news-en.json",
+          "size": 154,
+          "sha256": "5486e73cdca9e5ccb5ee30bcbd2d7f7255c8d55bb31a13ab3746b9df29667646"
+        },
+        {
+          "name": "opencli-google-news-zh.json",
+          "size": 152,
+          "sha256": "10204d0112ed679279706aa04afea85a55654e3a1fb181632ae9a4ef5ea72a37"
+        },
+        {
+          "name": "opencli-reuters.json",
+          "size": 136,
+          "sha256": "0d66217b809d7eab3a250f4d971c48eceaf5975a04b94b978bed240c40257534"
+        },
+        {
+          "name": "tavily-ap-latest.json",
+          "size": 20454,
+          "sha256": "89b247482b01ad7ff5bf627f2455698696a7da4fc5cbfd8663490755c8b4bf14"
+        },
+        {
+          "name": "tavily-country-breakdown.json",
+          "size": 29983,
+          "sha256": "0d438a70d3766b4b54d98554eeb72e75f17230e9c996707a66e147b1cc8164e0"
+        },
+        {
+          "name": "tavily-who-overview.json",
+          "size": 27839,
+          "sha256": "6fd7ace0a62d7e2bf16876f9826f99542808524926e1aac6f41179d20fab74a4"
+        }
+      ]
+    },
+    {
       "id": "history/20260512-231801-ec900176fbe9",
       "path": "history/20260512-231801-ec900176fbe9",
       "fileCount": 7,
       "hash": "185668494585c62e37f76ce14e0abe39cb9fc53a35cd8949b56c5f5c5400e7fe",
-      "mtime": "2026-05-13T07:24:51.987Z",
+      "mtime": "2026-05-13T08:00:27.002Z",
       "files": [
         {
           "name": "fetch-meta.json",
@@ -567,7 +582,7 @@
       "path": "history/20260513-024230-32d327551e82",
       "fileCount": 7,
       "hash": "1c0f770e4ade02d53d4ef509d9e52c8e649bdf7661a9477d06a718c6bc93405d",
-      "mtime": "2026-05-13T07:24:51.987Z",
+      "mtime": "2026-05-13T08:00:27.002Z",
       "files": [
         {
           "name": "fetch-meta.json",
@@ -607,16 +622,16 @@
       ]
     },
     {
-      "id": "history/20260512-190251-1d3ac8070929",
-      "path": "history/20260512-190251-1d3ac8070929",
+      "id": "history/20260513-024430-bb38bbe9e0ee",
+      "path": "history/20260513-024430-bb38bbe9e0ee",
       "fileCount": 7,
-      "hash": "58ca3856b63a0a45952e62c23b61cb389783b2b8d1ed391affc4cfe4d3302509",
-      "mtime": "2026-05-13T07:24:51.986Z",
+      "hash": "5db88f1eb9c99a98f90445fc934309a3d499a73e287223e90b9268a443000742",
+      "mtime": "2026-05-13T08:00:27.002Z",
       "files": [
         {
           "name": "fetch-meta.json",
           "size": 99,
-          "sha256": "32c6b38b5314f3edab478af4438d7b966b8673734fde3514610f86836f1ae0d1"
+          "sha256": "09f6ac92f83fc7f64cb78dcf0a4fb348d2ffb6501eeed1a006be3319685d8f45"
         },
         {
           "name": "opencli-google-news-en.json",
@@ -635,18 +650,18 @@
         },
         {
           "name": "tavily-ap-latest.json",
-          "size": 20197,
-          "sha256": "db32a88950db1dfbdd9cdd8345948d36ba8be22ca9befc2f45c1162074e188af"
+          "size": 21559,
+          "sha256": "8384666fbb338438ab8f5265ee3e13e2340766b4bc53b8113076d12e575f5b50"
         },
         {
           "name": "tavily-country-breakdown.json",
-          "size": 19095,
-          "sha256": "1b39b33e6fec8dffabeccf0621f2beaf6549a3eb72eb3c5b21eb6cd5669ab9e4"
+          "size": 27833,
+          "sha256": "788f7c564da315c582f24b94f259131a94f5c6648a144bf324867578ec78b7d6"
         },
         {
           "name": "tavily-who-overview.json",
-          "size": 25667,
-          "sha256": "c4a5018568565d6b9e2fc4ab76da2df53411e3996a2c2abdb02af572f1001261"
+          "size": 26071,
+          "sha256": "448aa574024afe6418c4bfcb42f651f025b77e25d662950aac79fef05ce00059"
         }
       ]
     },
@@ -655,7 +670,7 @@
       "path": "history/20260512-190538-2d5b08a69383",
       "fileCount": 7,
       "hash": "e09ea06c07167beb39a2af56b003fec8a576842dcf68dfe9017d0ab23be79adf",
-      "mtime": "2026-05-13T07:24:51.986Z",
+      "mtime": "2026-05-13T08:00:27.001Z",
       "files": [
         {
           "name": "fetch-meta.json",
@@ -699,7 +714,7 @@
       "path": "20260513-011200",
       "fileCount": 6,
       "hash": "3d28df91d62817c74fd4e98303ab3cd276b56ee9df3259bfb3728ca5f1b14cfd",
-      "mtime": "2026-05-13T07:24:51.985Z",
+      "mtime": "2026-05-13T08:00:27.000Z",
       "files": [
         {
           "name": "opencli-google-news-en.json",
@@ -734,11 +749,55 @@
       ]
     },
     {
+      "id": "history/20260512-190251-1d3ac8070929",
+      "path": "history/20260512-190251-1d3ac8070929",
+      "fileCount": 7,
+      "hash": "58ca3856b63a0a45952e62c23b61cb389783b2b8d1ed391affc4cfe4d3302509",
+      "mtime": "2026-05-13T08:00:27.000Z",
+      "files": [
+        {
+          "name": "fetch-meta.json",
+          "size": 99,
+          "sha256": "32c6b38b5314f3edab478af4438d7b966b8673734fde3514610f86836f1ae0d1"
+        },
+        {
+          "name": "opencli-google-news-en.json",
+          "size": 154,
+          "sha256": "5486e73cdca9e5ccb5ee30bcbd2d7f7255c8d55bb31a13ab3746b9df29667646"
+        },
+        {
+          "name": "opencli-google-news-zh.json",
+          "size": 152,
+          "sha256": "10204d0112ed679279706aa04afea85a55654e3a1fb181632ae9a4ef5ea72a37"
+        },
+        {
+          "name": "opencli-reuters.json",
+          "size": 136,
+          "sha256": "0d66217b809d7eab3a250f4d971c48eceaf5975a04b94b978bed240c40257534"
+        },
+        {
+          "name": "tavily-ap-latest.json",
+          "size": 20197,
+          "sha256": "db32a88950db1dfbdd9cdd8345948d36ba8be22ca9befc2f45c1162074e188af"
+        },
+        {
+          "name": "tavily-country-breakdown.json",
+          "size": 19095,
+          "sha256": "1b39b33e6fec8dffabeccf0621f2beaf6549a3eb72eb3c5b21eb6cd5669ab9e4"
+        },
+        {
+          "name": "tavily-who-overview.json",
+          "size": 25667,
+          "sha256": "c4a5018568565d6b9e2fc4ab76da2df53411e3996a2c2abdb02af572f1001261"
+        }
+      ]
+    },
+    {
       "id": "20260513-000031",
       "path": "20260513-000031",
       "fileCount": 5,
       "hash": "428eb7fde5debfc5b8719755fb33406ede2b31b84570dc62312b9e7a5941dc04",
-      "mtime": "2026-05-13T07:24:51.984Z",
+      "mtime": "2026-05-13T08:00:26.999Z",
       "files": [
         {
           "name": "opencli-google-news-en.json",
