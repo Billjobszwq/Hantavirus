@@ -15,6 +15,7 @@
 - 数据校验：`validate-outbreak-data.js`
 - 原始抓取脚本：`refresh-outbreak-raw-data.sh`
 - 外部口径快照脚本：`scripts/fetch-external-benchmarks.js`
+- 看板自动重算脚本：`scripts/recompute-dashboard-data.js`
 - 原始数据索引脚本：`scripts/update-raw-manifest.js`
 - 发布工作流：`.github/workflows/deploy-pages.yml`
 - 定时更新工作流：`.github/workflows/scheduled-data-refresh.yml`
@@ -38,6 +39,14 @@ TAVILY_API_KEY=你的key ./refresh-outbreak-raw-data.sh
 可选参数：
 - `SKIP_OPENCLI=1`：CI/无 opencli 场景使用
 - `RAW_HISTORY_KEEP=180`：控制历史快照保留份数
+
+### 3.4 手动重算看板数据（可选）
+```bash
+node scripts/recompute-dashboard-data.js
+```
+说明：
+- 定时工作流会自动执行该步骤，通常无需你本地手动执行。
+- 仅在你进行“结构性大改”（例如新增字段、改口径）时，才建议本地改完后再手动提交。
 
 ## 4. 数据更新规则（必须遵守）
 - 主看板只统计 MV Hondius 事件链。
@@ -65,7 +74,7 @@ TAVILY_API_KEY=你的key ./refresh-outbreak-raw-data.sh
 ### 6.2 定时增量更新
 - 工作流：`Scheduled raw data refresh`
 - 触发：每 6 小时 + 手动触发
-- 流程：抓取 -> 校验 -> 提交增量 -> 直接部署 Pages
+- 流程：抓取 -> 自动重算 `outbreak-data.js` -> 校验 -> 提交增量 -> 直接部署 Pages
 
 ## 7. 仓库 Secrets / 设置
 - Secret 必填：`TAVILY_API_KEY`

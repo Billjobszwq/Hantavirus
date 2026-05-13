@@ -51,6 +51,17 @@ TAVILY_API_KEY=你的key ./refresh-outbreak-raw-data.sh
   - `opencli-twitter-hondius.json`（若执行失败会保留错误对象，便于追踪适配器状态）
 - 外部站点口径快照：
   - `external-benchmarks.json`（Elisey ArcGIS点位与 Hantaflow signals 对照）
+
+抓取后执行自动重算：
+```bash
+node scripts/recompute-dashboard-data.js
+```
+该脚本会自动重算并写回：
+- `outbreak-data.js` 的 `summary`
+- `meta.lastUpdatedAt / lastUpdatedDate`
+- `meta.externalBenchmarks` 数值
+- `series.global`（按各国时间序列汇总）
+- `observation` 与 `countries[].observed` 的联动一致性
 - 在 CI 中可设置 `SKIP_OPENCLI=1`，仅用 Tavily 更新原始快照。
 - 可通过 `RAW_HISTORY_KEEP` 控制历史保留数量（默认 120 份）：
   ```bash
@@ -138,7 +149,8 @@ GitHub Actions 会自动部署到 Pages。
   - `TAVILY_API_KEY`
 - 自动流程：
   1. 执行 `refresh-outbreak-raw-data.sh`
-  2. 更新 `raw-sources/latest`、`raw-sources/history`、`raw-sources/manifest.json`
-  3. 运行 `node validate-outbreak-data.js`
-  4. 若有变更则自动提交并推送到 `main`
-  5. 推送后触发 Pages 工作流自动发布网页
+  2. 执行 `node scripts/recompute-dashboard-data.js` 自动重算看板数据
+  3. 更新 `raw-sources/latest`、`raw-sources/history`、`raw-sources/manifest.json` 与 `outbreak-data.js`
+  4. 运行 `node validate-outbreak-data.js`
+  5. 若有变更则自动提交并推送到 `main`
+  6. 推送后触发 Pages 工作流自动发布网页

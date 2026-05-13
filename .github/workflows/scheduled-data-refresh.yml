@@ -43,6 +43,9 @@ jobs:
           RAW_HISTORY_KEEP: "180"
         run: ./refresh-outbreak-raw-data.sh
 
+      - name: Recompute dashboard dataset
+        run: node scripts/recompute-dashboard-data.js
+
       - name: Validate published outbreak dataset
         run: node validate-outbreak-data.js
 
@@ -55,9 +58,20 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add raw-sources/manifest.json raw-sources/latest raw-sources/history
-          git commit -m "chore(data): refresh raw-source snapshots"
-          git push
+          git add raw-sources/manifest.json raw-sources/latest raw-sources/history outbreak-data.js
+          git commit -m "chore(data): refresh raw-source snapshots and recompute dashboard"
+
+          for attempt in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+
+            echo "Push failed (attempt ${attempt}), rebasing from origin/main..."
+            git pull --rebase origin main
+          done
+
+          echo "Push failed after retries." >&2
+          exit 1
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
