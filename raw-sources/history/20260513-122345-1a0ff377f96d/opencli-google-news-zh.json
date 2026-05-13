@@ -1,0 +1,5 @@
+{
+  "skipped": true,
+  "reason": "opencli unavailable or SKIP_OPENCLI=1",
+  "cmd": "google news 汉坦病毒 邮轮 --limit 30 --lang zh --region CN"
+}
