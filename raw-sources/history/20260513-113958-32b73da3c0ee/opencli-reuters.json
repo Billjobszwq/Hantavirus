@@ -1,0 +1,5 @@
+{
+  "error": "opencli command failed",
+  "cmd": "opencli --profile 57a5zus5 reuters search hantavirus cruise ship --limit 20 -f json",
+  "profileConnected": true
+}
