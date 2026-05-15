@@ -5,7 +5,7 @@ window.OUTBREAK_DATA = {
       "zh": "MV Hondius 邮轮相关安第斯汉坦病毒事件",
       "en": "MV Hondius Andes Hantavirus Cluster"
     },
-    "lastUpdatedAt": "2026-05-15T07:11:13+08:00",
+    "lastUpdatedAt": "2026-05-15T15:32:28+08:00",
     "lastUpdatedDate": "2026-05-15",
     "timezone": "Asia/Shanghai",
     "scopeNote": {
@@ -13,7 +13,7 @@ window.OUTBREAK_DATA = {
       "en": "The main case dashboard remains nationality-based within the MV Hondius event chain; observed-person metrics additionally include inbound medical testing/isolation monitoring counts when quantifiable and source-traceable."
     },
     "externalBenchmarks": {
-      "checkedAt": "2026-05-15T07:11:12+08:00",
+      "checkedAt": "2026-05-15T15:32:27+08:00",
       "items": [
         {
           "id": "elisey-arcgis",
@@ -51,12 +51,12 @@ window.OUTBREAK_DATA = {
             "en": "Uses signals (mentions/updates) as the unit, not patient counts; methodology states most countries are not confirmed-case totals."
           },
           "metrics": {
-            "signalsTotal": 718,
-            "countriesActive": 23,
+            "signalsTotal": 717,
+            "countriesActive": 24,
             "countriesIndexed": 69,
-            "countriesWithSignals30d": 23,
-            "signals30dCountrySum": 168,
-            "argentinaSignals30d": 18,
+            "countriesWithSignals30d": 24,
+            "signals30dCountrySum": 171,
+            "argentinaSignals30d": 17,
             "southAfricaSignals30d": 0
           },
           "sourceIds": [
