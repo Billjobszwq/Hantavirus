@@ -93,6 +93,31 @@ function buildSortedDates(data) {
   return [...set].sort((a, b) => new Date(a) - new Date(b));
 }
 
+function computeDashboardDataDate(data) {
+  const set = new Set();
+
+  const timeline = Array.isArray(data?.timeline) ? data.timeline : [];
+  timeline.forEach((item) => {
+    const norm = normalizeYmd(item?.date);
+    if (norm) set.add(norm);
+  });
+
+  const news = Array.isArray(data?.news) ? data.news : [];
+  news.forEach((item) => {
+    const norm = normalizeYmd(item?.date);
+    if (norm) set.add(norm);
+  });
+
+  const countries = Array.isArray(data?.countries) ? data.countries : [];
+  countries.forEach((item) => {
+    const norm = normalizeYmd(item?.lastUpdate);
+    if (norm) set.add(norm);
+  });
+
+  const dates = [...set].sort((a, b) => new Date(a) - new Date(b));
+  return dates.length ? dates[dates.length - 1] : null;
+}
+
 function normalizeSeriesArray(arr, length, finalValue) {
   const output = Array.isArray(arr) ? arr.map(toNumber) : [];
 
@@ -185,13 +210,29 @@ function recompute(data, fetchMeta, externalBenchmarks) {
 
   const sourceIso = fetchMeta?.generatedAt || new Date().toISOString();
   const shIso = toShanghaiIso(sourceIso);
+  if (!data.meta) data.meta = {};
+
   if (shIso) {
-    data.meta.lastUpdatedAt = shIso;
-    const d = ymdFromIso(shIso);
-    if (d) data.meta.lastUpdatedDate = d;
+    data.meta.rawSyncAt = shIso;
   }
 
   patchExternalBenchmarks(data, externalBenchmarks, sourceIso);
+
+  const dashboardDate = computeDashboardDataDate(data);
+  if (dashboardDate) {
+    data.meta.lastUpdatedDate = dashboardDate;
+    // Keep lastUpdatedAt aligned with the case/news dashboard date to avoid
+    // showing a fetch-only timestamp as if epidemiological values changed.
+    data.meta.lastUpdatedAt = `${dashboardDate}T23:59:59+08:00`;
+    data.meta.dashboardDataDate = dashboardDate;
+  } else if (shIso) {
+    data.meta.lastUpdatedAt = shIso;
+    const d = ymdFromIso(shIso);
+    if (d) {
+      data.meta.lastUpdatedDate = d;
+      data.meta.dashboardDataDate = d;
+    }
+  }
 
   const countryByCode = new Map(countries.map((c) => [c.code, c]));
 

@@ -1191,7 +1191,8 @@
     zh: {
       pageTitle: "2026 汉坦病毒（安第斯病毒）全球确诊追踪",
       pageSubtitle: "多平台核验（WHO / CDC / ECDC / AP / AFP / Reuters）",
-      metaUpdatePrefix: "数据更新时间：",
+      metaUpdatePrefix: "病例看板日期：",
+      metaRawPrefix: "抓取同步：",
       metaScopePrefix: "统计口径：",
       modeDay: "☀️ 白天模式",
       modeNight: "🌙 黑夜模式",
@@ -1346,7 +1347,8 @@
     en: {
       pageTitle: "2026 Global Confirmed Hantavirus (Andes Virus) Tracker",
       pageSubtitle: "Cross-verified across WHO / CDC / ECDC / AP / AFP / Reuters",
-      metaUpdatePrefix: "Last data update: ",
+      metaUpdatePrefix: "Case dashboard date: ",
+      metaRawPrefix: "Fetch sync: ",
       metaScopePrefix: "Scope: ",
       modeDay: "☀️ Day Mode",
       modeNight: "🌙 Night Mode",
@@ -1547,7 +1549,9 @@
 
     document.getElementById("pageTitle").textContent = lang.pageTitle;
     document.getElementById("pageSubtitle").textContent = lang.pageSubtitle;
-    document.getElementById("metaUpdate").textContent = `${lang.metaUpdatePrefix}${data.meta.lastUpdatedAt}`;
+    const dashboardDate = data.meta.dashboardDataDate || data.meta.lastUpdatedDate || "-";
+    const rawSync = data.meta.rawSyncAt || data.meta.lastUpdatedAt || "-";
+    document.getElementById("metaUpdate").textContent = `${lang.metaUpdatePrefix}${dashboardDate} · ${lang.metaRawPrefix}${rawSync}`;
     document.getElementById("metaScope").textContent = `${lang.metaScopePrefix}${data.meta.scopeNote[state.lang]}`;
 
     document.getElementById("mapTitle").textContent = lang.mapTitle;
