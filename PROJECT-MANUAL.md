@@ -128,3 +128,21 @@ node validate-outbreak-data.js
 3. 页面部署状态：`Deploy static tracker to GitHub Pages` 成功。
 4. 省州图层状态：线上 `geo/admin1-cn-us-ru.js` 返回 `HTTP 200`（已排除早前 404 问题）。
 5. 最新数据时间：线上 `outbreak-data.js` 显示 `lastUpdatedAt=2026-05-13T16:00:43+08:00`，`checkedAt=2026-05-13T16:00:41+08:00`。
+
+## 12. 自动更新覆盖矩阵（排障用）
+### 12.1 已自动更新
+1. `meta.lastUpdatedAt / lastUpdatedDate`
+2. `meta.externalBenchmarks`（Elisey/Hantaflow 对照数）
+3. `summary`（由 `countries` + `observation` 联动重算）
+4. `series.global`（由各国序列汇总重算）
+5. 两张折线图的时间轴（`series.dates` 自动对齐 `timeline` + `lastUpdatedDate`）
+6. `raw-sources/latest` 与 `raw-sources/history` 快照
+
+### 12.2 当前仍需人工维护（不会随定时抓取自动改）
+1. `countries` 中确诊/可能/死亡及说明文本
+2. `timeline` 事件明细与增量
+3. `series.byCountry` 历史轨迹细节（最终点会校正，但新增历史事件仍需人工录入）
+4. `news` 新闻流水文案
+5. `watchlist` 核验备注文案
+6. `sources` 来源清单条目本身
+7. `observation.regionBreakdown` 省州级明细（新增国家/省州与状态描述）

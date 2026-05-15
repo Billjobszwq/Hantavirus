@@ -69,6 +69,30 @@ function ymdFromIso(isoText) {
   return isoText.slice(0, 10);
 }
 
+function normalizeYmd(value) {
+  const text = String(value || '').trim();
+  if (!text) return null;
+  const hit = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (hit) return `${hit[1]}-${hit[2]}-${hit[3]}`;
+  const d = new Date(text);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toISOString().slice(0, 10);
+}
+
+function buildSortedDates(data) {
+  const set = new Set();
+  const fromSeries = Array.isArray(data?.series?.dates) ? data.series.dates : [];
+  const fromTimeline = Array.isArray(data?.timeline) ? data.timeline.map((item) => item.date) : [];
+  const fromMeta = [data?.meta?.lastUpdatedDate];
+
+  [...fromSeries, ...fromTimeline, ...fromMeta].forEach((raw) => {
+    const norm = normalizeYmd(raw);
+    if (norm) set.add(norm);
+  });
+
+  return [...set].sort((a, b) => new Date(a) - new Date(b));
+}
+
 function normalizeSeriesArray(arr, length, finalValue) {
   const output = Array.isArray(arr) ? arr.map(toNumber) : [];
 
@@ -208,7 +232,8 @@ function recompute(data, fetchMeta, externalBenchmarks) {
 
   if (!data.series || typeof data.series !== 'object') return data;
 
-  const dates = Array.isArray(data.series.dates) ? data.series.dates : [];
+  const dates = buildSortedDates(data);
+  data.series.dates = dates;
   const byCountry = data.series.byCountry && typeof data.series.byCountry === 'object'
     ? data.series.byCountry
     : {};
