@@ -83,8 +83,14 @@ jobs:
           mkdir -p _site
           cp index.html _site/index.html
           cp outbreak-data.js _site/outbreak-data.js
+          if [ -f ebola-data.js ]; then
+            cp ebola-data.js _site/ebola-data.js
+          fi
           if [ -f hantavirus-outbreak-tracker-v2.html ]; then
             cp hantavirus-outbreak-tracker-v2.html _site/hantavirus-outbreak-tracker-v2.html
+          fi
+          if [ -f ebola-tracker.html ]; then
+            cp ebola-tracker.html _site/ebola-tracker.html
           fi
           if [ -d geo ]; then
             mkdir -p _site/geo

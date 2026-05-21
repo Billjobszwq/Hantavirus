@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>汉坦病毒（安第斯病毒）全球确诊追踪</title>
+<title>埃博拉病毒全球追踪</title>
 <script>
   if (window.self === window.top) {
     const url = new URL("./index.html", window.location.href);
-    url.searchParams.set("tab", "hantavirus");
+    url.searchParams.set("tab", "ebola");
     window.location.replace(url.toString());
   }
 </script>
@@ -1246,7 +1246,7 @@
   </div>
 
 <script src="./geo/admin1-cn-us-ru.js"></script>
-<script src="./outbreak-data.js"></script>
+<script src="./ebola-data.js"></script>
 <script>
   const data = window.OUTBREAK_DATA || null;
   const state = {
@@ -1275,19 +1275,15 @@
   const COUNTRY_GEOJSON_URL = "https://raw.githubusercontent.com/datasets/geo-boundaries-world-110m/main/countries.geojson";
   const ADMIN1_GEOJSON_URL = "./geo/admin1-cn-us-ru.geojson";
   const SUBNATIONAL_COUNTRIES = new Set(["CN", "US", "RU"]);
+  const ENABLE_ADMIN1_OVERLAY = false;
   const COUNTRY_PANE = "countryPane";
   const ADMIN1_PANE = "admin1Pane";
   const ROUTE_PANE = "routePane";
   const VOYAGE_ROUTE_POINTS = [
-    { nameZh: "乌斯怀亚（阿根廷）", nameEn: "Ushuaia (Argentina)", lat: -54.8019, lng: -68.3030 },
-    { nameZh: "福克兰群岛海域", nameEn: "Falkland Islands waters", lat: -51.7963, lng: -59.5236 },
-    { nameZh: "南乔治亚岛", nameEn: "South Georgia", lat: -54.4296, lng: -36.5879 },
-    { nameZh: "夜莺岛", nameEn: "Nightingale Island", lat: -37.4233, lng: -12.4797 },
-    { nameZh: "特里斯坦-达库尼亚", nameEn: "Tristan da Cunha", lat: -37.1052, lng: -12.2777 },
-    { nameZh: "圣赫勒拿", nameEn: "Saint Helena", lat: -15.9650, lng: -5.7089 },
-    { nameZh: "阿森松岛", nameEn: "Ascension Island", lat: -7.9467, lng: -14.3559 },
-    { nameZh: "普拉亚（佛得角）", nameEn: "Praia (Cape Verde)", lat: 14.9331, lng: -23.5133 },
-    { nameZh: "特内里费（西班牙）", nameEn: "Tenerife (Spain)", lat: 28.4636, lng: -16.2518 }
+    { nameZh: "蒙古瓦卢（DRC）", nameEn: "Mongbwalu (DRC)", lat: 1.953, lng: 30.038 },
+    { nameZh: "布尼亚（DRC）", nameEn: "Bunia (DRC)", lat: 1.559, lng: 30.252 },
+    { nameZh: "戈马（DRC）", nameEn: "Goma (DRC)", lat: -1.679, lng: 29.222 },
+    { nameZh: "坎帕拉（UG）", nameEn: "Kampala (UG)", lat: 0.3476, lng: 32.5825 }
   ];
 
   const continentPalette = {
@@ -1303,8 +1299,8 @@
 
   const i18n = {
     zh: {
-      pageTitle: "2026 汉坦病毒（安第斯病毒）全球确诊追踪",
-      pageSubtitle: "多平台核验（WHO / CDC / ECDC / AP / AFP / Reuters）",
+      pageTitle: "2026 埃博拉（Bundibugyo）全球追踪",
+      pageSubtitle: "多平台核验（WHO / CDC / ECDC / WHO AFRO）",
       metaUpdatePrefix: "病例看板日期：",
       metaRawPrefix: "抓取同步：",
       metaScopePrefix: "统计口径：",
@@ -1320,25 +1316,25 @@
         countries: "当日涉及国家"
       },
       dailyChip: "WHO 重点提醒",
-      dailyHealthTitle: "世卫组织：安第斯/汉坦病毒临床重点（当前事件）",
+      dailyHealthTitle: "世卫组织：埃博拉（Bundibugyo）临床重点（当前事件）",
       dailyHealthItems: [
-        { k: "症状", v: "早期常见发热、头痛、肌痛、腹痛/恶心/呕吐；部分病例可快速进展为咳嗽、呼吸困难。" },
-        { k: "潜伏期", v: "通常为暴露后 1–8 周。" },
-        { k: "发病进展", v: "在美洲以 HCPS/HPS 为主，重症可发展为肺部液体潴留、肺炎/ARDS 与休克。" },
-        { k: "致死相关", v: "重症死亡多与急性呼吸衰竭、循环衰竭（休克）及心肺并发症相关。" },
-        { k: "传播提示", v: "人际传播目前仅在安第斯病毒见到“有限且少见”，多与密切且长时间接触有关。" },
-        { k: "预防要点", v: "减少鼠类暴露；封堵鼠洞、食物密封保存、污染区先湿润再清理、避免干扫/吸尘、加强手卫生。" },
-        { k: "就医提醒", v: "一旦出现发热叠加呼吸道症状，尤其有鼠类暴露或密接史，应立即就医并告知暴露史。" }
+        { k: "症状", v: "常见发热、乏力、头痛、肌痛、呕吐、腹泻；部分病例可出现出血表现并迅速恶化。" },
+        { k: "潜伏期", v: "通常为暴露后 2–21 天。" },
+        { k: "发病进展", v: "重症可进展为低血容量性休克、多器官功能衰竭和严重代谢紊乱。" },
+        { k: "传播提示", v: "主要经感染者血液和体液直接接触传播；医疗场景与不安全丧葬是高风险环节。" },
+        { k: "治疗现状", v: "本轮为Bundibugyo型别，目前无已获批特异性疫苗或治疗药物，早期支持治疗至关重要。" },
+        { k: "防控重点", v: "病例早识别和隔离、接触者追踪、严格IPC、PPE规范使用、安全且有尊严的安葬流程。" },
+        { k: "就医提醒", v: "若有受影响地区旅行/接触史并出现发热或出血征象，应立即隔离就医并主动报告暴露史。" }
       ],
       dailyHealthSourcesPrefix: "依据：",
       dailyHealthSources: [
-        { label: "WHO Hantavirus Fact Sheet (2026-05-06)", url: "https://www.who.int/news-room/fact-sheets/detail/hantavirus" },
-        { label: "WHO DON600 (2026-05-08)", url: "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON600" },
-        { label: "WHO DON599 (2026-05-04)", url: "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON599" }
+        { label: "WHO DON602 (2026-05-16)", url: "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON602" },
+        { label: "WHO PHEIC Statement (2026-05-17)", url: "https://www.who.int/news/item/17-05-2026-epidemic-of-ebola-disease-in-the-democratic-republic-of-the-congo-and-uganda-determined-a-public-health-emergency-of-international-concern" },
+        { label: "CDC Current Situation (2026-05-20)", url: "https://www.cdc.gov/ebola/situation-summary/index.html" }
       ],
 
-      mapTitle: "全球地图（国家+省州双层）",
-      mapSubtitle: "国家底色 + 中/美/俄省州高亮叠加；其余国家保持国家着色，并叠加MV Hondius航线",
+      mapTitle: "全球地图（国家级着色）",
+      mapSubtitle: "以国家级风险底色展示，并叠加已通报跨境传播链路径（DRC -> UG）",
       countryTitle: "国家汇总表",
       countrySubtitle: "国家前附旗帜，便于快速识别",
 
@@ -1346,7 +1342,7 @@
       timelineSubtitle: "按日期倒序，展示新增确诊、新增死亡与新增被观测者",
 
       trendTitle: "确诊、死亡与被观测者折线图",
-      trendSubtitle: "可切换全球/国家；三条曲线同口径联动",
+      trendSubtitle: "可切换全球/国家；口径：报告总病例、死亡总数、实验室确诊",
       trendScopeLabel: "筛选",
 
       continentTitle: "大洲进展对比图",
@@ -1360,7 +1356,7 @@
         total: "总病例"
       },
 
-      obsRegionTitle: "被观测者省/州级明细（中/美/俄）",
+      obsRegionTitle: "重点区域监测明细（省/州级）",
       obsRegionSubtitle: "支持按国家与状态筛选；未披露人数单列标识",
       obsCountryLabel: "国家",
       obsStatusLabel: "状态",
@@ -1390,8 +1386,14 @@
         totalPoints: "点位总数",
         uniqueLocations: "点位位置数",
         confirmed: "CONFIRMED点",
+        probable: "可能病例",
+        deaths: "死亡",
+        suspected: "疑似病例",
+        suspectedDeaths: "疑似死亡",
+        ugandaConfirmed: "乌干达确诊",
+        ugandaDeaths: "乌干达死亡",
+        reportedDate: "口径日期",
         deceased: "DECEASED点",
-        suspected: "SUSPECTED点",
         monitoring: "MONITORING点",
         unknown: "UNKNOWN点",
         signalsTotal: "信号总数",
@@ -1408,13 +1410,13 @@
       noSource: "未找到对应来源",
 
       stats: [
-        { key: "totalReported", label: "报告总病例", style: "primary" },
-        { key: "confirmed", label: "确诊病例", style: "ok" },
-        { key: "probable", label: "可能病例", style: "warning" },
-        { key: "deaths", label: "死亡总数", style: "danger" },
-        { key: "observed", label: "被观测者", style: "primary" },
+        { key: "totalReported", label: "报告总病例（确诊+疑似/可能）", style: "primary" },
+        { key: "confirmed", label: "实验室确诊", style: "ok" },
+        { key: "probable", label: "疑似/可能（未确证）", style: "warning" },
+        { key: "deaths", label: "死亡总数（含未确证）", style: "danger" },
+        { key: "observed", label: "被观测者（可量化）", style: "primary" },
         { key: "confirmedDeaths", label: "确诊死亡", style: "danger" },
-        { key: "probableDeaths", label: "可能死亡", style: "warning" }
+        { key: "probableDeaths", label: "未确证死亡", style: "warning" }
       ],
 
       headers: {
@@ -1446,21 +1448,21 @@
         death: "含死亡病例",
         observed: "省州已量化被观测",
         reportedNoCount: "省州已通报未披露人数",
-        route: "邮轮航线"
+        route: "跨境传播路径"
       },
 
       trendSeries: {
-        confirmed: "累计确诊",
-        deaths: "累计死亡（确诊）",
-        observed: "累计被观测者（可量化）"
+        reported: "累计报告总病例",
+        deathsTotal: "累计死亡总数",
+        confirmed: "累计实验室确诊"
       },
 
       global: "全球"
     },
 
     en: {
-      pageTitle: "2026 Global Confirmed Hantavirus (Andes Virus) Tracker",
-      pageSubtitle: "Cross-verified across WHO / CDC / ECDC / AP / AFP / Reuters",
+      pageTitle: "2026 Global Ebola (Bundibugyo) Tracker",
+      pageSubtitle: "Cross-verified across WHO / CDC / ECDC / WHO AFRO",
       metaUpdatePrefix: "Case dashboard date: ",
       metaRawPrefix: "Fetch sync: ",
       metaScopePrefix: "Scope: ",
@@ -1476,25 +1478,25 @@
         countries: "Countries involved"
       },
       dailyChip: "WHO Priority Alert",
-      dailyHealthTitle: "WHO Clinical Focus: Andes/Hantavirus (Current Event)",
+      dailyHealthTitle: "WHO Clinical Focus: Ebola Bundibugyo (Current Event)",
       dailyHealthItems: [
-        { k: "Symptoms", v: "Early symptoms often include fever, headache, muscle aches, and abdominal/GI symptoms; some cases can rapidly progress to cough and shortness of breath." },
-        { k: "Incubation", v: "Typically 1–8 weeks after exposure." },
-        { k: "Progression", v: "In the Americas, HCPS/HPS is the main severe form and may progress to pulmonary fluid accumulation, pneumonia/ARDS and shock." },
-        { k: "Fatal Pathway", v: "Fatal outcomes are usually linked to acute respiratory failure, circulatory collapse (shock), and cardiopulmonary complications." },
-        { k: "Transmission", v: "Documented person-to-person transmission remains limited and uncommon, and is mainly associated with close and prolonged contact in Andes virus events." },
-        { k: "Prevention", v: "Reduce rodent exposure: seal entry points, secure food, wet-contaminate areas before cleaning, avoid dry sweeping/vacuuming, and reinforce hand hygiene." },
-        { k: "Care Trigger", v: "If fever appears with respiratory symptoms, especially with rodent exposure or close-contact history, seek care immediately and report exposure history." }
+        { k: "Symptoms", v: "Typical symptoms include fever, severe weakness, headache, myalgia, vomiting, diarrhoea, and possible bleeding manifestations." },
+        { k: "Incubation", v: "Usually 2–21 days after exposure." },
+        { k: "Progression", v: "Severe cases may progress to hypovolemic shock, multi-organ failure, and major metabolic derangement." },
+        { k: "Transmission", v: "Spread occurs via direct contact with blood/body fluids of infected persons; healthcare and unsafe burials are key high-risk settings." },
+        { k: "Treatment Status", v: "For Bundibugyo virus, no licensed strain-specific vaccine or targeted therapeutic is currently approved; early supportive care is critical." },
+        { k: "Prevention Priorities", v: "Rapid case isolation, contact tracing, strict IPC, correct PPE, and safe and dignified burials are core interventions." },
+        { k: "Care Trigger", v: "With travel/exposure history to affected areas plus fever or bleeding signs, isolate immediately and seek urgent care." }
       ],
       dailyHealthSourcesPrefix: "Sources: ",
       dailyHealthSources: [
-        { label: "WHO Hantavirus Fact Sheet (6 May 2026)", url: "https://www.who.int/news-room/fact-sheets/detail/hantavirus" },
-        { label: "WHO DON600 (8 May 2026)", url: "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON600" },
-        { label: "WHO DON599 (4 May 2026)", url: "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON599" }
+        { label: "WHO DON602 (16 May 2026)", url: "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON602" },
+        { label: "WHO PHEIC Statement (17 May 2026)", url: "https://www.who.int/news/item/17-05-2026-epidemic-of-ebola-disease-in-the-democratic-republic-of-the-congo-and-uganda-determined-a-public-health-emergency-of-international-concern" },
+        { label: "CDC Current Situation (20 May 2026)", url: "https://www.cdc.gov/ebola/situation-summary/index.html" }
       ],
 
-      mapTitle: "Global Map (Country + Province/State Layer)",
-      mapSubtitle: "Country base color + CN/US/RU province-state highlights on top; other countries remain country-level; MV Hondius route is overlaid",
+      mapTitle: "Global Map (Country-level Choropleth)",
+      mapSubtitle: "Country-level risk shading with cross-border transmission path overlay (DRC -> UG)",
       countryTitle: "Country Summary Table",
       countrySubtitle: "Country flags added for faster visual scanning",
 
@@ -1502,7 +1504,7 @@
       timelineSubtitle: "Sorted by date with newly confirmed cases, deaths, and observed persons",
 
       trendTitle: "Confirmed, Deaths, and Observed Time-Series",
-      trendSubtitle: "Switch between global and country views with synchronized metrics",
+      trendSubtitle: "Switch global/country; metrics = total reported, total deaths, lab-confirmed",
       trendScopeLabel: "Scope",
 
       continentTitle: "Continent Progress Comparison",
@@ -1516,7 +1518,7 @@
         total: "Total cases"
       },
 
-      obsRegionTitle: "Observed Persons by Province/State (CN/US/RU)",
+      obsRegionTitle: "Priority Subnational Monitoring Detail",
       obsRegionSubtitle: "Filter by country and status; non-disclosed counts are tracked separately",
       obsCountryLabel: "Country",
       obsStatusLabel: "Status",
@@ -1546,8 +1548,14 @@
         totalPoints: "Total points",
         uniqueLocations: "Unique locations",
         confirmed: "CONFIRMED points",
+        probable: "Probable cases",
+        deaths: "Deaths",
+        suspected: "Suspected cases",
+        suspectedDeaths: "Suspected deaths",
+        ugandaConfirmed: "Uganda confirmed",
+        ugandaDeaths: "Uganda deaths",
+        reportedDate: "Reference date",
         deceased: "DECEASED points",
-        suspected: "SUSPECTED points",
         monitoring: "MONITORING points",
         unknown: "UNKNOWN points",
         signalsTotal: "Signals total",
@@ -1564,13 +1572,13 @@
       noSource: "No linked source",
 
       stats: [
-        { key: "totalReported", label: "Total reported", style: "primary" },
-        { key: "confirmed", label: "Confirmed", style: "ok" },
-        { key: "probable", label: "Probable", style: "warning" },
-        { key: "deaths", label: "Total deaths", style: "danger" },
-        { key: "observed", label: "Observed persons", style: "primary" },
+        { key: "totalReported", label: "Total reported (confirmed + suspected/probable)", style: "primary" },
+        { key: "confirmed", label: "Lab-confirmed", style: "ok" },
+        { key: "probable", label: "Suspected/Probable (unconfirmed)", style: "warning" },
+        { key: "deaths", label: "Total deaths (including unconfirmed)", style: "danger" },
+        { key: "observed", label: "Observed persons (quantified)", style: "primary" },
         { key: "confirmedDeaths", label: "Confirmed deaths", style: "danger" },
-        { key: "probableDeaths", label: "Probable deaths", style: "warning" }
+        { key: "probableDeaths", label: "Unconfirmed deaths", style: "warning" }
       ],
 
       headers: {
@@ -1602,13 +1610,13 @@
         death: "With deaths",
         observed: "Subnational quantified observed",
         reportedNoCount: "Subnational reported w/o count",
-        route: "Cruise route"
+        route: "Cross-border transmission path"
       },
 
       trendSeries: {
-        confirmed: "Cumulative confirmed",
-        deaths: "Cumulative deaths (confirmed only)",
-        observed: "Cumulative observed (quantified)"
+        reported: "Cumulative total reported",
+        deathsTotal: "Cumulative total deaths",
+        confirmed: "Cumulative lab-confirmed"
       },
 
       global: "Global"
@@ -1617,7 +1625,7 @@
 
   function safeDataCheck() {
     if (!data || !Array.isArray(data.countries) || !Array.isArray(data.timeline) || !data.series) {
-      document.body.innerHTML = "<div style='padding:24px;font-family:sans-serif'>Data missing: check outbreak-data.js</div>";
+      document.body.innerHTML = "<div style='padding:24px;font-family:sans-serif'>Data missing: check ebola-data.js</div>";
       return false;
     }
     return true;
@@ -2527,6 +2535,13 @@
 
   async function ensureAdmin1Choropleth() {
     if (!state.map) return;
+    if (!ENABLE_ADMIN1_OVERLAY) {
+      if (state.admin1GeoLayer && state.map.hasLayer(state.admin1GeoLayer)) {
+        state.map.removeLayer(state.admin1GeoLayer);
+      }
+      state.admin1GeoLayer = null;
+      return;
+    }
 
     try {
       if (!state.admin1GeoData) {
@@ -2663,16 +2678,14 @@
     const labels = effectiveSeriesDates();
 
     if (scope === "GLOBAL") {
-      const normalized = buildConfirmedSeries(
-        data.series.global.confirmed,
-        data.series.global.confirmedDeaths,
-        labels
-      );
+      const confirmed = buildPlainSeries(data.series.global.confirmed, labels);
+      const probable = buildPlainSeries(data.series.global.probable, labels);
+      const deaths = buildPlainSeries(data.series.global.deaths, labels);
       return {
         labels,
-        confirmed: normalized.safeConfirmed,
-        deathsConfirmed: normalized.safeDeaths,
-        observed: buildPlainSeries(data.series.global.observed, labels)
+        totalReported: labels.map((_, i) => (confirmed[i] || 0) + (probable[i] || 0)),
+        deathsTotal: deaths,
+        confirmed
       };
     }
 
@@ -2680,40 +2693,42 @@
     if (!series) {
       return {
         labels,
-        confirmed: labels.map(() => 0),
-        deathsConfirmed: labels.map(() => 0),
-        observed: labels.map(() => 0)
+        totalReported: labels.map(() => 0),
+        deathsTotal: labels.map(() => 0),
+        confirmed: labels.map(() => 0)
       };
     }
 
-    const normalized = buildConfirmedSeries(series.confirmed, series.confirmedDeaths, labels);
+    const confirmed = buildPlainSeries(series.confirmed, labels);
+    const probable = buildPlainSeries(series.probable, labels);
+    const deaths = buildPlainSeries(series.deaths, labels);
     return {
       labels,
-      confirmed: normalized.safeConfirmed,
-      deathsConfirmed: normalized.safeDeaths,
-      observed: buildPlainSeries(series.observed, labels)
+      totalReported: labels.map((_, i) => (confirmed[i] || 0) + (probable[i] || 0)),
+      deathsTotal: deaths,
+      confirmed
     };
   }
 
   function trendSeriesPalette() {
     if (state.theme === "night") {
       return {
-        confirmedBorder: "#73b1ff",
-        confirmedFill: "rgba(115, 177, 255, 0.2)",
+        reportedBorder: "#73b1ff",
+        reportedFill: "rgba(115, 177, 255, 0.2)",
         deathsBorder: "#ff8f87",
         deathsFill: "rgba(255, 143, 135, 0.16)",
-        observedBorder: "#4bdccc",
-        observedFill: "rgba(75, 220, 204, 0.16)"
+        confirmedBorder: "#4bdccc",
+        confirmedFill: "rgba(75, 220, 204, 0.16)"
       };
     }
 
     return {
-      confirmedBorder: "#3f89d8",
-      confirmedFill: "rgba(63, 137, 216, 0.16)",
+      reportedBorder: "#3f89d8",
+      reportedFill: "rgba(63, 137, 216, 0.16)",
       deathsBorder: "#e05a5a",
       deathsFill: "rgba(224, 90, 90, 0.14)",
-      observedBorder: "#19c8b9",
-      observedFill: "rgba(25, 200, 185, 0.14)"
+      confirmedBorder: "#19c8b9",
+      confirmedFill: "rgba(25, 200, 185, 0.14)"
     };
   }
 
@@ -2731,10 +2746,10 @@
         labels: series.labels,
         datasets: [
           {
-            label: lang.trendSeries.confirmed,
-            data: series.confirmed,
-            borderColor: palette.confirmedBorder,
-            backgroundColor: palette.confirmedFill,
+            label: lang.trendSeries.reported,
+            data: series.totalReported,
+            borderColor: palette.reportedBorder,
+            backgroundColor: palette.reportedFill,
             fill: true,
             tension: 0.25,
             pointRadius: 3,
@@ -2742,8 +2757,8 @@
             borderWidth: 2.4
           },
           {
-            label: lang.trendSeries.deaths,
-            data: series.deathsConfirmed,
+            label: lang.trendSeries.deathsTotal,
+            data: series.deathsTotal,
             borderColor: palette.deathsBorder,
             backgroundColor: palette.deathsFill,
             fill: true,
@@ -2754,16 +2769,16 @@
             borderDash: [6, 4]
           },
           {
-            label: lang.trendSeries.observed,
-            data: series.observed,
-            borderColor: palette.observedBorder,
-            backgroundColor: palette.observedFill,
+            label: lang.trendSeries.confirmed,
+            data: series.confirmed,
+            borderColor: palette.confirmedBorder,
+            backgroundColor: palette.confirmedFill,
             fill: true,
             tension: 0.25,
             pointRadius: 3,
             pointHoverRadius: 6,
             borderWidth: 2.2,
-            pointStyle: "triangle"
+            borderDash: [4, 3]
           }
         ]
       },
