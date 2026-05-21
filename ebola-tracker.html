@@ -1158,10 +1158,9 @@
             <select id="continentScope"></select>
             <label for="continentMetric" id="continentMetricLabel"></label>
             <select id="continentMetric">
+              <option value="reported">Reported</option>
+              <option value="deathsTotal">Deaths</option>
               <option value="confirmed">Confirmed</option>
-              <option value="deaths">Deaths</option>
-              <option value="observed">Observed</option>
-              <option value="total">Total</option>
             </select>
           </div>
         </div>
@@ -1350,10 +1349,9 @@
       continentScopeLabel: "大洲",
       continentMetricLabel: "指标",
       continentMetricOptions: {
-        confirmed: "确诊人数",
-        deaths: "死亡人数",
-        observed: "被观测者",
-        total: "总病例"
+        reported: "报告总病例",
+        deathsTotal: "死亡总数",
+        confirmed: "实验室确诊"
       },
 
       obsRegionTitle: "重点区域监测明细（省/州级）",
@@ -1512,10 +1510,9 @@
       continentScopeLabel: "Continent",
       continentMetricLabel: "Metric",
       continentMetricOptions: {
-        confirmed: "Confirmed",
-        deaths: "Deaths",
-        observed: "Observed",
-        total: "Total cases"
+        reported: "Total reported",
+        deathsTotal: "Total deaths",
+        confirmed: "Lab-confirmed"
       },
 
       obsRegionTitle: "Priority Subnational Monitoring Detail",
@@ -1789,10 +1786,11 @@
     const themeBtn = document.getElementById("themeToggle");
     themeBtn.textContent = state.theme === "day" ? lang.modeNight : lang.modeDay;
 
-    document.getElementById("continentMetric").options[0].text = lang.continentMetricOptions.confirmed;
-    document.getElementById("continentMetric").options[1].text = lang.continentMetricOptions.deaths;
-    document.getElementById("continentMetric").options[2].text = lang.continentMetricOptions.observed;
-    document.getElementById("continentMetric").options[3].text = lang.continentMetricOptions.total;
+    const metricSelect = document.getElementById("continentMetric");
+    [...metricSelect.options].forEach((opt) => {
+      const mapped = lang.continentMetricOptions?.[opt.value];
+      if (mapped) opt.text = mapped;
+    });
 
     document.getElementById("mapLegend").innerHTML = `
       <span class="dot-item"><span class="dot blue"></span>${lang.mapLegend.confirmed}</span>
@@ -2797,13 +2795,6 @@
     select.value = data.continents.some((item) => item.code === current) ? current : "GLOBAL";
   }
 
-  function metricAt(series, metric, idx) {
-    if (metric === "confirmed") return series.confirmed[idx] || 0;
-    if (metric === "deaths") return series.deaths[idx] || 0;
-    if (metric === "observed") return series.observed?.[idx] || 0;
-    return (series.confirmed[idx] || 0) + (series.probable[idx] || 0);
-  }
-
   function continentSeries(metric) {
     const labels = effectiveSeriesDates();
     const buckets = {};
@@ -2829,15 +2820,15 @@
           buckets[key][idx] += confirmed[idx] || 0;
           return;
         }
-        if (metric === "deaths") {
+        if (metric === "deathsTotal") {
           buckets[key][idx] += deaths[idx] || 0;
           return;
         }
-        if (metric === "observed") {
-          buckets[key][idx] += observed[idx] || 0;
+        if (metric === "reported") {
+          buckets[key][idx] += (confirmed[idx] || 0) + (probable[idx] || 0);
           return;
         }
-        buckets[key][idx] += (confirmed[idx] || 0) + (probable[idx] || 0);
+        buckets[key][idx] += observed[idx] || 0;
       });
     });
 
