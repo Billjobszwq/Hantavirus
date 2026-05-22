@@ -5,15 +5,15 @@ window.OUTBREAK_DATA = {
       "zh": "刚果（金）与乌干达本迪布焦病毒埃博拉事件",
       "en": "Bundibugyo Ebola Outbreak in DRC and Uganda"
     },
-    "lastUpdatedAt": "2026-05-20T23:59:59+08:00",
-    "lastUpdatedDate": "2026-05-20",
+    "lastUpdatedAt": "2026-05-21T23:59:59+08:00",
+    "lastUpdatedDate": "2026-05-21",
     "timezone": "Asia/Shanghai",
     "scopeNote": {
       "zh": "本看板以 WHO/CDC/ECDC 公开通报为主；“可能”口径用于承载未实验室确证但已通报的疑似/可能病例总量，后续会随官方复核动态回调。",
       "en": "This dashboard prioritizes WHO/CDC/ECDC bulletins. The 'probable' bucket is used to hold publicly reported non-laboratory-confirmed suspected/probable counts and may be revised as official verification progresses."
     },
     "externalBenchmarks": {
-      "checkedAt": "2026-05-21T00:00:00+08:00",
+      "checkedAt": "2026-05-23T01:29:30+08:00",
       "items": [
         {
           "id": "who-don602-baseline",
@@ -38,53 +38,80 @@ window.OUTBREAK_DATA = {
           ]
         },
         {
-          "id": "cdc-situation-2026-05-20",
+          "id": "cdc-situation-2026-05-21",
           "name": {
-            "zh": "CDC 情况通报（5月20日）",
-            "en": "CDC situation bulletin (20 May)"
+            "zh": "CDC 情况通报（5月21日）",
+            "en": "CDC situation bulletin (21 May)"
           },
           "url": "https://www.cdc.gov/ebola/situation-summary/index.html",
           "method": {
-            "zh": "采用 CDC 'Current Situation' 公开总量；其中 2 例乌干达确诊（含1死亡），其余主要来自 DRC。",
-            "en": "Uses CDC Current Situation totals; includes 2 confirmed Uganda cases (1 death), with remaining burden primarily in DRC."
+            "zh": "采用 CDC “Current Situation” 5月21日总量；其中乌干达2例确诊（含1例死亡），其余病例计入DRC口径。",
+            "en": "Uses CDC Current Situation totals dated 21 May. Uganda contributes 2 confirmed cases (including 1 death), with remaining cases attributed to DRC in this dashboard allocation."
           },
           "metrics": {
-            "suspected": 536,
-            "probable": 105,
-            "confirmed": 34,
-            "suspectedDeaths": 134,
+            "suspected": 575,
+            "confirmed": 51,
+            "suspectedDeaths": 148,
             "ugandaConfirmed": 2,
             "ugandaDeaths": 1,
-            "reportedDate": "2026-05-20"
+            "reportedDate": "2026-05-21"
           },
           "sourceIds": [
-            "cdc-situation-2026-05-20",
-            "cdc-han00530-2026-05-19",
-            "ecdc-outbreak-2026-05-19"
+            "cdc-situation-2026-05-21",
+            "who-ihr-temp-rec-2026-05-22",
+            "cdc-han00530-2026-05-19"
           ]
         }
       ]
     },
-    "rawSyncAt": "2026-05-21T00:00:00+08:00",
-    "dashboardDataDate": "2026-05-20"
+    "rawSyncAt": "2026-05-23T01:29:30+08:00",
+    "dashboardDataDate": "2026-05-21"
   },
   "summary": {
-    "totalReported": 675,
-    "confirmed": 34,
-    "probable": 641,
-    "deaths": 135,
-    "confirmedDeaths": 5,
-    "probableDeaths": 130,
+    "totalReported": 626,
+    "confirmed": 51,
+    "probable": 575,
+    "deaths": 148,
+    "confirmedDeaths": 1,
+    "probableDeaths": 147,
     "observed": 0
   },
   "continents": [
-    { "code": "GLOBAL", "zh": "全球", "en": "Global" },
-    { "code": "EU", "zh": "欧洲", "en": "Europe" },
-    { "code": "NA", "zh": "北美洲", "en": "North America" },
-    { "code": "AS", "zh": "亚洲", "en": "Asia" },
-    { "code": "AF", "zh": "非洲", "en": "Africa" },
-    { "code": "SA", "zh": "南美洲", "en": "South America" },
-    { "code": "OC", "zh": "大洋洲", "en": "Oceania" }
+    {
+      "code": "GLOBAL",
+      "zh": "全球",
+      "en": "Global"
+    },
+    {
+      "code": "EU",
+      "zh": "欧洲",
+      "en": "Europe"
+    },
+    {
+      "code": "NA",
+      "zh": "北美洲",
+      "en": "North America"
+    },
+    {
+      "code": "AS",
+      "zh": "亚洲",
+      "en": "Asia"
+    },
+    {
+      "code": "AF",
+      "zh": "非洲",
+      "en": "Africa"
+    },
+    {
+      "code": "SA",
+      "zh": "南美洲",
+      "en": "South America"
+    },
+    {
+      "code": "OC",
+      "zh": "大洋洲",
+      "en": "Oceania"
+    }
   ],
   "countries": [
     {
@@ -97,19 +124,19 @@ window.OUTBREAK_DATA = {
       "continentEn": "Africa",
       "lat": -2.8797,
       "lng": 23.656,
-      "confirmed": 32,
-      "probable": 641,
-      "deaths": 134,
-      "confirmedDeaths": 4,
-      "probableDeaths": 130,
-      "lastUpdate": "2026-05-20",
+      "confirmed": 49,
+      "probable": 575,
+      "deaths": 147,
+      "confirmedDeaths": 0,
+      "probableDeaths": 147,
+      "lastUpdate": "2026-05-21",
       "notes": {
-        "zh": "核心传播区在伊图里省并已涉及北基伍；5月20日口径为确诊34中的32例归属DRC，其余2例为乌干达输入关联。",
-        "en": "Core transmission is in Ituri with spread signals in North Kivu. Under the 20 May tally, 32 of 34 confirmed cases are attributed to DRC, while the remaining 2 are linked to Uganda importation."
+        "zh": "CDC 5月21日总量中，乌干达明确为2例确诊（含1死亡）；其余按看板分配归入DRC。该分配会随国家级明细发布再校准。",
+        "en": "Under CDC totals dated 21 May, Uganda is explicitly reported as 2 confirmed (including 1 death); the remaining burden is allocated to DRC in this dashboard and will be recalibrated when finer official country breakdowns are released."
       },
       "sourceIds": [
-        "cdc-situation-2026-05-20",
-        "who-don602-2026-05-16",
+        "cdc-situation-2026-05-21",
+        "who-ihr-temp-rec-2026-05-22",
         "ecdc-outbreak-2026-05-19"
       ],
       "observed": 0
@@ -129,20 +156,54 @@ window.OUTBREAK_DATA = {
       "deaths": 1,
       "confirmedDeaths": 1,
       "probableDeaths": 0,
-      "lastUpdate": "2026-05-20",
+      "lastUpdate": "2026-05-21",
       "notes": {
-        "zh": "通报为跨境输入关联病例（坎帕拉）；当前未见乌干达本地大规模扩散证据。",
-        "en": "Reported as import-associated cases in Kampala; no evidence of large local expansion in Uganda has been publicly confirmed at this point."
+        "zh": "截至5月21日，乌干达维持2例输入关联确诊（含1死亡），WHO 5月22日临时建议中注明暂未见接触者后续传播。",
+        "en": "As of 21 May, Uganda remains at 2 import-associated confirmed cases (including 1 death); WHO temporary recommendations dated 22 May indicate no onward transmission among contacts so far."
       },
       "sourceIds": [
-        "cdc-situation-2026-05-20",
-        "who-pheic-2026-05-17",
-        "cdc-han00530-2026-05-19"
+        "cdc-situation-2026-05-21",
+        "who-ihr-temp-rec-2026-05-22",
+        "who-pheic-2026-05-17"
       ],
       "observed": 0
     }
   ],
   "timeline": [
+    {
+      "date": "2026-05-22",
+      "countryCode": "MC",
+      "countryZh": "多国（DRC/UG）",
+      "countryEn": "Multi-country (DRC/UG)",
+      "confirmedDelta": 0,
+      "probableDelta": 0,
+      "deathsDelta": 0,
+      "observedDelta": 0,
+      "description": {
+        "zh": "WHO发布IHR紧急委员会临时建议：DRC风险评估“非常高”，乌干达“高”；并重申乌干达未见后续传播。",
+        "en": "WHO issued IHR Emergency Committee temporary recommendations: risk assessed as “very high” for DRC and “high” for Uganda, while reiterating no onward transmission in Uganda so far."
+      },
+      "sourceIds": [
+        "who-ihr-temp-rec-2026-05-22"
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "countryCode": "MC",
+      "countryZh": "多国（DRC/UG）",
+      "countryEn": "Multi-country (DRC/UG)",
+      "confirmedDelta": 17,
+      "probableDelta": -66,
+      "deathsDelta": 13,
+      "observedDelta": 0,
+      "description": {
+        "zh": "CDC 5月21日口径更新为575疑似、51确诊、148疑似死亡；出现“疑似转确诊+总量回调”的口径再分配。",
+        "en": "CDC updated totals on 21 May to 575 suspected, 51 confirmed, and 148 suspected deaths, reflecting recategorization from suspected to confirmed and headline total rebalancing."
+      },
+      "sourceIds": [
+        "cdc-situation-2026-05-21"
+      ]
+    },
     {
       "date": "2026-05-20",
       "countryCode": "MC",
@@ -153,8 +214,8 @@ window.OUTBREAK_DATA = {
       "deathsDelta": 0,
       "observedDelta": 0,
       "description": {
-        "zh": "CDC发布5月20日情况页，维持前一日通报总量并强调持续更新中。",
-        "en": "CDC published the 20 May situation page, retaining prior-day totals and emphasizing that revisions are ongoing."
+        "zh": "CDC在5月20日说明该事件仍快速演变，后续可能继续调整数字。",
+        "en": "CDC noted on 20 May that the outbreak remains rapidly evolving and figures may continue to change."
       },
       "sourceIds": [
         "cdc-situation-2026-05-20"
@@ -170,8 +231,8 @@ window.OUTBREAK_DATA = {
       "deathsDelta": 54,
       "observedDelta": 0,
       "description": {
-        "zh": "按CDC/ECDC公开数据口径，DRC总量快速上修，提示此前存在较长隐匿传播窗口。",
-        "en": "Public CDC/ECDC totals showed a sharp upward revision for DRC, suggesting a previously under-detected transmission period."
+        "zh": "CDC/ECDC公开更新显示病例和死亡快速上修，提示前期存在隐匿传播与补报。",
+        "en": "Public CDC/ECDC updates showed rapid upward revision in both cases and deaths, indicating under-detection and retrospective reporting in earlier phases."
       },
       "sourceIds": [
         "cdc-situation-2026-05-20",
@@ -238,45 +299,181 @@ window.OUTBREAK_DATA = {
       "2026-05-16",
       "2026-05-17",
       "2026-05-19",
-      "2026-05-20"
+      "2026-05-20",
+      "2026-05-21",
+      "2026-05-22"
     ],
     "global": {
-      "confirmed": [8, 10, 10, 34, 34],
-      "probable": [246, 246, 246, 641, 641],
-      "deaths": [80, 81, 81, 135, 135],
-      "confirmedDeaths": [4, 5, 5, 5, 5],
-      "observed": [0, 0, 0, 0, 0]
+      "confirmed": [
+        8,
+        10,
+        10,
+        34,
+        34,
+        51,
+        51
+      ],
+      "probable": [
+        246,
+        246,
+        246,
+        641,
+        641,
+        575,
+        575
+      ],
+      "deaths": [
+        80,
+        81,
+        81,
+        135,
+        135,
+        148,
+        148
+      ],
+      "confirmedDeaths": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "observed": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
     },
     "byCountry": {
       "CD": {
-        "confirmed": [8, 8, 8, 32, 32],
-        "probable": [246, 246, 246, 641, 641],
-        "deaths": [80, 80, 80, 134, 134],
-        "confirmedDeaths": [4, 4, 4, 4, 4],
-        "observed": [0, 0, 0, 0, 0]
+        "confirmed": [
+          8,
+          8,
+          8,
+          32,
+          32,
+          49,
+          49
+        ],
+        "probable": [
+          246,
+          246,
+          246,
+          641,
+          641,
+          575,
+          575
+        ],
+        "deaths": [
+          80,
+          80,
+          80,
+          134,
+          134,
+          147,
+          147
+        ],
+        "confirmedDeaths": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "observed": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
       },
       "UG": {
-        "confirmed": [0, 2, 2, 2, 2],
-        "probable": [0, 0, 0, 0, 0],
-        "deaths": [0, 1, 1, 1, 1],
-        "confirmedDeaths": [0, 1, 1, 1, 1],
-        "observed": [0, 0, 0, 0, 0]
+        "confirmed": [
+          0,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "probable": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "deaths": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "confirmedDeaths": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "observed": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
       }
     }
   },
   "watchlist": [
     {
-      "date": "2026-05-20",
+      "date": "2026-05-22",
       "title": {
-        "zh": "疑似/可能病例分类口径仍在快速变化",
-        "en": "Suspected/probable classification remains volatile"
+        "zh": "WHO临时建议启动后，口径细化可能继续",
+        "en": "Further metric refinement likely after WHO temporary recommendations"
       },
       "note": {
-        "zh": "CDC在5月20日给出“536疑似+105可能+34确诊”结构；后续复核可能导致国家与分层口径再调整。",
-        "en": "CDC presented a 536 suspected + 105 probable + 34 confirmed structure on 20 May; subsequent verification may change country and class allocations."
+        "zh": "WHO要求每日通报疑似/可能/确诊并持续更新接触者清单，后续国家分层数字可能频繁修订。",
+        "en": "WHO requests daily reporting of suspected/probable/confirmed cases and continuously updated contact lists; country-level strata may be revised frequently."
       },
       "sourceIds": [
-        "cdc-situation-2026-05-20"
+        "who-ihr-temp-rec-2026-05-22"
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "title": {
+        "zh": "疑似与确诊结构发生再分类",
+        "en": "Suspected and confirmed buckets were reclassified"
+      },
+      "note": {
+        "zh": "CDC 5月21日更新显示确诊上升、疑似回调；这类回调会直接影响累计曲线斜率。",
+        "en": "CDC 21 May update shows confirmed counts rising while suspected counts were revised downward; this directly changes cumulative trend slopes."
+      },
+      "sourceIds": [
+        "cdc-situation-2026-05-21"
       ]
     },
     {
@@ -292,23 +489,33 @@ window.OUTBREAK_DATA = {
       "sourceIds": [
         "ecdc-outbreak-2026-05-19"
       ]
-    },
-    {
-      "date": "2026-05-17",
-      "title": {
-        "zh": "PHEIC已宣布，跨境输入风险持续",
-        "en": "PHEIC declared; cross-border importation risk persists"
-      },
-      "note": {
-        "zh": "WHO已确认事件达到PHEIC门槛，邻国口岸筛查和边境协调将决定外溢速度。",
-        "en": "WHO has confirmed PHEIC criteria are met; border screening and cross-border coordination will shape spillover dynamics."
-      },
-      "sourceIds": [
-        "who-pheic-2026-05-17"
-      ]
     }
   ],
   "news": [
+    {
+      "date": "2026-05-22",
+      "title": {
+        "zh": "WHO发布埃博拉IHR临时建议",
+        "en": "WHO issues IHR temporary recommendations for Ebola event"
+      },
+      "summary": {
+        "zh": "WHO将DRC风险定为“非常高”、乌干达“高”，并要求持续更新疑似/可能/确诊与接触者监测信息。",
+        "en": "WHO assessed risk as “very high” for DRC and “high” for Uganda, requesting ongoing updates on suspected/probable/confirmed cases and contact monitoring."
+      },
+      "sourceId": "who-ihr-temp-rec-2026-05-22"
+    },
+    {
+      "date": "2026-05-21",
+      "title": {
+        "zh": "CDC：5月21日埃博拉态势更新",
+        "en": "CDC: Ebola current situation update (21 May)"
+      },
+      "summary": {
+        "zh": "CDC更新为575疑似、51确诊、148疑似死亡，并提示数字将持续修订。",
+        "en": "CDC updated totals to 575 suspected, 51 confirmed, and 148 suspected deaths, noting that figures remain subject to revision."
+      },
+      "sourceId": "cdc-situation-2026-05-21"
+    },
     {
       "date": "2026-05-20",
       "title": {
@@ -384,25 +591,18 @@ window.OUTBREAK_DATA = {
   ],
   "sources": [
     {
-      "id": "who-don602-2026-05-16",
+      "id": "who-ihr-temp-rec-2026-05-22",
       "publisher": "WHO",
-      "title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda (DON602)",
-      "date": "2026-05-16",
-      "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON602"
+      "title": "First meeting of the IHR Emergency Committee ... Temporary recommendations",
+      "date": "2026-05-22",
+      "url": "https://www.who.int/news/item/22-05-2026-first-meeting-of-the-ihr-emergency-committee-regarding-the-epidemic-of-ebola-bundibugyo-virus-disease-in-the-democratic-republic-of-the-congo-and-uganda-2026-temporary-recommendations"
     },
     {
-      "id": "who-pheic-2026-05-17",
-      "publisher": "WHO",
-      "title": "Epidemic of Ebola Disease in DRC and Uganda determined a PHEIC",
-      "date": "2026-05-17",
-      "url": "https://www.who.int/news/item/17-05-2026-epidemic-of-ebola-disease-in-the-democratic-republic-of-the-congo-and-uganda-determined-a-public-health-emergency-of-international-concern"
-    },
-    {
-      "id": "who-afro-drc-2026-05-15",
-      "publisher": "WHO AFRO",
-      "title": "Democratic Republic of the Congo confirms new Ebola outbreak, WHO scales up support",
-      "date": "2026-05-15",
-      "url": "https://www.afro.who.int/countries/democratic-republic-of-congo/news/democratic-republic-congo-confirms-new-ebola-outbreak-who-scales-upsupport"
+      "id": "cdc-situation-2026-05-21",
+      "publisher": "CDC",
+      "title": "Ebola Disease: Current Situation",
+      "date": "2026-05-21",
+      "url": "https://www.cdc.gov/ebola/situation-summary/index.html"
     },
     {
       "id": "cdc-situation-2026-05-20",
@@ -419,13 +619,6 @@ window.OUTBREAK_DATA = {
       "url": "https://www.cdc.gov/han/php/notices/han00530.html"
     },
     {
-      "id": "cdc-media-2026-05-17",
-      "publisher": "CDC Newsroom",
-      "title": "CDC Mobilizes International Response Following Ebola Disease Outbreak in DRC and Uganda",
-      "date": "2026-05-17",
-      "url": "https://www.cdc.gov/media/releases/2026/cdc-mobilizes-international-ebola-response.html"
-    },
-    {
       "id": "ecdc-outbreak-2026-05-19",
       "publisher": "ECDC",
       "title": "Ebola virus disease outbreak in DRC and Uganda, 19 May 2026",
@@ -433,11 +626,39 @@ window.OUTBREAK_DATA = {
       "url": "https://www.ecdc.europa.eu/en/ebola-virus-disease-outbreak-democratic-republic-congo-and-uganda-19-may-2026"
     },
     {
+      "id": "who-pheic-2026-05-17",
+      "publisher": "WHO",
+      "title": "Epidemic of Ebola Disease in DRC and Uganda determined a PHEIC",
+      "date": "2026-05-17",
+      "url": "https://www.who.int/news/item/17-05-2026-epidemic-of-ebola-disease-in-the-democratic-republic-of-the-congo-and-uganda-determined-a-public-health-emergency-of-international-concern"
+    },
+    {
+      "id": "cdc-media-2026-05-17",
+      "publisher": "CDC Newsroom",
+      "title": "CDC Mobilizes International Response Following Ebola Disease Outbreak in DRC and Uganda",
+      "date": "2026-05-17",
+      "url": "https://www.cdc.gov/media/releases/2026/cdc-mobilizes-international-ebola-response.html"
+    },
+    {
       "id": "ecdc-pheic-news-2026-05-17",
       "publisher": "ECDC",
       "title": "WHO declares Ebola outbreak in DRC and Uganda a PHEIC",
       "date": "2026-05-17",
       "url": "https://www.ecdc.europa.eu/en/news-events/who-declares-ebola-outbreak-democratic-republic-congo-and-uganda-public-health"
+    },
+    {
+      "id": "who-don602-2026-05-16",
+      "publisher": "WHO",
+      "title": "Ebola disease caused by Bundibugyo virus, Democratic Republic of the Congo & Uganda (DON602)",
+      "date": "2026-05-16",
+      "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON602"
+    },
+    {
+      "id": "who-afro-drc-2026-05-15",
+      "publisher": "WHO AFRO",
+      "title": "Democratic Republic of the Congo confirms new Ebola outbreak, WHO scales up support",
+      "date": "2026-05-15",
+      "url": "https://www.afro.who.int/countries/democratic-republic-of-congo/news/democratic-republic-congo-confirms-new-ebola-outbreak-who-scales-upsupport"
     }
   ],
   "observation": {
@@ -450,11 +671,12 @@ window.OUTBREAK_DATA = {
         "quantifiedRegionCount": 0,
         "reportedNoCountRegionCount": 2,
         "note": {
-          "zh": "重点受影响区域为伊图里与北基伍，公开口径未给出可量化“被观测者”总人数。",
-          "en": "Key affected areas are Ituri and North Kivu; no publicly quantified monitored-contact total is currently provided."
+          "zh": "重点受影响区域为伊图里与北基伍，公开口径仍未给出可量化“被观测者”总人数。",
+          "en": "Key affected areas are Ituri and North Kivu; publicly available bulletins still do not provide a quantified total for monitored contacts."
         },
         "sourceIds": [
-          "cdc-situation-2026-05-20",
+          "cdc-situation-2026-05-21",
+          "who-ihr-temp-rec-2026-05-22",
           "ecdc-outbreak-2026-05-19"
         ]
       },
@@ -466,12 +688,12 @@ window.OUTBREAK_DATA = {
         "quantifiedRegionCount": 0,
         "reportedNoCountRegionCount": 1,
         "note": {
-          "zh": "坎帕拉输入关联病例已通报，但公开信息未给出可量化监测人数。",
-          "en": "Import-associated cases in Kampala are confirmed, but no publicly quantified monitored-contact total is available."
+          "zh": "乌干达报告2例输入关联确诊（含1死亡），但公开通报未给出可量化接触者监测人数。",
+          "en": "Uganda reports 2 import-associated confirmed cases (including 1 death), but no quantified contact-monitoring total has been publicly released."
         },
         "sourceIds": [
-          "who-pheic-2026-05-17",
-          "cdc-situation-2026-05-20"
+          "cdc-situation-2026-05-21",
+          "who-ihr-temp-rec-2026-05-22"
         ]
       }
     ],
