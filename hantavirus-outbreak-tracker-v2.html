@@ -1781,10 +1781,11 @@
     const themeBtn = document.getElementById("themeToggle");
     themeBtn.textContent = state.theme === "day" ? lang.modeNight : lang.modeDay;
 
-    document.getElementById("continentMetric").options[0].text = lang.continentMetricOptions.confirmed;
-    document.getElementById("continentMetric").options[1].text = lang.continentMetricOptions.deaths;
-    document.getElementById("continentMetric").options[2].text = lang.continentMetricOptions.observed;
-    document.getElementById("continentMetric").options[3].text = lang.continentMetricOptions.total;
+    const metricSelect = document.getElementById("continentMetric");
+    [...metricSelect.options].forEach((opt) => {
+      const mapped = lang.continentMetricOptions?.[opt.value];
+      if (mapped) opt.text = mapped;
+    });
 
     document.getElementById("mapLegend").innerHTML = `
       <span class="dot-item"><span class="dot blue"></span>${lang.mapLegend.confirmed}</span>
@@ -1809,7 +1810,7 @@
     const countriesSet = new Set(
       sameDay
         .map((item) => (state.lang === "zh" ? item.countryZh : item.countryEn))
-        .filter((name) => name && !name.includes("WHO"))
+        .filter((name) => name && !name.includes("WHO") && !name.includes("多国") && !name.includes("Multi-country"))
     );
 
     document.getElementById("dailyTitle").textContent = lang.dailyTitle;
@@ -2780,13 +2781,6 @@
       .join("");
 
     select.value = data.continents.some((item) => item.code === current) ? current : "GLOBAL";
-  }
-
-  function metricAt(series, metric, idx) {
-    if (metric === "confirmed") return series.confirmed[idx] || 0;
-    if (metric === "deaths") return series.deaths[idx] || 0;
-    if (metric === "observed") return series.observed?.[idx] || 0;
-    return (series.confirmed[idx] || 0) + (series.probable[idx] || 0);
   }
 
   function continentSeries(metric) {

@@ -1815,7 +1815,7 @@
     const countriesSet = new Set(
       sameDay
         .map((item) => (state.lang === "zh" ? item.countryZh : item.countryEn))
-        .filter((name) => name && !name.includes("WHO"))
+        .filter((name) => name && !name.includes("WHO") && !name.includes("多国") && !name.includes("Multi-country"))
     );
 
     document.getElementById("dailyTitle").textContent = lang.dailyTitle;

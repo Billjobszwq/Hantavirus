@@ -662,6 +662,25 @@ window.OUTBREAK_DATA = {
     }
   ],
   "observation": {
+    "asOf": "2026-05-21",
+    "definition": {
+      "zh": "被观测者=公开来源中可量化且可归属到国家/省州级的接触者监测人数。仅提到“在监测”但未给出人数的地区，不并入统计总量。",
+      "en": "Observed persons are those under contact monitoring with publicly quantified and country/region-attributable counts. Regions reporting monitoring without numeric disclosure are excluded from totals."
+    },
+    "statuses": {
+      "counted": {
+        "zh": "已量化",
+        "en": "Quantified"
+      },
+      "reported_no_count": {
+        "zh": "已通报未披露人数",
+        "en": "Reported without count"
+      },
+      "no_reported_monitoring": {
+        "zh": "无公开监测人数",
+        "en": "No publicly reported monitoring count"
+      }
+    },
     "countries": [
       {
         "code": "CD",

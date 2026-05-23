@@ -97,8 +97,10 @@ jobs:
             cp geo/* _site/geo/
           fi
           mkdir -p _site/raw-sources/latest
+          mkdir -p _site/raw-sources/history
           cp raw-sources/manifest.json _site/raw-sources/manifest.json
           cp raw-sources/latest/*.json _site/raw-sources/latest/ || true
+          cp raw-sources/history/*.json _site/raw-sources/history/ || true
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

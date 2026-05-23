@@ -51,11 +51,15 @@ jobs:
             cp geo/* _site/geo/
           fi
           mkdir -p _site/raw-sources/latest
+          mkdir -p _site/raw-sources/history
           if [ -f raw-sources/manifest.json ]; then
             cp raw-sources/manifest.json _site/raw-sources/manifest.json
           fi
           if [ -d raw-sources/latest ]; then
             cp raw-sources/latest/*.json _site/raw-sources/latest/ || true
+          fi
+          if [ -d raw-sources/history ]; then
+            cp raw-sources/history/*.json _site/raw-sources/history/ || true
           fi
 
       - name: Upload Pages artifact
