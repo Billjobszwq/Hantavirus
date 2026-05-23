@@ -250,6 +250,7 @@ else
 fi
 run_opencli_or_stub "$TMP_DIR/opencli-reddit-hondius.json" reddit search "MV Hondius hantavirus" --sort new --time month --limit 30
 run_twitter_with_web_fallback "$TMP_DIR/opencli-twitter-hondius.json" "MV Hondius hantavirus observation"
+run_twitter_with_web_fallback "$TMP_DIR/opencli-twitter-bnofeed-health.json" "from:BNOFeed (hantavirus OR Andes virus OR ebola OR Bundibugyo OR MV Hondius)"
 
 echo "[5/6] Fetching external tracker benchmark snapshots..."
 node "$ROOT_DIR/scripts/fetch-external-benchmarks.js" "$TMP_DIR/external-benchmarks.json"
