@@ -59,7 +59,7 @@ jobs:
             cp raw-sources/latest/*.json _site/raw-sources/latest/ || true
           fi
           if [ -d raw-sources/history ]; then
-            cp raw-sources/history/*.json _site/raw-sources/history/ || true
+            cp -R raw-sources/history/* _site/raw-sources/history/ || true
           fi
 
       - name: Upload Pages artifact
