@@ -5,15 +5,15 @@ window.OUTBREAK_DATA = {
       "zh": "刚果（金）与乌干达本迪布焦病毒埃博拉事件",
       "en": "Bundibugyo Ebola Outbreak in DRC and Uganda"
     },
-    "lastUpdatedAt": "2026-05-23T23:59:59+08:00",
-    "lastUpdatedDate": "2026-05-23",
+    "lastUpdatedAt": "2026-05-25T23:59:59+08:00",
+    "lastUpdatedDate": "2026-05-25",
     "timezone": "Asia/Shanghai",
     "scopeNote": {
       "zh": "本看板以 WHO/CDC/ECDC 公开通报为主；“可能”口径用于承载未实验室确证但已通报的疑似/可能病例总量，后续会随官方复核动态回调。",
       "en": "This dashboard prioritizes WHO/CDC/ECDC bulletins. The 'probable' bucket is used to hold publicly reported non-laboratory-confirmed suspected/probable counts and may be revised as official verification progresses."
     },
     "externalBenchmarks": {
-      "checkedAt": "2026-05-24T22:54:35+08:00",
+      "checkedAt": "2026-05-26T10:54:12+08:00",
       "items": [
         {
           "id": "who-don602-baseline",
@@ -62,30 +62,30 @@ window.OUTBREAK_DATA = {
           ]
         },
         {
-          "id": "cdc-situation-2026-05-23",
+          "id": "cdc-situation-2026-05-25",
           "name": {
-            "zh": "CDC 情况通报（5月23日）",
-            "en": "CDC situation bulletin (23 May)"
+            "zh": "CDC 情况通报（5月25日）",
+            "en": "CDC situation bulletin (25 May)"
           },
           "url": "https://www.cdc.gov/ebola/situation-summary/index.html",
           "method": {
-            "zh": "CDC 5月23日口径：DRC 746疑似、83确诊、176疑似死亡、9确诊死亡；乌干达5确诊、1确诊死亡。",
-            "en": "CDC 23 May totals: DRC 746 suspected, 83 confirmed, 176 suspected deaths, 9 confirmed deaths; Uganda 5 confirmed and 1 confirmed death."
+            "zh": "CDC 5月25日口径：DRC 906疑似、105确诊、223疑似死亡、10确诊死亡；乌干达7确诊、1确诊死亡。",
+            "en": "CDC 25 May totals: DRC 906 suspected, 105 confirmed, 223 suspected deaths, 10 confirmed deaths; Uganda 7 confirmed and 1 confirmed death."
           },
           "metrics": {
-            "drcSuspected": 746,
-            "drcConfirmed": 83,
-            "drcSuspectedDeaths": 176,
-            "drcConfirmedDeaths": 9,
-            "ugandaConfirmed": 5,
+            "drcSuspected": 906,
+            "drcConfirmed": 105,
+            "drcSuspectedDeaths": 223,
+            "drcConfirmedDeaths": 10,
+            "ugandaConfirmed": 7,
             "ugandaConfirmedDeaths": 1,
-            "globalConfirmed": 88,
-            "globalDeaths": 186,
-            "reportedDate": "2026-05-23"
+            "globalConfirmed": 112,
+            "globalDeaths": 234,
+            "reportedDate": "2026-05-25"
           },
           "sourceIds": [
-            "cdc-situation-2026-05-23",
-            "reuters-uganda-2026-05-23"
+            "cdc-situation-2026-05-25",
+            "ap-uganda-seven-2026-05-25"
           ]
         },
         {
@@ -96,8 +96,8 @@ window.OUTBREAK_DATA = {
           },
           "url": "https://x.com/BNOFeed",
           "method": {
-            "zh": "BNOFeed在官方更新前后发布乌干达新增3例信号；与CDC 5月23日“乌干达5确诊”一致。",
-            "en": "BNOFeed posted Uganda +3 case signals around the same window; this aligns with CDC 23 May update showing 5 confirmed cases in Uganda."
+            "zh": "BNOFeed对乌干达新增病例信号已被后续官方口径吸收。",
+            "en": "BNOFeed signals on Uganda case growth were later absorbed by official updates."
           },
           "metrics": {
             "ugandaConfirmedSignal": 5,
@@ -106,21 +106,21 @@ window.OUTBREAK_DATA = {
           },
           "sourceIds": [
             "bnofeed-x-2026-05-23",
-            "cdc-situation-2026-05-23"
+            "cdc-situation-2026-05-25"
           ]
         }
       ]
     },
-    "rawSyncAt": "2026-05-24T22:54:35+08:00",
-    "dashboardDataDate": "2026-05-23"
+    "rawSyncAt": "2026-05-26T10:54:12+08:00",
+    "dashboardDataDate": "2026-05-25"
   },
   "summary": {
-    "totalReported": 834,
-    "confirmed": 88,
-    "probable": 746,
-    "deaths": 186,
-    "confirmedDeaths": 10,
-    "probableDeaths": 176,
+    "totalReported": 1018,
+    "confirmed": 112,
+    "probable": 906,
+    "deaths": 234,
+    "confirmedDeaths": 11,
+    "probableDeaths": 223,
     "observed": 0
   },
   "continents": [
@@ -171,18 +171,18 @@ window.OUTBREAK_DATA = {
       "continentEn": "Africa",
       "lat": -2.8797,
       "lng": 23.656,
-      "confirmed": 83,
-      "probable": 746,
-      "deaths": 185,
-      "confirmedDeaths": 9,
-      "probableDeaths": 176,
-      "lastUpdate": "2026-05-23",
+      "confirmed": 105,
+      "probable": 906,
+      "deaths": 233,
+      "confirmedDeaths": 10,
+      "probableDeaths": 223,
+      "lastUpdate": "2026-05-25",
       "notes": {
-        "zh": "CDC 5月23日：DRC为746疑似、83确诊、176疑似死亡、9确诊死亡；传播涉及伊图里、北基伍、南基伍。",
-        "en": "CDC 23 May: DRC reports 746 suspected, 83 confirmed, 176 suspected deaths, and 9 confirmed deaths, with spread across Ituri, Nord-Kivu, and Sud-Kivu."
+        "zh": "CDC 5月25日：DRC为906疑似、105确诊、223疑似死亡、10确诊死亡；传播涉及伊图里、北基伍、南基伍。",
+        "en": "CDC 25 May: DRC reports 906 suspected, 105 confirmed, 223 suspected deaths, and 10 confirmed deaths, with spread across Ituri, Nord-Kivu, and Sud-Kivu."
       },
       "sourceIds": [
-        "cdc-situation-2026-05-23",
+        "cdc-situation-2026-05-25",
         "who-don603-2026-05-21",
         "who-ihr-temp-rec-2026-05-22"
       ],
@@ -198,25 +198,43 @@ window.OUTBREAK_DATA = {
       "continentEn": "Africa",
       "lat": 1.3733,
       "lng": 32.2903,
-      "confirmed": 5,
+      "confirmed": 7,
       "probable": 0,
       "deaths": 1,
       "confirmedDeaths": 1,
       "probableDeaths": 0,
-      "lastUpdate": "2026-05-23",
+      "lastUpdate": "2026-05-25",
       "notes": {
-        "zh": "CDC 5月23日已更新乌干达累计5例确诊、1例确诊死亡（均与DRC输入链相关）。",
-        "en": "CDC 23 May updates Uganda to 5 confirmed cases and 1 confirmed death, linked to the DRC importation chain."
+        "zh": "CDC 5月25日更新乌干达累计7例确诊、1例确诊死亡。",
+        "en": "CDC 25 May updates Uganda to 7 confirmed cases and 1 confirmed death."
       },
       "sourceIds": [
-        "cdc-situation-2026-05-23",
-        "reuters-uganda-2026-05-23",
+        "cdc-situation-2026-05-25",
+        "ap-uganda-seven-2026-05-25",
         "bnofeed-x-2026-05-23"
       ],
       "observed": 0
     }
   ],
   "timeline": [
+    {
+      "date": "2026-05-25",
+      "countryCode": "MC",
+      "countryZh": "多国（DRC/UG）",
+      "countryEn": "Multi-country (DRC/UG)",
+      "confirmedDelta": 24,
+      "probableDelta": 160,
+      "deathsDelta": 48,
+      "observedDelta": 0,
+      "description": {
+        "zh": "CDC 5月25日更新：DRC 906疑似、105确诊、223疑似死亡、10确诊死亡；乌干达7确诊、1确诊死亡。",
+        "en": "CDC 25 May update: DRC 906 suspected, 105 confirmed, 223 suspected deaths, and 10 confirmed deaths; Uganda 7 confirmed cases and 1 confirmed death."
+      },
+      "sourceIds": [
+        "cdc-situation-2026-05-25",
+        "ap-uganda-seven-2026-05-25"
+      ]
+    },
     {
       "date": "2026-05-23",
       "countryCode": "MC",
@@ -367,7 +385,8 @@ window.OUTBREAK_DATA = {
       "2026-05-20",
       "2026-05-21",
       "2026-05-22",
-      "2026-05-23"
+      "2026-05-23",
+      "2026-05-25"
     ],
     "global": {
       "confirmed": [
@@ -378,7 +397,8 @@ window.OUTBREAK_DATA = {
         34,
         51,
         83,
-        88
+        88,
+        112
       ],
       "probable": [
         246,
@@ -388,7 +408,8 @@ window.OUTBREAK_DATA = {
         641,
         575,
         744,
-        746
+        746,
+        906
       ],
       "deaths": [
         80,
@@ -398,7 +419,8 @@ window.OUTBREAK_DATA = {
         135,
         148,
         176,
-        186
+        186,
+        234
       ],
       "confirmedDeaths": [
         0,
@@ -408,9 +430,11 @@ window.OUTBREAK_DATA = {
         1,
         1,
         1,
-        10
+        10,
+        11
       ],
       "observed": [
+        0,
         0,
         0,
         0,
@@ -431,7 +455,8 @@ window.OUTBREAK_DATA = {
           32,
           49,
           81,
-          83
+          83,
+          105
         ],
         "probable": [
           246,
@@ -441,7 +466,8 @@ window.OUTBREAK_DATA = {
           641,
           575,
           744,
-          746
+          746,
+          906
         ],
         "deaths": [
           80,
@@ -451,7 +477,8 @@ window.OUTBREAK_DATA = {
           134,
           147,
           175,
-          185
+          185,
+          233
         ],
         "confirmedDeaths": [
           0,
@@ -461,9 +488,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
-          9
+          9,
+          10
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -483,9 +512,11 @@ window.OUTBREAK_DATA = {
           2,
           2,
           2,
-          5
+          5,
+          7
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -503,10 +534,12 @@ window.OUTBREAK_DATA = {
           1,
           1,
           1,
+          1,
           1
         ],
         "confirmedDeaths": [
           0,
+          1,
           1,
           1,
           1,
@@ -523,12 +556,28 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ]
       }
     }
   },
   "watchlist": [
+    {
+      "date": "2026-05-25",
+      "title": {
+        "zh": "CDC口径继续上修，乌干达升至7例",
+        "en": "CDC totals revised upward, Uganda rises to 7 cases"
+      },
+      "note": {
+        "zh": "与5月23日相比，全球确诊升至112、死亡升至234；乌干达从5例增至7例。",
+        "en": "Compared with 23 May, global confirmed increased to 112 and deaths to 234; Uganda increased from 5 to 7 cases."
+      },
+      "sourceIds": [
+        "cdc-situation-2026-05-25",
+        "ap-uganda-seven-2026-05-25"
+      ]
+    },
     {
       "date": "2026-05-23",
       "title": {
@@ -589,6 +638,30 @@ window.OUTBREAK_DATA = {
     }
   ],
   "news": [
+    {
+      "date": "2026-05-25",
+      "title": {
+        "zh": "CDC：5月25日埃博拉态势更新",
+        "en": "CDC: Ebola current situation update (25 May)"
+      },
+      "summary": {
+        "zh": "CDC更新到DRC 906疑似、105确诊、223疑似死亡、10确诊死亡；乌干达7确诊、1确诊死亡。",
+        "en": "CDC updated to DRC 906 suspected, 105 confirmed, 223 suspected deaths, and 10 confirmed deaths; Uganda 7 confirmed and 1 confirmed death."
+      },
+      "sourceId": "cdc-situation-2026-05-25"
+    },
+    {
+      "date": "2026-05-25",
+      "title": {
+        "zh": "AP：乌干达新增病例升至7例",
+        "en": "AP: Uganda infections rise to 7 cases"
+      },
+      "summary": {
+        "zh": "乌干达卫生部门通报新增2例，累计7例，均与DRC输入链相关。",
+        "en": "Ugandan authorities reported 2 additional cases, bringing the total to 7, all linked to the DRC importation chain."
+      },
+      "sourceId": "ap-uganda-seven-2026-05-25"
+    },
     {
       "date": "2026-05-23",
       "title": {
@@ -712,6 +785,20 @@ window.OUTBREAK_DATA = {
   ],
   "sources": [
     {
+      "id": "cdc-situation-2026-05-25",
+      "publisher": "CDC",
+      "title": "Ebola Disease: Current Situation",
+      "date": "2026-05-25",
+      "url": "https://www.cdc.gov/ebola/situation-summary/index.html"
+    },
+    {
+      "id": "ap-uganda-seven-2026-05-25",
+      "publisher": "Associated Press",
+      "title": "Ugandan health officials report new Ebola virus infections, bringing cases to 7",
+      "date": "2026-05-25",
+      "url": "https://apnews.com/article/8630b816e3f40f950fd90e44b0b3395c"
+    },
+    {
       "id": "reuters-uganda-2026-05-23",
       "publisher": "Reuters",
       "title": "Uganda confirms three new Ebola cases, bringing total to five",
@@ -818,7 +905,7 @@ window.OUTBREAK_DATA = {
     }
   ],
   "observation": {
-    "asOf": "2026-05-23",
+    "asOf": "2026-05-25",
     "definition": {
       "zh": "被观测者=公开来源中可量化且可归属到国家/省州级的接触者监测人数。仅提到“在监测”但未给出人数的地区，不并入统计总量。",
       "en": "Observed persons are those under contact monitoring with publicly quantified and country/region-attributable counts. Regions reporting monitoring without numeric disclosure are excluded from totals."
@@ -850,7 +937,7 @@ window.OUTBREAK_DATA = {
           "en": "Key affected areas are Ituri and North Kivu; publicly available bulletins still do not provide a quantified total for monitored contacts."
         },
         "sourceIds": [
-          "cdc-situation-2026-05-23",
+          "cdc-situation-2026-05-25",
           "who-don603-2026-05-21",
           "who-ihr-temp-rec-2026-05-22"
         ]
@@ -867,8 +954,8 @@ window.OUTBREAK_DATA = {
           "en": "Uganda reports 2 import-associated confirmed cases (including 1 death), but no quantified contact-monitoring total has been publicly released."
         },
         "sourceIds": [
-          "cdc-situation-2026-05-23",
-          "reuters-uganda-2026-05-23",
+          "cdc-situation-2026-05-25",
+          "ap-uganda-seven-2026-05-25",
           "bnofeed-x-2026-05-23"
         ]
       }

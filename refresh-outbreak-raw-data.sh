@@ -38,10 +38,31 @@ fetch_tavily() {
     --argjson n "$max_results" \
     '{api_key:$key, query:$q, search_depth:"advanced", include_answer:true, max_results:$n}')"
 
-  curl -fsS https://api.tavily.com/search \
+  local tmp_file
+  tmp_file="$(mktemp "${TMPDIR:-/tmp}/tavily.XXXXXX")"
+
+  local http_code
+  http_code="$(curl -sS -w "%{http_code}" -o "$tmp_file" https://api.tavily.com/search \
     -H 'Content-Type: application/json' \
-    -d "$payload" \
-    | jq '.' > "$output_file"
+    -d "$payload" || true)"
+
+  if [[ "$http_code" == "200" ]]; then
+    if jq '.' "$tmp_file" > "$output_file" 2>/dev/null; then
+      rm -f "$tmp_file"
+      return 0
+    fi
+  fi
+
+  local excerpt
+  excerpt="$(head -c 1200 "$tmp_file" || true)"
+  jq -n \
+    --arg error "tavily request failed" \
+    --arg status "$http_code" \
+    --arg query "$query" \
+    --arg excerpt "$excerpt" \
+    '{error:$error, status:$status, query:$query, excerpt:$excerpt}' > "$output_file"
+
+  rm -f "$tmp_file"
 }
 
 run_opencli_or_stub() {
