@@ -1,0 +1,5 @@
+{
+  "skipped": true,
+  "reason": "opencli unavailable or SKIP_OPENCLI=1",
+  "cmd": "twitter search MV Hondius hantavirus observation --product live --limit 20"
+}
