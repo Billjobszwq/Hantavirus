@@ -5,15 +5,15 @@ window.OUTBREAK_DATA = {
       "zh": "MV Hondius 邮轮相关安第斯汉坦病毒事件",
       "en": "MV Hondius Andes Hantavirus Cluster"
     },
-    "lastUpdatedAt": "2026-05-13T23:59:59+08:00",
-    "lastUpdatedDate": "2026-05-13",
+    "lastUpdatedAt": "2026-05-28T23:59:59+08:00",
+    "lastUpdatedDate": "2026-05-28",
     "timezone": "Asia/Shanghai",
     "scopeNote": {
       "zh": "病例主看板仍按MV Hondius事件链“病例所属国家（国籍）”统计；被观测者口径同时纳入入境医疗检测/隔离观察人数（可量化且可追溯来源）。",
       "en": "The main case dashboard remains nationality-based within the MV Hondius event chain; observed-person metrics additionally include inbound medical testing/isolation monitoring counts when quantifiable and source-traceable."
     },
     "externalBenchmarks": {
-      "checkedAt": "2026-05-28T11:09:05+08:00",
+      "checkedAt": "2026-05-28T16:11:07+08:00",
       "items": [
         {
           "id": "elisey-arcgis",
@@ -51,12 +51,12 @@ window.OUTBREAK_DATA = {
             "en": "Uses signals (mentions/updates) as the unit, not patient counts; methodology states most countries are not confirmed-case totals."
           },
           "metrics": {
-            "signalsTotal": 686,
+            "signalsTotal": 687,
             "countriesActive": 30,
             "countriesIndexed": 69,
             "countriesWithSignals30d": 30,
-            "signals30dCountrySum": 155,
-            "argentinaSignals30d": 15,
+            "signals30dCountrySum": 151,
+            "argentinaSignals30d": 12,
             "southAfricaSignals30d": 0
           },
           "sourceIds": [
@@ -67,8 +67,8 @@ window.OUTBREAK_DATA = {
         }
       ]
     },
-    "rawSyncAt": "2026-05-28T11:09:08+08:00",
-    "dashboardDataDate": "2026-05-13"
+    "rawSyncAt": "2026-05-28T16:11:08+08:00",
+    "dashboardDataDate": "2026-05-28"
   },
   "summary": {
     "totalReported": 11,
@@ -749,7 +749,8 @@ window.OUTBREAK_DATA = {
       "2026-05-11",
       "2026-05-12",
       "2026-05-13",
-      "2026-05-15"
+      "2026-05-15",
+      "2026-05-28"
     ],
     "global": {
       "confirmed": [
@@ -762,6 +763,7 @@ window.OUTBREAK_DATA = {
         6,
         7,
         8,
+        9,
         9,
         9,
         9
@@ -778,11 +780,13 @@ window.OUTBREAK_DATA = {
         2,
         2,
         2,
+        2,
         2
       ],
       "deaths": [
         1,
         2,
+        3,
         3,
         3,
         3,
@@ -806,6 +810,7 @@ window.OUTBREAK_DATA = {
         2,
         2,
         2,
+        2,
         2
       ],
       "observed": [
@@ -819,6 +824,7 @@ window.OUTBREAK_DATA = {
         10,
         10,
         10,
+        28,
         28,
         28
       ]
@@ -837,9 +843,11 @@ window.OUTBREAK_DATA = {
           2,
           2,
           2,
+          2,
           2
         ],
         "probable": [
+          1,
           1,
           1,
           1,
@@ -865,11 +873,13 @@ window.OUTBREAK_DATA = {
           2,
           2,
           2,
+          2,
           2
         ],
         "confirmedDeaths": [
           0,
           0,
+          1,
           1,
           1,
           1,
@@ -886,6 +896,7 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          3,
           3,
           3,
           3,
@@ -909,6 +920,7 @@ window.OUTBREAK_DATA = {
           2,
           2,
           2,
+          2,
           2
         ],
         "probable": [
@@ -923,9 +935,11 @@ window.OUTBREAK_DATA = {
           1,
           1,
           1,
+          1,
           1
         ],
         "deaths": [
+          0,
           0,
           0,
           0,
@@ -951,9 +965,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -981,9 +997,11 @@ window.OUTBREAK_DATA = {
           1,
           1,
           1,
+          1,
           1
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1009,6 +1027,7 @@ window.OUTBREAK_DATA = {
           1,
           1,
           1,
+          1,
           1
         ],
         "confirmedDeaths": [
@@ -1023,9 +1042,11 @@ window.OUTBREAK_DATA = {
           1,
           1,
           1,
+          1,
           1
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -1053,9 +1074,11 @@ window.OUTBREAK_DATA = {
           1,
           1,
           1,
+          1,
           1
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1081,6 +1104,7 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "confirmedDeaths": [
@@ -1095,9 +1119,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -1125,9 +1151,11 @@ window.OUTBREAK_DATA = {
           1,
           1,
           1,
+          1,
           1
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1153,6 +1181,7 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "confirmedDeaths": [
@@ -1167,9 +1196,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -1197,9 +1228,11 @@ window.OUTBREAK_DATA = {
           1,
           1,
           1,
+          1,
           1
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1225,9 +1258,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "confirmedDeaths": [
+          0,
           0,
           0,
           0,
@@ -1253,6 +1288,7 @@ window.OUTBREAK_DATA = {
           3,
           3,
           21,
+          21,
           21
         ]
       },
@@ -1269,9 +1305,11 @@ window.OUTBREAK_DATA = {
           0,
           1,
           1,
+          1,
           1
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1297,6 +1335,7 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "confirmedDeaths": [
@@ -1311,9 +1350,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -1341,9 +1382,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1369,6 +1412,7 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "confirmedDeaths": [
@@ -1383,9 +1427,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -1413,9 +1459,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1441,6 +1489,7 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "confirmedDeaths": [
@@ -1455,9 +1504,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -1485,9 +1536,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1513,9 +1566,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "confirmedDeaths": [
+          0,
           0,
           0,
           0,
@@ -1534,6 +1589,7 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          2,
           2,
           2,
           2,
@@ -1557,9 +1613,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1585,6 +1643,7 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "confirmedDeaths": [
@@ -1599,9 +1658,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -1629,9 +1690,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -1657,9 +1720,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ],
         "confirmedDeaths": [
+          0,
           0,
           0,
           0,
@@ -1680,6 +1745,7 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          2,
           2,
           2,
           2,
