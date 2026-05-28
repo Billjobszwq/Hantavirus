@@ -272,6 +272,8 @@ fi
 run_opencli_or_stub "$TMP_DIR/opencli-reddit-hondius.json" reddit search "MV Hondius hantavirus" --sort new --time month --limit 30
 run_twitter_with_web_fallback "$TMP_DIR/opencli-twitter-hondius.json" "MV Hondius hantavirus observation"
 run_twitter_with_web_fallback "$TMP_DIR/opencli-twitter-bnofeed-health.json" "from:BNOFeed (hantavirus OR Andes virus OR ebola OR Bundibugyo OR MV Hondius)"
+run_twitter_with_web_fallback "$TMP_DIR/opencli-twitter-hanta-us-spread.json" "(hantavirus OR \"sin nombre\") (US OR \"United States\" OR America) (outbreak OR spread OR cases)"
+run_twitter_with_web_fallback "$TMP_DIR/opencli-twitter-ebola-europe-spread.json" "(ebola OR bundibugyo) (Europe OR european OR Germany OR France OR Italy OR Spain OR UK) (spread OR imported OR cases)"
 
 echo "[5/6] Fetching external tracker benchmark snapshots..."
 node "$ROOT_DIR/scripts/fetch-external-benchmarks.js" "$TMP_DIR/external-benchmarks.json"

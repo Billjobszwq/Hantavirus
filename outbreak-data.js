@@ -13,7 +13,7 @@ window.OUTBREAK_DATA = {
       "en": "The main case dashboard remains nationality-based within the MV Hondius event chain; observed-person metrics additionally include inbound medical testing/isolation monitoring counts when quantifiable and source-traceable."
     },
     "externalBenchmarks": {
-      "checkedAt": "2026-05-28T07:37:34+08:00",
+      "checkedAt": "2026-05-28T11:09:05+08:00",
       "items": [
         {
           "id": "elisey-arcgis",
@@ -51,12 +51,12 @@ window.OUTBREAK_DATA = {
             "en": "Uses signals (mentions/updates) as the unit, not patient counts; methodology states most countries are not confirmed-case totals."
           },
           "metrics": {
-            "signalsTotal": 687,
-            "countriesActive": 28,
+            "signalsTotal": 686,
+            "countriesActive": 30,
             "countriesIndexed": 69,
-            "countriesWithSignals30d": 28,
-            "signals30dCountrySum": 154,
-            "argentinaSignals30d": 14,
+            "countriesWithSignals30d": 30,
+            "signals30dCountrySum": 155,
+            "argentinaSignals30d": 15,
             "southAfricaSignals30d": 0
           },
           "sourceIds": [
@@ -67,7 +67,7 @@ window.OUTBREAK_DATA = {
         }
       ]
     },
-    "rawSyncAt": "2026-05-28T07:37:35+08:00",
+    "rawSyncAt": "2026-05-28T11:09:08+08:00",
     "dashboardDataDate": "2026-05-13"
   },
   "summary": {
@@ -1692,6 +1692,20 @@ window.OUTBREAK_DATA = {
   },
   "watchlist": [
     {
+      "date": "2026-05-28",
+      "title": {
+        "zh": "X重点监测：美国汉坦“传播”话题去噪与核验",
+        "en": "X priority monitor: de-noising and verification of U.S. hantavirus \"spread\" chatter"
+      },
+      "note": {
+        "zh": "优先跟踪高可信账号与媒体转引；将“啮齿类暴露导致的零散病例”与“人传人传播”严格区分，避免社交媒体误读直接进入病例总盘。",
+        "en": "Prioritize high-credibility accounts and media-corroborated posts; strictly separate rodent-exposure sporadic cases from person-to-person transmission to avoid social-media noise entering case totals."
+      },
+      "sourceIds": [
+        "opencli-x-hanta-us-spread-2026-05-28"
+      ]
+    },
+    {
       "date": "2026-05-13",
       "title": {
         "zh": "外部站点差异口径复核（Elisey / Hantaflow）",
@@ -1769,6 +1783,18 @@ window.OUTBREAK_DATA = {
     }
   ],
   "news": [
+    {
+      "date": "2026-05-28",
+      "title": {
+        "zh": "X信号：美国汉坦病例与传播讨论升温（待官方持续核验）",
+        "en": "X signal: U.S. hantavirus spread discussions rising (ongoing official verification needed)"
+      },
+      "summary": {
+        "zh": "X平台出现大量“美国汉坦传播”讨论，包含部分疑似美国本土病例线索。当前看板将其作为社交信号跟踪，不等同于MV Hondius事件链新增确诊。",
+        "en": "X discussions on \"U.S. hantavirus spread\" are increasing, including posts about possible domestic cases. The dashboard tracks this as a social signal and not as new confirmed MV Hondius-chain cases."
+      },
+      "sourceId": "opencli-x-hanta-us-spread-2026-05-28"
+    },
     {
       "date": "2026-05-13",
       "title": {
@@ -1879,6 +1905,13 @@ window.OUTBREAK_DATA = {
     }
   ],
   "sources": [
+    {
+      "id": "opencli-x-hanta-us-spread-2026-05-28",
+      "publisher": "X / Curated Search",
+      "title": "X signal watch: U.S. hantavirus spread discussions (non-official signal stream)",
+      "date": "2026-05-28",
+      "url": "https://x.com/search?q=%28hantavirus%20OR%20%22sin%20nombre%22%29%20%28US%20OR%20%22United%20States%22%20OR%20America%29%20%28outbreak%20OR%20spread%20OR%20cases%29&src=typed_query&f=live"
+    },
     {
       "id": "elisey-arcgis-2026-05-13",
       "publisher": "ArcGIS Feature Service (via Elisey tracker)",

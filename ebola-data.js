@@ -5,15 +5,15 @@ window.OUTBREAK_DATA = {
       "zh": "刚果（金）与乌干达本迪布焦病毒埃博拉事件",
       "en": "Bundibugyo Ebola Outbreak in DRC and Uganda"
     },
-    "lastUpdatedAt": "2026-05-25T23:59:59+08:00",
-    "lastUpdatedDate": "2026-05-25",
+    "lastUpdatedAt": "2026-05-27T23:59:59+08:00",
+    "lastUpdatedDate": "2026-05-27",
     "timezone": "Asia/Shanghai",
     "scopeNote": {
       "zh": "本看板以 WHO/CDC/ECDC 公开通报为主；“可能”口径用于承载未实验室确证但已通报的疑似/可能病例总量，后续会随官方复核动态回调。",
       "en": "This dashboard prioritizes WHO/CDC/ECDC bulletins. The 'probable' bucket is used to hold publicly reported non-laboratory-confirmed suspected/probable counts and may be revised as official verification progresses."
     },
     "externalBenchmarks": {
-      "checkedAt": "2026-05-26T10:54:12+08:00",
+      "checkedAt": "2026-05-28T11:13:36+08:00",
       "items": [
         {
           "id": "who-don602-baseline",
@@ -45,16 +45,14 @@ window.OUTBREAK_DATA = {
           },
           "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON603",
           "method": {
-            "zh": "WHO DON603口径：DRC 746疑似、176疑似死亡；两国合计85确诊、10例确诊死亡（其中乌干达2确诊、1确诊死亡）。",
-            "en": "WHO DON603 reports 746 suspected and 176 suspected deaths in DRC, with 85 confirmed cases and 10 confirmed deaths across both countries (including Uganda 2 confirmed, 1 confirmed death)."
+            "zh": "WHO DON603口径：DRC 746疑似、176疑似死亡；两国合计85确诊、10例确诊死亡。",
+            "en": "WHO DON603 reports 746 suspected and 176 suspected deaths in DRC, with 85 confirmed cases and 10 confirmed deaths across both countries."
           },
           "metrics": {
             "drcSuspected": 746,
             "drcSuspectedDeaths": 176,
             "globalConfirmed": 85,
             "globalConfirmedDeaths": 10,
-            "ugandaConfirmed": 2,
-            "ugandaConfirmedDeaths": 1,
             "reportedDate": "2026-05-21"
           },
           "sourceIds": [
@@ -62,65 +60,83 @@ window.OUTBREAK_DATA = {
           ]
         },
         {
-          "id": "cdc-situation-2026-05-25",
+          "id": "cdc-situation-2026-05-27",
           "name": {
-            "zh": "CDC 情况通报（5月25日）",
-            "en": "CDC situation bulletin (25 May)"
+            "zh": "CDC 情况通报（5月27日）",
+            "en": "CDC situation bulletin (27 May)"
           },
           "url": "https://www.cdc.gov/ebola/situation-summary/index.html",
           "method": {
-            "zh": "CDC 5月25日口径：DRC 906疑似、105确诊、223疑似死亡、10确诊死亡；乌干达7确诊、1确诊死亡。",
-            "en": "CDC 25 May totals: DRC 906 suspected, 105 confirmed, 223 suspected deaths, 10 confirmed deaths; Uganda 7 confirmed and 1 confirmed death."
+            "zh": "CDC 5月27日：DRC 1,077疑似、121确诊、246疑似死亡、17确诊死亡；乌干达7确诊、1确诊死亡。",
+            "en": "CDC 27 May: DRC 1,077 suspected, 121 confirmed, 246 suspected deaths, 17 confirmed deaths; Uganda 7 confirmed and 1 confirmed death."
           },
           "metrics": {
-            "drcSuspected": 906,
-            "drcConfirmed": 105,
-            "drcSuspectedDeaths": 223,
-            "drcConfirmedDeaths": 10,
+            "drcSuspected": 1077,
+            "drcConfirmed": 121,
+            "drcSuspectedDeaths": 246,
+            "drcConfirmedDeaths": 17,
             "ugandaConfirmed": 7,
             "ugandaConfirmedDeaths": 1,
-            "globalConfirmed": 112,
-            "globalDeaths": 234,
-            "reportedDate": "2026-05-25"
+            "globalConfirmed": 128,
+            "globalDeaths": 264,
+            "reportedDate": "2026-05-27"
           },
           "sourceIds": [
-            "cdc-situation-2026-05-25",
-            "ap-uganda-seven-2026-05-25"
+            "cdc-situation-2026-05-27",
+            "ecdc-outbreak-2026-05-27"
           ]
         },
         {
-          "id": "bnofeed-signal-2026-05-23",
+          "id": "ecdc-europe-risk-2026-05-27",
           "name": {
-            "zh": "BNOFeed 信号对照（5月23日）",
-            "en": "BNOFeed signal check (23 May)"
+            "zh": "ECDC欧洲风险评估（5月27日）",
+            "en": "ECDC Europe risk assessment (27 May)"
           },
-          "url": "https://x.com/BNOFeed",
+          "url": "https://www.ecdc.europa.eu/en/ebola-virus-disease-outbreak-democratic-republic-congo-and-uganda",
           "method": {
-            "zh": "BNOFeed对乌干达新增病例信号已被后续官方口径吸收。",
-            "en": "BNOFeed signals on Uganda case growth were later absorbed by official updates."
+            "zh": "ECDC更新称EU/EEA居民感染风险“非常低”，并持续监测欧洲输入相关信号。",
+            "en": "ECDC update assesses infection likelihood for EU/EEA residents as “very low” while continuing to monitor importation signals."
           },
           "metrics": {
-            "ugandaConfirmedSignal": 5,
-            "reportedDate": "2026-05-23",
-            "alignedWithCdc": true
+            "euRisk": "very low",
+            "lastUpdated": "2026-05-27"
           },
           "sourceIds": [
-            "bnofeed-x-2026-05-23",
-            "cdc-situation-2026-05-25"
+            "ecdc-outbreak-2026-05-27"
+          ]
+        },
+        {
+          "id": "bnofeed-signal-2026-05-28",
+          "name": {
+            "zh": "X欧洲传播信号对照（5月28日）",
+            "en": "X Europe spread signal check (28 May)"
+          },
+          "url": "https://x.com/search?q=%28ebola%20OR%20bundibugyo%29%20%28Europe%20OR%20european%20OR%20Germany%20OR%20France%20OR%20Italy%20OR%20Spain%20OR%20UK%29%20%28spread%20OR%20imported%20OR%20cases%29&src=typed_query&f=live",
+          "method": {
+            "zh": "X平台出现大量“埃博拉进入欧洲”讨论，已与ECDC官方低风险评估并行标注，避免谣言直接入盘。",
+            "en": "X contains substantial \"Ebola spreading to Europe\" chatter; these signals are tracked alongside ECDC low-risk assessments to avoid rumor-driven data updates."
+          },
+          "metrics": {
+            "signalStream": true,
+            "reportedDate": "2026-05-28"
+          },
+          "sourceIds": [
+            "opencli-x-ebola-europe-spread-2026-05-28",
+            "ecdc-outbreak-2026-05-27"
           ]
         }
       ]
     },
-    "rawSyncAt": "2026-05-26T10:54:12+08:00",
-    "dashboardDataDate": "2026-05-25"
+    "rawSyncAt": "2026-05-28T11:13:36+08:00",
+    "dashboardDataDate": "2026-05-27"
   },
   "summary": {
-    "totalReported": 1018,
-    "confirmed": 112,
-    "probable": 906,
-    "deaths": 234,
-    "confirmedDeaths": 11,
-    "probableDeaths": 223,
+    "totalReported": 1205,
+    "confirmed": 128,
+    "probable": 1077,
+    "deaths": 264,
+    "confirmedDeaths": 18,
+    "probableDeaths": 246,
     "observed": 0
   },
   "continents": [
@@ -171,20 +187,20 @@ window.OUTBREAK_DATA = {
       "continentEn": "Africa",
       "lat": -2.8797,
       "lng": 23.656,
-      "confirmed": 105,
-      "probable": 906,
-      "deaths": 233,
-      "confirmedDeaths": 10,
-      "probableDeaths": 223,
-      "lastUpdate": "2026-05-25",
+      "confirmed": 121,
+      "probable": 1077,
+      "deaths": 263,
+      "confirmedDeaths": 17,
+      "probableDeaths": 246,
+      "lastUpdate": "2026-05-27",
       "notes": {
-        "zh": "CDC 5月25日：DRC为906疑似、105确诊、223疑似死亡、10确诊死亡；传播涉及伊图里、北基伍、南基伍。",
-        "en": "CDC 25 May: DRC reports 906 suspected, 105 confirmed, 223 suspected deaths, and 10 confirmed deaths, with spread across Ituri, Nord-Kivu, and Sud-Kivu."
+        "zh": "CDC 5月27日：DRC 1,077疑似、121确诊、246疑似死亡、17确诊死亡。",
+        "en": "CDC 27 May: DRC reports 1,077 suspected, 121 confirmed, 246 suspected deaths, and 17 confirmed deaths."
       },
       "sourceIds": [
-        "cdc-situation-2026-05-25",
-        "who-don603-2026-05-21",
-        "who-ihr-temp-rec-2026-05-22"
+        "cdc-situation-2026-05-27",
+        "ecdc-outbreak-2026-05-27",
+        "who-don603-2026-05-21"
       ],
       "observed": 0
     },
@@ -203,20 +219,53 @@ window.OUTBREAK_DATA = {
       "deaths": 1,
       "confirmedDeaths": 1,
       "probableDeaths": 0,
-      "lastUpdate": "2026-05-25",
+      "lastUpdate": "2026-05-27",
       "notes": {
-        "zh": "CDC 5月25日更新乌干达累计7例确诊、1例确诊死亡。",
-        "en": "CDC 25 May updates Uganda to 7 confirmed cases and 1 confirmed death."
+        "zh": "乌干达维持7例确诊、1例确诊死亡；与DRC输入链相关。",
+        "en": "Uganda remains at 7 confirmed cases and 1 confirmed death, linked to the DRC importation chain."
       },
       "sourceIds": [
-        "cdc-situation-2026-05-25",
-        "ap-uganda-seven-2026-05-25",
-        "bnofeed-x-2026-05-23"
+        "cdc-situation-2026-05-27",
+        "ecdc-outbreak-2026-05-27"
       ],
       "observed": 0
     }
   ],
   "timeline": [
+    {
+      "date": "2026-05-27",
+      "countryCode": "MC",
+      "countryZh": "多国（DRC/UG）",
+      "countryEn": "Multi-country (DRC/UG)",
+      "confirmedDelta": 16,
+      "probableDelta": 171,
+      "deathsDelta": 30,
+      "observedDelta": 0,
+      "description": {
+        "zh": "CDC 5月27日更新：DRC 1,077疑似、121确诊、246疑似死亡、17确诊死亡；乌干达7确诊、1确诊死亡。",
+        "en": "CDC 27 May update: DRC 1,077 suspected, 121 confirmed, 246 suspected deaths, and 17 confirmed deaths; Uganda 7 confirmed and 1 confirmed death."
+      },
+      "sourceIds": [
+        "cdc-situation-2026-05-27"
+      ]
+    },
+    {
+      "date": "2026-05-27",
+      "countryCode": "MC",
+      "countryZh": "欧洲风险评估",
+      "countryEn": "Europe risk assessment",
+      "confirmedDelta": 0,
+      "probableDelta": 0,
+      "deathsDelta": 0,
+      "observedDelta": 0,
+      "description": {
+        "zh": "ECDC评估EU/EEA居民感染风险仍为“非常低”；欧洲相关输入信号持续监测。",
+        "en": "ECDC assesses infection likelihood for EU/EEA residents as still \"very low\"; Europe-related importation signals remain under monitoring."
+      },
+      "sourceIds": [
+        "ecdc-outbreak-2026-05-27"
+      ]
+    },
     {
       "date": "2026-05-25",
       "countryCode": "MC",
@@ -386,7 +435,8 @@ window.OUTBREAK_DATA = {
       "2026-05-21",
       "2026-05-22",
       "2026-05-23",
-      "2026-05-25"
+      "2026-05-25",
+      "2026-05-27"
     ],
     "global": {
       "confirmed": [
@@ -398,7 +448,8 @@ window.OUTBREAK_DATA = {
         51,
         83,
         88,
-        112
+        112,
+        128
       ],
       "probable": [
         246,
@@ -409,7 +460,8 @@ window.OUTBREAK_DATA = {
         575,
         744,
         746,
-        906
+        906,
+        1077
       ],
       "deaths": [
         80,
@@ -420,7 +472,8 @@ window.OUTBREAK_DATA = {
         148,
         176,
         186,
-        234
+        234,
+        264
       ],
       "confirmedDeaths": [
         0,
@@ -431,9 +484,11 @@ window.OUTBREAK_DATA = {
         1,
         1,
         10,
-        11
+        11,
+        18
       ],
       "observed": [
+        0,
         0,
         0,
         0,
@@ -456,7 +511,8 @@ window.OUTBREAK_DATA = {
           49,
           81,
           83,
-          105
+          105,
+          121
         ],
         "probable": [
           246,
@@ -467,7 +523,8 @@ window.OUTBREAK_DATA = {
           575,
           744,
           746,
-          906
+          906,
+          1077
         ],
         "deaths": [
           80,
@@ -478,7 +535,8 @@ window.OUTBREAK_DATA = {
           147,
           175,
           185,
-          233
+          233,
+          263
         ],
         "confirmedDeaths": [
           0,
@@ -489,9 +547,11 @@ window.OUTBREAK_DATA = {
           0,
           0,
           9,
-          10
+          10,
+          17
         ],
         "observed": [
+          0,
           0,
           0,
           0,
@@ -513,9 +573,11 @@ window.OUTBREAK_DATA = {
           2,
           2,
           5,
+          7,
           7
         ],
         "probable": [
+          0,
           0,
           0,
           0,
@@ -535,10 +597,12 @@ window.OUTBREAK_DATA = {
           1,
           1,
           1,
+          1,
           1
         ],
         "confirmedDeaths": [
           0,
+          1,
           1,
           1,
           1,
@@ -557,12 +621,42 @@ window.OUTBREAK_DATA = {
           0,
           0,
           0,
+          0,
           0
         ]
       }
     }
   },
   "watchlist": [
+    {
+      "date": "2026-05-28",
+      "title": {
+        "zh": "X聚焦：埃博拉“欧洲传播”信号去噪",
+        "en": "X focus: de-noising \"Ebola spread in Europe\" signals"
+      },
+      "note": {
+        "zh": "X平台欧洲传播讨论显著升温，但ECDC对EU/EEA居民风险评估仍为“非常低”；看板继续并行追踪社交信号与官方评估。",
+        "en": "X chatter on \"Ebola spreading in Europe\" has intensified, while ECDC still rates risk to EU/EEA residents as very low; the dashboard tracks both streams in parallel."
+      },
+      "sourceIds": [
+        "opencli-x-ebola-europe-spread-2026-05-28",
+        "ecdc-outbreak-2026-05-27"
+      ]
+    },
+    {
+      "date": "2026-05-27",
+      "title": {
+        "zh": "CDC口径继续上修至5月27日",
+        "en": "CDC totals revised upward through 27 May"
+      },
+      "note": {
+        "zh": "全球确诊升至128、累计死亡升至264；重点仍在DRC，乌干达维持7例。",
+        "en": "Global confirmed rose to 128 and deaths to 264; burden remains concentrated in DRC while Uganda remains at 7 cases."
+      },
+      "sourceIds": [
+        "cdc-situation-2026-05-27"
+      ]
+    },
     {
       "date": "2026-05-25",
       "title": {
@@ -638,6 +732,30 @@ window.OUTBREAK_DATA = {
     }
   ],
   "news": [
+    {
+      "date": "2026-05-27",
+      "title": {
+        "zh": "CDC：5月27日埃博拉态势更新",
+        "en": "CDC: Ebola current situation update (27 May)"
+      },
+      "summary": {
+        "zh": "CDC更新到DRC 1,077疑似、121确诊、246疑似死亡、17确诊死亡；乌干达7确诊、1确诊死亡。",
+        "en": "CDC updated to DRC 1,077 suspected, 121 confirmed, 246 suspected deaths, and 17 confirmed deaths; Uganda 7 confirmed and 1 confirmed death."
+      },
+      "sourceId": "cdc-situation-2026-05-27"
+    },
+    {
+      "date": "2026-05-27",
+      "title": {
+        "zh": "ECDC：欧洲风险仍为“非常低”",
+        "en": "ECDC: Risk to Europe remains \"very low\""
+      },
+      "summary": {
+        "zh": "ECDC 5月27日更新强调EU/EEA感染风险仍然非常低，并持续关注输入相关信号。",
+        "en": "ECDC 27 May update emphasizes infection risk for EU/EEA residents remains very low while importation-related signals are monitored."
+      },
+      "sourceId": "ecdc-outbreak-2026-05-27"
+    },
     {
       "date": "2026-05-25",
       "title": {
@@ -785,6 +903,27 @@ window.OUTBREAK_DATA = {
   ],
   "sources": [
     {
+      "id": "opencli-x-ebola-europe-spread-2026-05-28",
+      "publisher": "X / Curated Search",
+      "title": "X signal stream: Ebola spread in Europe discussions",
+      "date": "2026-05-28",
+      "url": "https://x.com/search?q=%28ebola%20OR%20bundibugyo%29%20%28Europe%20OR%20european%20OR%20Germany%20OR%20France%20OR%20Italy%20OR%20Spain%20OR%20UK%29%20%28spread%20OR%20imported%20OR%20cases%29&src=typed_query&f=live"
+    },
+    {
+      "id": "cdc-situation-2026-05-27",
+      "publisher": "CDC",
+      "title": "Ebola Disease: Current Situation",
+      "date": "2026-05-27",
+      "url": "https://www.cdc.gov/ebola/situation-summary/index.html"
+    },
+    {
+      "id": "ecdc-outbreak-2026-05-27",
+      "publisher": "ECDC",
+      "title": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda (updated 27 May 16:45)",
+      "date": "2026-05-27",
+      "url": "https://www.ecdc.europa.eu/en/ebola-virus-disease-outbreak-democratic-republic-congo-and-uganda"
+    },
+    {
       "id": "cdc-situation-2026-05-25",
       "publisher": "CDC",
       "title": "Ebola Disease: Current Situation",
@@ -905,7 +1044,7 @@ window.OUTBREAK_DATA = {
     }
   ],
   "observation": {
-    "asOf": "2026-05-25",
+    "asOf": "2026-05-27",
     "definition": {
       "zh": "被观测者=公开来源中可量化且可归属到国家/省州级的接触者监测人数。仅提到“在监测”但未给出人数的地区，不并入统计总量。",
       "en": "Observed persons are those under contact monitoring with publicly quantified and country/region-attributable counts. Regions reporting monitoring without numeric disclosure are excluded from totals."
@@ -937,9 +1076,9 @@ window.OUTBREAK_DATA = {
           "en": "Key affected areas are Ituri and North Kivu; publicly available bulletins still do not provide a quantified total for monitored contacts."
         },
         "sourceIds": [
-          "cdc-situation-2026-05-25",
-          "who-don603-2026-05-21",
-          "who-ihr-temp-rec-2026-05-22"
+          "cdc-situation-2026-05-27",
+          "ecdc-outbreak-2026-05-27",
+          "who-don603-2026-05-21"
         ]
       },
       {
@@ -954,9 +1093,8 @@ window.OUTBREAK_DATA = {
           "en": "Uganda reports 2 import-associated confirmed cases (including 1 death), but no quantified contact-monitoring total has been publicly released."
         },
         "sourceIds": [
-          "cdc-situation-2026-05-25",
-          "ap-uganda-seven-2026-05-25",
-          "bnofeed-x-2026-05-23"
+          "cdc-situation-2026-05-27",
+          "ecdc-outbreak-2026-05-27"
         ]
       }
     ],
