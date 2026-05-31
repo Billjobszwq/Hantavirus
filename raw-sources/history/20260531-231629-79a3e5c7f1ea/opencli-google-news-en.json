@@ -1,0 +1,5 @@
+{
+  "skipped": true,
+  "reason": "opencli unavailable or SKIP_OPENCLI=1",
+  "cmd": "google news hantavirus MV Hondius --limit 30 --lang en --region US"
+}
