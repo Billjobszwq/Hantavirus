@@ -209,6 +209,13 @@
     border-color: color-mix(in srgb, var(--danger) 34%, var(--line) 66%);
   }
 
+  body[data-theme="night"] .daily-milestone {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--danger) 18%, transparent) 0%, color-mix(in srgb, var(--warning) 16%, transparent) 100%),
+      color-mix(in srgb, var(--surface) 92%, #22375f 8%);
+    border-color: color-mix(in srgb, var(--danger) 42%, var(--line) 58%);
+  }
+
   .daily-head {
     display: flex;
     align-items: center;
@@ -258,6 +265,98 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(120px, 1fr));
     gap: 7px;
+  }
+
+  .daily-milestone {
+    margin-top: 10px;
+    border: 1px solid color-mix(in srgb, var(--danger) 34%, var(--line) 66%);
+    border-radius: 12px;
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--danger) 10%, transparent) 0%, color-mix(in srgb, var(--warning) 10%, transparent) 100%),
+      color-mix(in srgb, var(--surface) 95%, #fff 5%);
+    padding: 9px 10px 10px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  }
+
+  .daily-milestone-title {
+    font-size: 0.79rem;
+    font-weight: 800;
+    color: color-mix(in srgb, var(--danger) 72%, var(--text) 28%);
+    line-height: 1.34;
+  }
+
+  .daily-milestone-subtitle {
+    margin-top: 2px;
+    font-size: 0.72rem;
+    color: color-mix(in srgb, var(--text) 64%, var(--muted) 36%);
+    line-height: 1.34;
+  }
+
+  .daily-milestone-metrics {
+    margin-top: 7px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3px;
+    font-size: 0.73rem;
+  }
+
+  .daily-milestone-metrics .line {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    color: color-mix(in srgb, var(--text) 78%, var(--muted) 22%);
+  }
+
+  .daily-milestone-metrics .line .k {
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .daily-milestone-metrics .line .v {
+    font-weight: 800;
+    color: color-mix(in srgb, var(--danger) 72%, var(--text) 28%);
+  }
+
+  .daily-milestone-reasons {
+    margin: 7px 0 0;
+    padding-left: 16px;
+    display: grid;
+    gap: 4px;
+    color: color-mix(in srgb, var(--text) 82%, var(--muted) 18%);
+    font-size: 0.72rem;
+    line-height: 1.36;
+  }
+
+  .daily-milestone-capacity-title {
+    margin-top: 8px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: color-mix(in srgb, var(--text) 80%, var(--danger) 20%);
+  }
+
+  .daily-milestone-capacity-text {
+    margin-top: 3px;
+    font-size: 0.72rem;
+    line-height: 1.36;
+    color: color-mix(in srgb, var(--text) 82%, var(--muted) 18%);
+  }
+
+  .daily-milestone-sources {
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px dashed color-mix(in srgb, var(--line) 78%, transparent);
+    font-size: 0.71rem;
+    color: var(--muted);
+    line-height: 1.32;
+  }
+
+  .daily-milestone-sources a {
+    color: var(--primary);
+    text-decoration: none;
+  }
+
+  .daily-milestone-sources a:hover {
+    text-decoration: underline;
   }
 
   .daily-cell {
@@ -601,6 +700,11 @@
   .badge-death {
     background: color-mix(in srgb, var(--danger) 16%, transparent);
     color: var(--danger);
+  }
+
+  .badge-down {
+    background: color-mix(in srgb, var(--danger) 20%, transparent);
+    color: color-mix(in srgb, var(--danger) 78%, #5f1010 22%);
   }
 
   .country-notes,
@@ -1064,6 +1168,7 @@
               <div class="daily-chip" id="dailyChip"></div>
             </div>
             <div class="daily-grid" id="dailyGrid"></div>
+            <div class="daily-milestone" id="dailyMilestone" hidden></div>
             <div class="daily-health">
               <div class="daily-health-title" id="dailyHealthTitle"></div>
               <ul class="daily-health-list" id="dailyHealthList"></ul>
@@ -1331,6 +1436,30 @@
         { label: "WHO IHR Temporary Recommendations (2026-05-22)", url: "https://www.who.int/news/item/22-05-2026-first-meeting-of-the-ihr-emergency-committee-regarding-the-epidemic-of-ebola-bundibugyo-virus-disease-in-the-democratic-republic-of-the-congo-and-uganda-2026-temporary-recommendations" },
         { label: "CDC Current Situation (2026-05-30)", url: "https://www.cdc.gov/ebola/situation-summary/index.html" }
       ],
+      revisionMilestone: {
+        title: "里程碑：疑似口径回溯修订（为何会骤降）",
+        subtitle: "该下降主要是统计口径修订，不是传播突然消失",
+        fields: {
+          date: "修订触发日期",
+          probableDrop: "疑似/可能净变化",
+          deathsDrop: "死亡净变化",
+          confirmedRise: "确诊净变化"
+        },
+        approxHint: "约700例级别回调",
+        reasons: [
+          "CDC（5月30日）脚注：DRC 于5月29日更新疑似池，移除了“经调查已排除”的疑似病例。",
+          "同一脚注说明：疑似死亡中“仍待调查结果”的条目已暂时移出当前总数。",
+          "ECDC（5月29日）同步写明：此次修订还将部分疑似重新分类为确诊病例。",
+          "因此曲线骤降属于“回溯清洗 + 再分类”导致的统计台阶，不等同于疫情在同日突然逆转。"
+        ],
+        capacityTitle: "关于“检测能力提升”的判断",
+        capacityText: "可合理推断：调查、采样和实验室确认能力提升，有助于完成排除与改判；但官方未公布该因素的定量贡献占比，因此这里按“推断项”标注。",
+        sourcesPrefix: "关键依据：",
+        sources: [
+          { label: "CDC Current Situation（2026-05-30脚注）", url: "https://www.cdc.gov/ebola/situation-summary/index.html" },
+          { label: "ECDC Outbreak Page（2026-05-29更新）", url: "https://www.ecdc.europa.eu/en/ebola-outbreak-democratic-republic-congo-and-uganda" }
+        ]
+      },
 
       mapTitle: "全球地图（国家级着色）",
       mapSubtitle: "以国家级风险底色展示，并叠加已通报跨境传播链路径（DRC -> UG）",
@@ -1492,6 +1621,30 @@
         { label: "WHO IHR Temporary Recommendations (22 May 2026)", url: "https://www.who.int/news/item/22-05-2026-first-meeting-of-the-ihr-emergency-committee-regarding-the-epidemic-of-ebola-bundibugyo-virus-disease-in-the-democratic-republic-of-the-congo-and-uganda-2026-temporary-recommendations" },
         { label: "CDC Current Situation (30 May 2026)", url: "https://www.cdc.gov/ebola/situation-summary/index.html" }
       ],
+      revisionMilestone: {
+        title: "Milestone: Retrospective Suspect Reclassification (Why the sudden drop)",
+        subtitle: "This decline is primarily a methodology revision, not a same-day transmission collapse",
+        fields: {
+          date: "Revision trigger date",
+          probableDrop: "Net change in suspected/probable",
+          deathsDrop: "Net change in deaths",
+          confirmedRise: "Net change in confirmed"
+        },
+        approxHint: "about a 700-case level correction",
+        reasons: [
+          "CDC (30 May) footnote: on 29 May, DRC revised suspect totals and removed suspected cases ruled out after investigation.",
+          "The same note states suspected deaths pending ongoing investigation were temporarily removed from current totals.",
+          "ECDC (29 May update) adds that the revision also reclassified some suspected entries as confirmed cases.",
+          "So the step-down is a statistical shift from retrospective cleanup + reclassification, not a sudden epidemiological reversal in one day."
+        ],
+        capacityTitle: "On the 'improved testing capacity' interpretation",
+        capacityText: "It is reasonable to infer that stronger investigation, sampling, and lab confirmation supported this cleanup. However, official reports do not publish a quantified attribution share, so this is marked as an inference.",
+        sourcesPrefix: "Key evidence: ",
+        sources: [
+          { label: "CDC Current Situation (30 May footnote)", url: "https://www.cdc.gov/ebola/situation-summary/index.html" },
+          { label: "ECDC Outbreak Page (29 May update)", url: "https://www.ecdc.europa.eu/en/ebola-outbreak-democratic-republic-congo-and-uganda" }
+        ]
+      },
 
       mapTitle: "Global Map (Country-level Choropleth)",
       mapSubtitle: "Country-level risk shading with cross-border transmission path overlay (DRC -> UG)",
@@ -1710,6 +1863,71 @@
     return alignSeriesToLabels(raw, labels);
   }
 
+  function signedDeltaText(value) {
+    const n = Number(value) || 0;
+    if (n > 0) return `+${n}`;
+    if (n < 0) return String(n);
+    return "0";
+  }
+
+  function deltaBadgeHtml(value, tone = "confirmed") {
+    const n = Number(value) || 0;
+    if (n === 0) return "0";
+    const base = tone === "death" ? "badge-death" : "badge-confirmed";
+    const down = n < 0 ? " badge-down" : "";
+    return `<span class="badge ${base}${down}">${signedDeltaText(n)}</span>`;
+  }
+
+  function renderDailyMilestone() {
+    const box = document.getElementById("dailyMilestone");
+    if (!box) return;
+
+    const lang = t();
+    const conf = lang.revisionMilestone;
+    if (!conf) {
+      box.hidden = true;
+      box.innerHTML = "";
+      return;
+    }
+
+    const revision = [...data.timeline]
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .find((item) => (item.probableDelta || 0) < 0 || (item.deathsDelta || 0) < 0);
+
+    if (!revision) {
+      box.hidden = true;
+      box.innerHTML = "";
+      return;
+    }
+
+    const probable = Number(revision.probableDelta || 0);
+    const deaths = Number(revision.deathsDelta || 0);
+    const confirmed = Number(revision.confirmedDelta || 0);
+    const probableSuffix = Math.abs(probable) >= 700 ? ` (${conf.approxHint})` : "";
+
+    const sourceLinks = (conf.sources || []).map((item) =>
+      `<a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.label}</a>`
+    ).join(" · ");
+
+    box.hidden = false;
+    box.innerHTML = `
+      <div class="daily-milestone-title">${conf.title}</div>
+      <div class="daily-milestone-subtitle">${conf.subtitle}</div>
+      <div class="daily-milestone-metrics">
+        <div class="line"><span class="k">${conf.fields.date}</span><span class="v">${revision.date}</span></div>
+        <div class="line"><span class="k">${conf.fields.probableDrop}</span><span class="v">${signedDeltaText(probable)} ${probableSuffix}</span></div>
+        <div class="line"><span class="k">${conf.fields.deathsDrop}</span><span class="v">${signedDeltaText(deaths)}</span></div>
+        <div class="line"><span class="k">${conf.fields.confirmedRise}</span><span class="v">${signedDeltaText(confirmed)}</span></div>
+      </div>
+      <ul class="daily-milestone-reasons">
+        ${(conf.reasons || []).map((reason) => `<li>${reason}</li>`).join("")}
+      </ul>
+      <div class="daily-milestone-capacity-title">${conf.capacityTitle}</div>
+      <div class="daily-milestone-capacity-text">${conf.capacityText}</div>
+      <div class="daily-milestone-sources">${conf.sourcesPrefix}${sourceLinks}</div>
+    `;
+  }
+
   function renderTopText() {
     const lang = t();
 
@@ -1826,6 +2044,8 @@
       </div>
     `).join("");
 
+    renderDailyMilestone();
+
     document.getElementById("dailyHealthTitle").textContent = lang.dailyHealthTitle;
     document.getElementById("dailyHealthList").innerHTML = (lang.dailyHealthItems || []).map((item) => `
       <li class="daily-health-item">
@@ -1904,9 +2124,9 @@
         <tr>
           <td>${item.date}</td>
           <td>${country}</td>
-          <td class="num">${item.confirmedDelta > 0 ? `<span class="badge badge-confirmed">+${item.confirmedDelta}</span>` : "0"}</td>
-          <td class="num">${item.deathsDelta > 0 ? `<span class="badge badge-death">+${item.deathsDelta}</span>` : "0"}</td>
-          <td class="num">${item.observedDelta > 0 ? `<span class="badge badge-confirmed">+${item.observedDelta}</span>` : "0"}</td>
+          <td class="num">${deltaBadgeHtml(item.confirmedDelta, "confirmed")}</td>
+          <td class="num">${deltaBadgeHtml(item.deathsDelta, "death")}</td>
+          <td class="num">${deltaBadgeHtml(item.observedDelta, "confirmed")}</td>
           <td class="timeline-event">${item.description[state.lang]}</td>
         </tr>
       `;

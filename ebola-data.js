@@ -248,8 +248,8 @@ window.OUTBREAK_DATA = {
       "deathsDelta": -245,
       "observedDelta": 0,
       "description": {
-        "zh": "CDC 5月30日采用新分层口径并同步回溯清洗疑似池，导致“疑似/疑似死亡”从历史高位回落。",
-        "en": "CDC 30 May switched to a revised stratified counting basis with retrospective suspect-pool cleanup, causing suspected/suspected-death totals to drop from prior highs."
+        "zh": "CDC 5月30日采用新分层口径并回溯修订：移除经调查已排除的疑似病例、暂时移出待调查疑似死亡，并将部分疑似改判为确诊，导致“疑似/疑似死亡”自高位回落。",
+        "en": "On 30 May, CDC reflected retrospective revision: suspected entries ruled out after investigation were removed, suspected deaths pending investigation were temporarily excluded, and some suspected entries were reclassified as confirmed, driving a sharp drop from prior highs."
       },
       "sourceIds": [
         "cdc-situation-2026-05-30"
@@ -706,8 +706,8 @@ window.OUTBREAK_DATA = {
         "en": "CDC retrospective cleanup sharply reduced suspect/death buckets"
       },
       "note": {
-        "zh": "5月30日口径将大量历史疑似/疑似死亡移出当前池；曲线回落属于“口径修订”而非疫情突然逆转。",
-        "en": "On 30 May, many historical suspected/suspected-death entries were removed from current pools; the downward step reflects methodology revision, not a sudden epidemiological reversal."
+        "zh": "5月30日口径修订将大量历史疑似/疑似死亡移出当前池，并把部分疑似改判为确诊；曲线回落属于“回溯清洗+再分类”，不是疫情突然逆转。",
+        "en": "The 30 May revision removed many historical suspected/suspected-death entries from active totals and reclassified part of suspected records as confirmed; the drop is a retrospective cleanup + reclassification effect, not a sudden epidemiological reversal."
       },
       "sourceIds": [
         "cdc-situation-2026-05-30"
