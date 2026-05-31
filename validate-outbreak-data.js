@@ -72,8 +72,9 @@ function validateDataFile(filePath) {
   assert(Array.isArray(g.confirmedDeaths) && g.confirmedDeaths.length === dates.length, 'Global confirmedDeaths series length mismatch.');
   assert(Array.isArray(g.observed) && g.observed.length === dates.length, 'Global observed series length mismatch.');
 
-  // Metrics that must be monotonic non-decreasing (probable can decrease on reclassification)
-  ['confirmed', 'deaths', 'confirmedDeaths', 'observed'].forEach((metric) => {
+  // Metrics that should stay monotonic in this dashboard model.
+  // deaths/probable may decrease after retrospective reclassification.
+  ['confirmed', 'confirmedDeaths', 'observed'].forEach((metric) => {
     assert(isNonDecreasing(g[metric]), `Global ${metric} series must be non-decreasing.`);
   });
 
@@ -100,8 +101,8 @@ function validateDataFile(filePath) {
     ['confirmed', 'probable', 'deaths', 'confirmedDeaths', 'observed'].forEach((k) => {
       assert(Array.isArray(cs[k]) && cs[k].length === dates.length, `Country ${c.code}: series.${k} length mismatch`);
       if (Array.isArray(cs[k])) {
-        // Only require monotonic for metrics that cannot decrease (probable can drop on reclassification)
-        if (k !== 'probable') {
+        // probable/deaths may drop after retrospective reclassification.
+        if (k !== 'probable' && k !== 'deaths') {
           assert(isNonDecreasing(cs[k]), `Country ${c.code}: series.${k} not non-decreasing`);
         }
       }
