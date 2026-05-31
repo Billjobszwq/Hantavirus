@@ -9,8 +9,25 @@ function isNonDecreasing(arr) {
   return true;
 }
 
+function isNonIncreasing(arr) {
+  for (let i = 1; i < arr.length; i += 1) {
+    if (arr[i] > arr[i - 1]) return false;
+  }
+  return true;
+}
+
 function isNonEmptyString(v) {
   return typeof v === 'string' && v.trim().length > 0;
+}
+
+function normalizeYmd(value) {
+  const text = String(value || '').trim();
+  if (!text) return null;
+  const hit = text.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (hit) return `${hit[1]}-${hit[2]}-${hit[3]}`;
+  const d = new Date(text);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toISOString().slice(0, 10);
 }
 
 function validateDataFile(filePath) {
@@ -40,6 +57,12 @@ function validateDataFile(filePath) {
   const g = d.series?.global || {};
   const sources = d.sources || [];
   const sourceIdSet = new Set(sources.map((s) => s.id));
+  const normalizedSeriesDates = dates.map(normalizeYmd);
+
+  assert(normalizedSeriesDates.every(Boolean), 'series.dates contains invalid date values.');
+  if (normalizedSeriesDates.every(Boolean)) {
+    assert(isNonDecreasing(normalizedSeriesDates), 'series.dates must be sorted ascending (oldest -> newest).');
+  }
 
   assert(sourceIdSet.size === sources.length, 'Duplicate source IDs found in sources[].');
 
@@ -133,6 +156,11 @@ function validateDataFile(filePath) {
     });
   });
 
+  const timelineDates = timeline.map((item) => normalizeYmd(item?.date)).filter(Boolean);
+  if (timelineDates.length) {
+    assert(isNonIncreasing(timelineDates), 'timeline must be sorted descending (newest -> oldest).');
+  }
+
   const allowedObsStatus = new Set(['counted', 'reported_no_count', 'no_reported_monitoring']);
   const observation = d.observation || null;
   if (observation) {
@@ -182,6 +210,11 @@ function validateDataFile(filePath) {
     }
   });
 
+  const newsDates = (d.news || []).map((item) => normalizeYmd(item?.date)).filter(Boolean);
+  if (newsDates.length) {
+    assert(isNonIncreasing(newsDates), 'news must be sorted descending (newest -> oldest).');
+  }
+
   (d.watchlist || []).forEach((item, idx) => {
     assert(isNonEmptyString(item.date), `Watchlist[${idx}] missing date.`);
     assert(isNonEmptyString(item.title?.zh), `Watchlist[${idx}] missing title.zh.`);
@@ -194,6 +227,11 @@ function validateDataFile(filePath) {
       assert(sourceIdSet.has(id), `Watchlist[${idx}] references missing source id: ${id}`);
     });
   });
+
+  const watchDates = (d.watchlist || []).map((item) => normalizeYmd(item?.date)).filter(Boolean);
+  if (watchDates.length) {
+    assert(isNonIncreasing(watchDates), 'watchlist must be sorted descending (newest -> oldest).');
+  }
 
   const latestDate = timeline
     .map((x) => x.date)

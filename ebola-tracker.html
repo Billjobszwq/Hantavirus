@@ -1662,29 +1662,19 @@
 
   function effectiveSeriesDates() {
     const sourceDates = Array.isArray(data?.series?.dates) ? data.series.dates : [];
-    const normalizedSource = sourceDates.map(normalizeYmd).filter(Boolean);
+    const normalizedSource = [...new Set(sourceDates.map(normalizeYmd).filter(Boolean))]
+      .sort((a, b) => new Date(a) - new Date(b));
+
+    // Keep chart dates strictly tied to epidemiological series dates.
+    if (normalizedSource.length) return normalizedSource;
 
     const candidates = [
-      ...normalizedSource,
       normalizeYmd(data?.meta?.dashboardDataDate),
       normalizeYmd(data?.meta?.lastUpdatedDate),
-      normalizeYmd(data?.meta?.rawSyncAt),
       normalizeYmd(data?.meta?.lastUpdatedAt)
     ].filter(Boolean);
 
-    if (!candidates.length) return [];
-
-    const minDate = candidates.reduce((min, cur) => (cur < min ? cur : min), candidates[0]);
-    const maxDate = candidates.reduce((max, cur) => (cur > max ? cur : max), candidates[0]);
-
-    const out = [];
-    const cursor = new Date(`${minDate}T00:00:00Z`);
-    const end = new Date(`${maxDate}T00:00:00Z`);
-    while (cursor <= end) {
-      out.push(cursor.toISOString().slice(0, 10));
-      cursor.setUTCDate(cursor.getUTCDate() + 1);
-    }
-    return out;
+    return [...new Set(candidates)].sort((a, b) => new Date(a) - new Date(b));
   }
 
   function alignSeriesToLabels(raw, labels) {
