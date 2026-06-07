@@ -1,0 +1,5 @@
+{
+  "skipped": true,
+  "reason": "opencli unavailable or SKIP_OPENCLI=1",
+  "cmd": "twitter search (ebola OR bundibugyo) (Europe OR european OR Germany OR France OR Italy OR Spain OR UK) (spread OR imported OR cases) --product live --limit 20"
+}
