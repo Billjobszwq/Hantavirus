@@ -1,5 +1,0 @@
-{
-  "skipped": true,
-  "reason": "opencli unavailable or SKIP_OPENCLI=1",
-  "cmd": "reuters search hantavirus cruise ship --limit 20"
-}
