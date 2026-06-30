@@ -1,0 +1,5 @@
+{
+  "skipped": true,
+  "reason": "opencli unavailable or SKIP_OPENCLI=1",
+  "cmd": "twitter search (hantavirus OR \"sin nombre\") (US OR \"United States\" OR America) (outbreak OR spread OR cases) --product live --limit 20"
+}
