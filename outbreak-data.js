@@ -13,7 +13,7 @@ window.OUTBREAK_DATA = {
       "en": "The main case dashboard remains nationality-based within the MV Hondius event chain; observed-person metrics additionally include inbound medical testing/isolation monitoring counts when quantifiable and source-traceable."
     },
     "externalBenchmarks": {
-      "checkedAt": "2026-07-08T14:37:31+08:00",
+      "checkedAt": "2026-07-08T19:56:26+08:00",
       "items": [
         {
           "id": "elisey-arcgis",
@@ -51,12 +51,12 @@ window.OUTBREAK_DATA = {
             "en": "Uses signals (mentions/updates) as the unit, not patient counts; methodology states most countries are not confirmed-case totals."
           },
           "metrics": {
-            "signalsTotal": 356,
-            "countriesActive": 14,
+            "signalsTotal": 340,
+            "countriesActive": 13,
             "countriesIndexed": 69,
-            "countriesWithSignals30d": 14,
-            "signals30dCountrySum": 71,
-            "argentinaSignals30d": 19,
+            "countriesWithSignals30d": 13,
+            "signals30dCountrySum": 66,
+            "argentinaSignals30d": 17,
             "southAfricaSignals30d": 0
           },
           "sourceIds": [
@@ -67,7 +67,7 @@ window.OUTBREAK_DATA = {
         }
       ]
     },
-    "rawSyncAt": "2026-07-08T14:37:33+08:00",
+    "rawSyncAt": "2026-07-08T19:56:27+08:00",
     "dashboardDataDate": "2026-05-28"
   },
   "summary": {
