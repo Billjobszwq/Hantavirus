@@ -1,6 +1,0 @@
-{
-  "error": "twitter adapter search failed; captured web fallback snapshot",
-  "query": "MV Hondius hantavirus observation",
-  "fallback": "opencli web read",
-  "excerpt": ""
-}

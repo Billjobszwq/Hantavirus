@@ -1,0 +1,5 @@
+{
+  "skipped": true,
+  "reason": "opencli unavailable or SKIP_OPENCLI=1",
+  "cmd": "reddit search MV Hondius hantavirus --sort new --time month --limit 30"
+}
