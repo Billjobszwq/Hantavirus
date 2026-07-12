@@ -1,0 +1,5 @@
+{
+  "skipped": true,
+  "reason": "opencli unavailable or SKIP_OPENCLI=1",
+  "cmd": "twitter search from:BNOFeed (hantavirus OR Andes virus OR ebola OR Bundibugyo OR MV Hondius) --product live --limit 20"
+}
