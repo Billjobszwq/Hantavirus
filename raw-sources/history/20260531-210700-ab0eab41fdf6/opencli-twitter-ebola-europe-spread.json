@@ -1,6 +1,0 @@
-{
-  "error": "twitter adapter search failed; captured web fallback snapshot",
-  "query": "(ebola OR bundibugyo) (Europe OR european OR Germany OR France OR Italy OR Spain OR UK) (spread OR imported OR cases)",
-  "fallback": "opencli web read",
-  "excerpt": ""
-}

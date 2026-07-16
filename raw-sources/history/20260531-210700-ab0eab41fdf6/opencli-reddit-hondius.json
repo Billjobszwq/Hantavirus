@@ -1,5 +1,0 @@
-{
-  "error": "opencli command failed",
-  "cmd": "opencli --profile 57a5zus5 reddit search MV Hondius hantavirus --sort new --time month --limit 30 -f json",
-  "profileConnected": true
-}
