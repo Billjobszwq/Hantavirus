@@ -1,6 +1,0 @@
-{
-  "error": "tavily request failed",
-  "status": "403",
-  "query": "AP hantavirus cruise ship latest May 2026 confirmed",
-  "excerpt": "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403 Forbidden</h1></center>\r\n</body>\r\n</html>\r"
-}
