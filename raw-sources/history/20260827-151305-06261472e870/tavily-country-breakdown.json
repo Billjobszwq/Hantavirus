@@ -1,0 +1,6 @@
+{
+  "error": "tavily request failed",
+  "status": "432",
+  "query": "hantavirus confirmed cases by nationality MV Hondius latest",
+  "excerpt": "{\"detail\":{\"error\":\"This request exceeds your plan's set usage limit. Please upgrade your plan or contact support@tavily.com\"}}"
+}
