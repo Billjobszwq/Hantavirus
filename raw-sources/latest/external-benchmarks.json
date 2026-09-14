@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-14T09:48:56.990Z",
+  "generatedAt": "2026-09-14T16:21:18.911Z",
   "status": "ok",
   "arcgis": {
     "source": "https://services1.arcgis.com/wb4Og4gH5mvzQAIV/arcgis/rest/services/Tracking_Hantavirus_2026/FeatureServer/1/query?where=1%3D1&outFields=*&f=geojson&returnGeometry=true&orderByFields=CASE_%20ASC&resultRecordCount=500",
@@ -16,12 +16,12 @@
   "hantaflow": {
     "sourceSignals": "https://hantaflow.com/api/signals.json",
     "sourceCountries": "https://hantaflow.com/api/countries.json",
-    "generatedAt": "2026-09-14T09:45:39.308Z",
-    "signalsTotal": 59,
-    "countriesActive": 6,
+    "generatedAt": "2026-09-14T16:15:39.361Z",
+    "signalsTotal": 56,
+    "countriesActive": 7,
     "countriesIndexed": 69,
-    "countriesWithSignals30d": 6,
-    "signals30dCountrySum": 15,
+    "countriesWithSignals30d": 7,
+    "signals30dCountrySum": 17,
     "spotCheck": {
       "AR": {
         "signals30d": 5,
