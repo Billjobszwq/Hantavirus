@@ -1,6 +1,6 @@
 {
   "error": "tavily request failed",
   "status": "432",
-  "query": "WHO hantavirus MV Hondius latest confirmed cases deaths",
+  "query": "AP hantavirus cruise ship latest May 2026 confirmed",
   "excerpt": "{\"detail\":{\"error\":\"This request exceeds your plan's set usage limit. Please upgrade your plan or contact support@tavily.com\"}}"
 }
