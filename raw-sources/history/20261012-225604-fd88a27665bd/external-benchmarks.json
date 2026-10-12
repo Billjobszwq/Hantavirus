@@ -1,0 +1,39 @@
+{
+  "generatedAt": "2026-10-12T22:56:03.719Z",
+  "status": "ok",
+  "arcgis": {
+    "source": "https://services1.arcgis.com/wb4Og4gH5mvzQAIV/arcgis/rest/services/Tracking_Hantavirus_2026/FeatureServer/1/query?where=1%3D1&outFields=*&f=geojson&returnGeometry=true&orderByFields=CASE_%20ASC&resultRecordCount=500",
+    "totalPoints": 107,
+    "uniqueLocations": 30,
+    "status": {
+      "MONITORING": 85,
+      "UNKNOWN": 4,
+      "CONFIRMED": 8,
+      "SUSPECTED": 7,
+      "DECEASED": 3
+    }
+  },
+  "hantaflow": {
+    "sourceSignals": "https://hantaflow.com/api/signals.json",
+    "sourceCountries": "https://hantaflow.com/api/countries.json",
+    "generatedAt": "2026-10-12T22:45:39.543Z",
+    "signalsTotal": 46,
+    "countriesActive": 6,
+    "countriesIndexed": 69,
+    "countriesWithSignals30d": 6,
+    "signals30dCountrySum": 6,
+    "spotCheck": {
+      "AR": {
+        "signals30d": 0,
+        "level": "inactive",
+        "lastSignalAt": null
+      },
+      "ZA": {
+        "signals30d": 0,
+        "level": "inactive",
+        "lastSignalAt": null
+      }
+    }
+  },
+  "errors": []
+}
