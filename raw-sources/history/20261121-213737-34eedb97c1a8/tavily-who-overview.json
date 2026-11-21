@@ -1,0 +1,106 @@
+{
+  "query": "WHO hantavirus MV Hondius latest confirmed cases deaths",
+  "follow_up_questions": null,
+  "answer": "As of today, 2026-11-21, the latest information from the sources indicates that the hantavirus outbreak on the MV Hondius cruise ship resulted in a total of 12 confirmed cases and 1 suspected case, with 3 deaths confirmed to be caused by the Andes virus. The outbreak was declared over by the World Health Organization on 2 July 2026, after the last close contact was released from quarantine. The ship's final passengers and crew members disembarked on 10 May 2026, and all individuals were evacuated and quarantined. The WHO assessed the public health risk as low, although the possibility of more cases due to the long incubation period was noted.",
+  "images": [],
+  "results": [
+    {
+      "url": "https://en.wikipedia.org/wiki/MV_Hondius_hantavirus_outbreak",
+      "title": "MV Hondius hantavirus outbreak - Wikipedia",
+      "content": "In April 2026, an outbreak of hantavirus infection caused by the Andes virus was identified on the Dutch cruise ship MV Hondius. There were ten confirmed cases and two suspected cases directly linked to the outbreak as of 22 May. There have been three deaths, two of which have been confirmed as caused by the Andes virus, the last on 2 May. By 11 May, all passengers had disembarked and been evacuated, many to their home countries for quarantine. On 2 July 2026, the World Health Organization officially declared the outbreak to be over, after the last close contact was released from quarantine. [...] Evacuation plans for the arrival of the ship on the Canary Islands were being finalized. Spain was coordinating the arrival of the ship with 22 countries, and the WHO. Almost all countries were sending evacuation aircraft for their citizens, and the EU provided two aircraft for those who did not have an assigned flight. Countries had differing quarantine plans for their nationals once evacuated.\n\nThere had been three deaths, with two confirmed to have been caused by hantavirus. The other one remained under investigation. As of 8 May, the WHO reported two probable cases and six confirmed cases, for a total of eight. The UKHSA reported one additional suspected case, with two Britons being confirmed infected. [...] Print/export\n\n Download as PDF\n Printable version\n\nIn other projects\n\n Wikimedia Commons\n Wikidata item\n\nAppearance\n\nFrom Wikipedia, the free encyclopedia\n\n2026 outbreak on cruise ship\n\n| MV Hondius hantavirus outbreak |\n\n| MV Hondius at the port of Granadilla on 10 May 2026, where the passengers departed the ship for quarantine. |\n| Disease | Hantavirus pulmonary syndrome |\n| Pathogen | Andes virus |\n| Date | 1 April 2026 – 11 May 2026[clarification needed] |\n| Confirmed cases | 12 |\n| Suspected cases | 1 |\n| Deaths | 3 |",
+      "score": 0.818011,
+      "raw_content": null,
+      "id": "74c6ce-00"
+    },
+    {
+      "url": "https://www.who.int/news/item/07-05-2026-who-s-response-to-hantavirus-cases-linked-to-a-cruise-ship",
+      "title": "WHO’s response to hantavirus cases linked to a cruise ship",
+      "content": "Dr Tedros Adhanom Ghebreyesus, WHO Director-General, briefed media today on a cluster of hantavirus cases linked to a cruise ship, the MV Hondius.\n\nEight cases have been reported so far, including three deaths. Five of the 8 cases have been confirmed as hantavirus.\n\nThe hantavirus involved is the Andes virus, the only species known to be capable of limited transmission between humans, linked to close and prolonged contact.\n\nDescribing the situation, Dr Tedros said, “While this is a serious incident, WHO assesses the public health risk as low.” He noted that given the incubation period, “it’s possible that more cases may be reported.”",
+      "score": 0.8110782,
+      "raw_content": null,
+      "id": "af1375-01"
+    },
+    {
+      "url": "https://www.cidrap.umn.edu/hantavirus/hantavirus-outbreak-grows-11-cases-9-confirmed",
+      "title": "Hantavirus outbreak grows to 11 cases, 9 confirmed | CIDRAP",
+      "content": "A Spanish passenger on the MV Hondius cruise ship who was in quarantine at a military hospital in Madrid is now confirmed to have hantavirus, raising the outbreak total to 11 cases, nine of which have been lab-confirmed. The death toll remains at three.\n\nSpeaking in Madrid today, World Health Organization Director-General Tedros Adhanom Ghebreyesus, PhD, said, “There is no sign that we are seeing the start of a larger outbreak. But of course the situation could change, and given the long incubation period of the virus, it’s possible we might see more cases in the coming weeks.”\n\nSo far no cases have been identified in anyone other than a passenger on the Dutch cruise ship.",
+      "score": 0.8086723,
+      "raw_content": null,
+      "id": "59a411-02"
+    },
+    {
+      "url": "https://www.pasteur.fr/en/whats-new/latest-news/news/andes-virus-mv-hondius-cruise-ship-what-we-know-about-rare-and-potentially-fatal-hantavirus",
+      "title": "Andes virus on the MV Hondius cruise ship: what we know about this rare and potentially fatal hantavirus | Pasteur.fr",
+      "content": "On May 4, 2026, the World Health Organization (WHO) issued an alert regarding a possible hantavirus outbreak aboard the Dutch cruise ship MV Hondius, sailing from Ushuaia (Argentina) to Cape Verde. On May 6, viral sequencing carried out by South African health authorities identified an Andes-type strain — the only hantavirus among the 38 known strains for which human-to-human transmission has been documented, although this mode of transmission remains marginal compared to exposure to infected rodents. On May 12, 2026, the WHO reported 11 cases worldwide: 7 confirmed cases, 1 suspected case, 3 other individuals who unfortunately died, as well as several hundred contact cases identified.\n\nWorld Health Organization (Hantavirus outbreak toolbox) [...] World Health Organization (Hantavirus outbreak toolbox)\n\n## Disembarkation of passengers in the Canary Islands, followed by repatriation of individuals, including five to France\n\nFrom May 10, 2026 onwards, the disembarkation of passengers and crew members began at the port of Tenerife (Canary Islands): 116 people representing 23 nationalities were evacuated within 48 hours, according to Spanish authorities. Five passengers of French nationality returned to France by plane (a private jet) and were hospitalized in quarantine at Bichat Hospital (Paris).\n\n|  | [...] ## Ongoing epidemiological investigations and low risk\n\nEpidemiological investigations are currently underway among passengers, crew members and individuals transferred outside the ship, in order to better understand the circumstances of this episode and to precisely assess the risk of human-to-human transmission. The WHO maintains at this stage that the overall risk to public health remains low, and is in no way comparable to the situation observed during the Covid-19 pandemic. The French National Reference Centre for Hantaviruses -under the responsibility of the Institut Pasteur (Paris)- is fully mobilized in the virological and epidemiological monitoring of this episode, in close coordination with national and international health authorities.\n\n|  |",
+      "score": 0.80193585,
+      "raw_content": null,
+      "id": "ee591c-03"
+    },
+    {
+      "url": "https://www.bbc.com/news/articles/cjep78l5835o",
+      "title": "Last passengers leave virus-hit cruise ship as three more test positive",
+      "content": "# Last passengers leave virus-hit cruise ship as three more test positive\n\nThe last passengers have left the hantavirus-hit cruise ship, as authorities confirmed three new positive cases linked to the deadly outbreak.\n\nThe MV Hondius departed Tenerife for the Netherlands on Monday after its final six passengers - four Australians, one Briton and one New Zealander - and some crew members disembarked.\n\nThree passengers have died after travelling on the ship, two of whom were confirmed to have had the virus.\n\nAn American and a French national who had previously returned home have tested positive, authorities said. Nine cases of hantavirus linked to the MV Hondius have been confirmed, with two others suspected, according to the World Health Organization (WHO). [...] An elderly Dutch man was the first passenger who died on board the MV Hondius on 11 April. He had earlier developed symptoms and is believed to have been the first infected in the outbreak, but died before he could be tested.\n\nHis wife left the ship on 24 April on the island of St Helena and flew to South Africa. She died two days later in a clinic in Johannesburg.\n\nA German woman died on board the cruise ship on 2 May. Both women are confirmed cases.\n\nThe MV Hondius had been carrying 147 passengers and crew from 23 countries after departing from Ushuaia in Argentina on 1 April. [...] Map showing the route of the cruise ship MV Hondius across the South Atlantic Ocean with a timeline of incidents. The ship departs Ushuaia, Argentina on 1 April. On 11 April, the first passenger dies at sea. The route continues north east toward Africa. On 24 April, the wife of the deceased passenger is flown from St Helena to South Africa. A marker near South Africa notes: 26 April, a woman dies in Johannesburg; 27 April, a second sick passenger is flown to hospital. On 2 May, another passenger dies onboard. On 3 May, the ship arrives at Cape Verde. A final note says the ship has arrived in Tenerife on 10 May. The route is shown as a red line with arrows and black dots marking key locations.",
+      "score": 0.7947038,
+      "raw_content": null,
+      "id": "240d0d-04"
+    },
+    {
+      "url": "https://www.nytimes.com/2026/07/02/world/hantavirus-cruise-outbreak-timeline-events.html",
+      "title": "Deadly MV Hondius Hantavirus Outbreak Is Over, W.H.O. Says - The New York Times",
+      "content": "Supported by\n\n# Deadly Hantavirus Cruise Ship Outbreak Is Over 3 Months Later, W.H.O. Says\n\nThe rodent-borne virus, which sickened passengers on the MV Hondius, killed three people, led to a race to find its origin and a global health alert.\n\nThe reported illnesses this spring initially looked like the spread of a typical stomach bug on a luxury ocean liner, but the situation quickly escalated to a fatal outbreak of hantavirus, a rare rodent-borne pathogen, leading to weekslong quarantines for the ship’s passengers and a global health alert.\n\nBut the outbreak is now over, the World Health Organization announced on Thursday. Overall, there were 12 confirmed cases and one probable case aboard the cruise ship, including three deaths. [...] The declaration was made after the final contact of a passenger completed a quarantine period and tested negative for the virus, said the health agency, which is part of the United Nations.\n\nThe announcement ended a three-month saga that had scientists scrambling to find the origins of a rare vector for hantavirus; crew members and passengers held captive on a luxury ship; and global health officials enforcing contact tracing and quarantine protocols.\n\nThe luxury cruise liner, MV Hondius, began its trip carrying 175 passengers and crew members from nearly two dozen countries as it left Ushuaia, an Argentine city, on April 1. The first passenger sickened by the virus died less than two weeks later. [...] The last reported case was on May 25, Tedros Adhanom Ghebreyesus, the director general of the W.H.O., said in making the announcement.\n\n## Related Content\n\nAdvertisement",
+      "score": 0.79085356,
+      "raw_content": null,
+      "id": "0ddd62-05"
+    },
+    {
+      "url": "https://www.cidrap.umn.edu/hantavirus/hantavirus-outbreak-linked-cruise-ship-grows-13-cases",
+      "title": "Hantavirus outbreak linked to cruise ship grows to 13 cases | CIDRAP",
+      "content": "Over the past five days, two more cases of hantavirus have been confirmed among passengers and crew who were aboard the MV Hondius Dutch cruise ship in April and May.\n\nThe outbreak now has 13 cases, three of which were fatal.\n\nSeveral passengers remain in isolation and quarantine in various countries, including 18 Americans who are staying in a biocontainment unit in Nebraska through the end of the month. Hantavirus can have a 42-day incubation period. The Andes strain causing the outbreak is the only known hantavirus capable of spreading from person to person.\n\nThe first new case identified late last week was in a Dutch crew member who had disembarked the ship in Spain and was being monitored for the virus. \n\n### WHO: 'Situation is stable’ [...] ### WHO: 'Situation is stable’\n\n“The situation is stable for now. We continue to remain vigilant and in close contact with all relevant governments,” Tedros Adhanom Ghebreyesus, director-general of the World Health Organization (WHO), said on X on May 24. “All passengers and crew remain in quarantine and under close monitoring to ensure they receive care if needed.”\n\nOn May 25, Spain confirmed that a citizen who was aboard the MV Hondius and was isolated at a hospital in Madrid also tested positive for hantavirus.\n\nSo far, none of the cases have occurred in anyone who was not aboard the cruise ship.",
+      "score": 0.77029204,
+      "raw_content": null,
+      "id": "485d74-06"
+    },
+    {
+      "url": "https://www.businessinsider.com/cruise-ship-atlantic-viral-outbreak-deaths-hantavirus-world-health-organization-2026-5",
+      "title": "What Is Hantavirus and How Is It Spread? Cruise Outbreak Has Killed 3 - Business Insider",
+      "content": "Hantavirus has been linked to the deaths of three people who were aboard a cruise ship in the Atlantic Ocean, the World Health Organization said. Still, those with coming trips don't need to worry, according to experts.\n\n\"While this is a serious incident, the WHO assesses the public risk as low,\" said WHO Director-General Dr. Tedros Adhanom Ghebreyesus in a May 7 media briefing.\n\nEight cases of hantavirus have been reported, including the three deaths, according to the briefing. Five cases have been confirmed to be hantavirus through lab testing, and three are suspected.\n\nThe cases occurred on the MV Hondius, a cruise ship which can carry up to 170 passengers in 80 cabins, according to Oceanwide Expeditions, its Dutch operator.",
+      "score": 0.75797355,
+      "raw_content": null,
+      "id": "ff4611-07"
+    },
+    {
+      "url": "https://businessinsider.com/cruise-ship-atlantic-viral-outbreak-deaths-hantavirus-world-health-organization-2026-5",
+      "title": "What Is Hantavirus and How Is It Spread? Cruise Outbreak Has Killed 3 - Business Insider",
+      "content": "Hantavirus has been linked to the deaths of three people who were aboard a cruise ship in the Atlantic Ocean, the World Health Organization said. Still, those with coming trips don't need to worry, according to experts.\n\n\"While this is a serious incident, the WHO assesses the public risk as low,\" said WHO Director-General Dr. Tedros Adhanom Ghebreyesus in a May 7 media briefing.\n\nEight cases of hantavirus have been reported, including the three deaths, according to the briefing. Five cases have been confirmed to be hantavirus through lab testing, and three are suspected.\n\nThe cases occurred on the MV Hondius, a cruise ship which can carry up to 170 passengers in 80 cabins, according to Oceanwide Expeditions, its Dutch operator.",
+      "score": 0.75797355,
+      "raw_content": null,
+      "id": "7d8e07-08"
+    },
+    {
+      "url": "http://www.businessinsider.com/cruise-ship-atlantic-viral-outbreak-deaths-hantavirus-world-health-organization-2026-5",
+      "title": "What Is Hantavirus and How Is It Spread? Cruise Outbreak Has Killed 3 - Business Insider",
+      "content": "Hantavirus has been linked to the deaths of three people who were aboard a cruise ship in the Atlantic Ocean, the World Health Organization said. Still, those with coming trips don't need to worry, according to experts.\n\n\"While this is a serious incident, the WHO assesses the public risk as low,\" said WHO Director-General Dr. Tedros Adhanom Ghebreyesus in a May 7 media briefing.\n\nEight cases of hantavirus have been reported, including the three deaths, according to the briefing. Five cases have been confirmed to be hantavirus through lab testing, and three are suspected.\n\nThe cases occurred on the MV Hondius, a cruise ship which can carry up to 170 passengers in 80 cabins, according to Oceanwide Expeditions, its Dutch operator.",
+      "score": 0.75797355,
+      "raw_content": null,
+      "id": "4a2260-09"
+    },
+    {
+      "url": "https://id-info.jihs.go.jp/en/risk-assessment/hantavirus-pulmonary-syndrome/20260703/index.html",
+      "title": "Hantavirus Infection Cases on a Cruise Ship During International Voyage(Second / Final Report)｜Japan Institute for Health Security The Infectious Disease Information Website",
+      "content": "## The Current Event\n\nOn 2 May 2026, an outbreak of hantavirus infection associated with a cruise ship MV Hondius was reported to the World Health Organization (WHO). The ship had departed Ushuaia, Argentina in April, and followed an itinerary across the South Atlantic with stops at South Georgia, Cooper Island, Tristan da Cunha, Gough Island, Saint Helena, and Ascension Island. The index case boarded the ship after participating in outdoor activities in South America. The case developed respiratory symptoms on 3 April and died on 11 April. On 24 April, his body was taken off the ship on Saint Helena, a British Overseas Territory. His partner, who disembarked at the same time, developed symptoms on 24 April and subsequently died in Johannesburg, South Africa, while returning home. [...] van den Berg OE; UKHSA ANDV Team, Severi E, et al. Andes virus outbreak linked to expedition cruise ship travel, multi-country investigation and response, April to June 2026. Euro Surveill. 2026;31(24):2600477. doi:10.2807/1560-7917.ES.2026.31.24.2600477\n WHO. Disease Outbreak News. Hantavirus outbreak linked to cruise ship travel, Multi-locations. Published 2 July 2026. .\n WHO. Management of contacts of Andes virus (ANDV) cases from the MV Hondius cruise ship. Published 17 May 2026. .\n Japan Institute for Health Security, Infectious Disease Information Platform. Hantavirus Pulmonary Syndrome.",
+      "score": 0.7401744,
+      "raw_content": null,
+      "id": "39a6a4-10"
+    },
+    {
+      "url": "https://hub.jhu.edu/2026/05/08/hantavirus-outbreak-dutch-ship-hondius",
+      "title": "What we know about the hantavirus outbreak | Hub",
+      "content": "The voyage for the approximately 150 passengers on the MV Hondius, a Dutch ship on a weeks-long polar cruise, took a grim turn this week after an apparent outbreak of hantavirus—a rare rodent-borne infection—left three people dead and potentially sickened several more.\n\nThe World Health Organization has stressed that the risk to the public is low. \"This is not the next COVID, but it is a serious infectious disease,\" Maria Van Kerkhove, the WHO's chief of Epidemic and Pandemic Preparedness and Prevention told the Associated Press. \"Most people will never be exposed to this.\"\n\nStill, the virus, and how it spread on a cruise ship, is raising questions.\n\n### What we know about the outbreak [...] Skip to main content\n\nJohns Hopkins UniversityEst. 1876\n\nAmerica’s First Research University\n\nHub\nHub\nJohns Hopkins University\nJohns Hopkins University\n\nThe MV Hondius in June 2025\n\nImage caption: The MV Hondius in June 2025\n\nPublic health\n\n# What we know about the hantavirus outbreak\n\n## The virus, and how it spread on a cruise ship, is raising questions though the World Health Organization says the risk to the public is low\n\nBy\nMorgan Coulson\n\n/\nPublished\n May 8\n\nThis story originally appeared in The Uptake, a weekly newsletter offering expert insights from the Bloomberg School of Public Health. [...] Throughout its journey the ship made multiple stops, including mainland Antarctica, the Falklands, South Georgia, Nightingale Island, Tristan, St. Helena, Ascension, and Cape Verde.\n\nOn May 6, Mónica García Gómez, Spain's health minister, said the Hondius is heading to Tenerife, where passengers will be allowed to disembark. Spanish citizens and anyone showing symptoms will be quarantined at a military base in Madrid, while asymptomatic passengers from other countries will be sent home.\n\nListen to a related podcast, \"How To Avoid Getting Sick On A Cruise Ship\" at this link, and click here to subscribe to The Uptake.\n\nPosted in Health, Voices+Opinion\n\nTagged molecular biology, immunology, virus\n\nShare on X\n\nShare on Facebook\n\nPin it on Pinterest\n\nShare on LinkedIn\n\nShare on Reddit",
+      "score": 0.73961055,
+      "raw_content": null,
+      "id": "871e05-11"
+    }
+  ],
+  "response_time": 2.41,
+  "request_id": "bb4b5998-ab2c-48f4-af4f-afbc257db295"
+}
